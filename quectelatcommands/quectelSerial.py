@@ -7,11 +7,24 @@ import time
 
 class QuectelSerial:
     def __init__(self, p_port: str, p_baudrate: int, p_timeout: int):
+        """
+        Initialize the QuectelSerial class.
+
+        :param p_port: Serial port to connect to.
+        :type p_port: str
+        :param p_baudrate: Baudrate to use.
+        :type p_baudrate: int
+        :param p_timeout: Timeout for the serial connection.
+        :type p_timeout: int
+        """
         self.port = p_port
         self.baudrate = p_baudrate
         self.timeout = p_timeout
 
     def open(self):
+        """
+        Open the serial connection.
+        """
         try:
             self.serial_conn = serial.Serial(
                 self.port, self.baudrate, timeout=self.timeout
@@ -28,6 +41,9 @@ class QuectelSerial:
             self.close()
 
     def readResponthThread(self):
+        """
+        Thread to read the response from the modem.
+        """
         while self.receiveThreadAlive:
             try:
                 line = self.serial_conn.readline().decode().strip()
@@ -75,7 +91,9 @@ class QuectelSerial:
         return status, response
 
     def close(self):
-        """Close the serial connection."""
+        """
+        Close the serial connection.
+        """
         self.receiveThreadAlive = False
         self.serial_conn.close()
         self.receiveThread.join()

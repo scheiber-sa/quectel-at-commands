@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 
+from typing import Optional
 from .quectelSerial import QuectelSerial
 
 
@@ -442,7 +443,7 @@ class QuectelModemATCommands:
         return self.sendCommand("AT+QURCCFG='urcport'")
 
     def generalCommands224ConfigureUrcIndicationWrite(
-        self, p_urc_port: str = None
+        self, p_urc_port: Optional[str] = None
     ) -> tuple[bool, list[str]]:
         """
         General commands 224: Configure URC indication.
@@ -1620,7 +1621,7 @@ class QuectelModemATCommands:
         Call related commands 702: Mobile originated call to dial a number.
 
         :param p_n: String of dialing digits and optionally V.25ter modifiers.
-            Dialing digits: 0–9, \*, #, +, A, B, C
+            Dialing digits: 0–9, \\*, #, +, A, B, C
             Following V.25ter modifiers are ignored: ,(comma), T, P, !, W, @
         :type p_n: str
         :param p_mgsm: String of GSM modifiers:
