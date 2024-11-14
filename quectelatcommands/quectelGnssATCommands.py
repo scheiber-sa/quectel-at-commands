@@ -264,6 +264,396 @@ class QuectelGnssATCommands:
         """
         return self.sendCommand(f'AT+QGPSCFG="gnssconfig",{p_gnss_config}')
 
+    def configureGnss2208ConfigureOdpModeRead(
+        self,
+    ) -> tuple[bool, list[str]]:
+        """
+        Configure GNSS 2208: Read the ODP mode.
+
+        :return: Tuple containing the status of the command and the response.
+        :rtype: tuple[bool, list[str]]
+        """
+        return self.sendCommand(f'AT+QGPSCFG="odpcontrol"')
+
+    def configureGnss2208ConfigureOdpModeWrite(
+        self, p_odp_control: int
+    ) -> tuple[bool, list[str]]:
+        """
+        Configure GNSS 2208: Configure the ODP mode.
+
+        :param p_odp_control: Integer type. Set ODP mode:
+
+                        - **0**: Disable ODP
+                        - **1**: Low power mode
+                        - **2**: Ready mode
+
+        :type p_odp_control: int
+
+        :return: Tuple containing the status of the command and the response.
+        :rtype: tuple[bool, list[str]]
+        """
+        return self.sendCommand(f'AT+QGPSCFG="odpcontrol",{p_odp_control}')
+
+    def configureGnss2209EnableDisableDpoModeRead(
+        self,
+    ) -> tuple[bool, list[str]]:
+        """
+        Configure GNSS 2209: Read the DPO mode.
+
+        :return: Tuple containing the status of the command and the response.
+        :rtype: tuple[bool, list[str]]
+        """
+        return self.sendCommand(f'AT+QGPSCFG="dpoenable"')
+
+    def configureGnss2209EnableDisableDpoModeWrite(
+        self, p_dpo_enable: int
+    ) -> tuple[bool, list[str]]:
+        """
+        Configure GNSS 2209: Configure the DPO mode.
+
+        :param p_dpo_enable: Integer type. Enable/Disable DPO:
+
+                        - **0**: Disable DPO
+                        - **1**: Enable DPO with dynamic duty cycle
+
+        :type p_dpo_enable: int
+
+        :return: Tuple containing the status of the command and the response.
+        :rtype: tuple[bool, list[str]]
+        """
+        return self.sendCommand(f'AT+QGPSCFG="dpoenable",{p_dpo_enable}')
+
+    def configureGnss2210EnableDisableGnssExtendedGgsvRead(
+        self,
+    ) -> tuple[bool, list[str]]:
+        """
+        Configure GNSS 2210: Read the GNSS extended GGSV.
+
+        :return: Tuple containing the status of the command and the response.
+        :rtype: tuple[bool, list[str]]
+        """
+        return self.sendCommand(f'AT+QGPSCFG="gsvextnmeatype"')
+
+    def configureGnss2210EnableDisableGnssExtendedGgsvWrite(
+        self, gsvext_nmea_type: int
+    ) -> tuple[bool, list[str]]:
+        """
+        Configure GNSS 2210: Configure the GNSS extended GGSV.
+
+        :param gsvext_nmea_type: Integer type. Enable/Disable extended GGSV:
+
+                        - **0**: Disable extended GGSV
+                        - **1**: Display extended GGSV
+
+        :type gsvext_nmea_type: int
+
+        :return: Tuple containing the status of the command and the response.
+        :rtype: tuple[bool, list[str]]
+        """
+        return self.sendCommand(f'AT+QGPSCFG="gsvextnmeatype",{gsvext_nmea_type}')
+
+    def configureGnss2211ConfigurePlaneModeUsedByMoAgpsSessionRead(
+        self,
+    ) -> tuple[bool, list[str]]:
+        """
+        Configure GNSS 2211: Read the plane mode used by MO AGPS session.
+
+        :return: Tuple containing the status of the command and the response.
+        :rtype: tuple[bool, list[str]]
+        """
+        return self.sendCommand(f'AT+QGPSCFG="plane"')
+
+    def configureGnss2211ConfigurePlaneModeUsedByMoAgpsSessionWrite(
+        self, p_plane: int
+    ) -> tuple[bool, list[str]]:
+        """
+        Configure GNSS 2211: Configure the plane mode used by MO AGPS session.
+
+        :param p_plane: Integer type. The plane mode used by MO AGPS session:
+
+                        - **0**: User plane without SSL
+                        - **1**: User plane with SSL
+                        - **2**: Control plane
+        :type p_plane: int
+
+        :return: Tuple containing the status of the command and the response.
+        :rtype: tuple[bool, list[str]]
+        """
+        return self.sendCommand(f'AT+QGPSCFG="plane",{p_plane}')
+
+    def configureGnss2212EnableDisableGnssToRunAutomaticallyRead(
+        self,
+    ) -> tuple[bool, list[str]]:
+        """
+        Configure GNSS 2212: Read the GNSS to run automatically.
+
+        :return: Tuple containing the status of the command and the response.
+        :rtype: tuple[bool, list[str]]
+        """
+        return self.sendCommand(f'AT+QGPSCFG="autogps"')
+
+    def configureGnss2212EnableDisableGnssToRunAutomaticallyWrite(
+        self, p_autogps: int
+    ) -> tuple[bool, list[str]]:
+        """
+        Configure GNSS 2212: Configure the GNSS to run automatically.
+
+        :param p_autogps: Integer type. Enable/disable GNSS to run automatically after the module is powered on:
+
+                    - **0**: Disable GNSS to run automatically
+                    - **1**: Enable GNSS to run automatically
+
+        :type p_autogps: int
+
+        :return: Tuple containing the status of the command and the response.
+        :rtype: tuple[bool, list[str]]
+        """
+        return self.sendCommand(f'AT+QGPSCFG="autogps",{p_autogps}')
+
+    def configureGnss2213ConfigureSuplProtocolVersionRead(
+        self,
+    ) -> tuple[bool, list[str]]:
+        """
+        Configure GNSS 2213: Read the SUPL protocol version.
+
+        :return: Tuple containing the status of the command and the response.
+        :rtype: tuple[bool, list[str]]
+        """
+        return self.sendCommand(f'AT+QGPSCFG="suplver"')
+
+    def configureGnss2213ConfigureSuplProtocolVersionWrite(
+        self, p_supl_version: int
+    ) -> tuple[bool, list[str]]:
+        """
+        Configure GNSS 2213: Configure the SUPL protocol version.
+
+        :param p_supl_version: Integer type. The SUPL protocol version:
+
+                    - **0**: SUPL version 1.0
+                    - **1**: SUPL version 2.0
+
+        :type p_supl_version: int
+
+        :return: Tuple containing the status of the command and the response.
+        :rtype: tuple[bool, list[str]]
+        """
+        return self.sendCommand(f'AT+QGPSCFG="suplver",{p_supl_version}')
+
+    def configureGnss2214ConfigureAgpsPositioningModeRead(
+        self,
+    ) -> tuple[bool, list[str]]:
+        """
+        Configure GNSS 2214: Read the AGPS positioning mode.
+
+        :return: Tuple containing the status of the command and the response.
+        :rtype: tuple[bool, list[str]]
+        """
+        return self.sendCommand(f'AT+QGPSCFG="agpsposmode"')
+
+    def configureGnss2214ConfigureAgpsPositioningModeWrite(
+        self, p_agps_posmode: int
+    ) -> tuple[bool, list[str]]:
+        """
+        Configure GNSS 2214: Configure the AGPS positioning mode.
+
+        :param p_agps_posmode: Integer type. The AGPS positioning mode:
+
+            - **Bit 0**: Standalone
+            - **Bit 1**: UP MS-based
+            - **Bit 2**: UP MS-assisted
+            - **Bit 3**: CP MS-based (2G)
+            - **Bit 4**: CP MS-assisted (2G)
+            - **Bit 5**: CP UE-based (3G)
+            - **Bit 6**: CP UE-assisted (3G)
+            - **Bit 7**: UP network measurement report (2G)
+            - **Bit 8**: UP MS-based (4G)
+            - **Bit 9**: UP MS-assisted (4G)
+            - **Bit 10**: CP MS-based (4G)
+            - **Bit 11**: CP MS-assisted (4G)
+            - **Bit 16**: Enabling of autonomous fallback for SUPL-MSB
+            - **Bit 17**: A-GLONASS UP MS-based for 3G
+            - **Bit 18**: A-GLONASS UP MS-assisted for 3G
+            - **Bit 19**: A-GLONASS CP MS-based for 3G
+            - **Bit 20**: A-GLONASS CP MS-assisted for 3G
+            - **Bit 21**: A-GLONASS UP MS-based for 4G
+            - **Bit 22**: A-GLONASS UP MS-assisted for 4G
+            - **Bit 23**: A-GLONASS CP MS-based for 4G
+            - **Bit 24**: A-GLONASS CP MS-assisted for 4Ge
+
+        :type p_agps_posmode: int
+
+        :return: Tuple containing the status of the command and the response.
+        :rtype: tuple[bool, list[str]]
+        """
+        return self.sendCommand(f'AT+QGPSCFG="agpsposmode",{p_agps_posmode}')
+
+    def configureGnss2215ConfigureAgnssPositioningProtocolsRead(
+        self,
+    ) -> tuple[bool, list[str]]:
+        """
+        Configure GNSS 2215: Read the AGNSS positioning protocols.
+
+        :return: Tuple containing the status of the command and the response.
+        :rtype: tuple[bool, list[str]]
+        """
+        return self.sendCommand(f'AT+QGPSCFG="agnssprotocol"')
+
+    def configureGnss2215ConfigureAgnssPositioningProtocolsWrite(
+        self, agps_lp: int, p_aglonass_lp: int
+    ) -> tuple[bool, list[str]]:
+        """
+        Configure GNSS 2215: Configure the AGNSS positioning protocols.
+
+        :param agps_lp: Integer type. A-GPS LPP positioning protocol in ORed. Default: 3:
+
+                        - **1**: User plane LPP
+                        - **2**: Control plane LPP
+
+        :type agps_lp: int
+        :param p_aglonass_lp: Integer type. A-GLONASS positioning protocol in ORed. Default: 1287:
+
+                        - **1**:       Control plane RRLP
+                        - **2**:       Control plane RRC
+                        - **4**:       Control plane LPP
+                        - **256**:     User plane RRLP
+                        - **1024**:    User plane LPP
+
+        :type p_aglonass_lp: int
+
+        :return: Tuple containing the status of the command and the response.
+        :rtype: tuple[bool, list[str]]
+        """
+        return self.sendCommand(f'AT+QGPSCFG="agnssprotocol",{agps_lp},{p_aglonass_lp}')
+
+    def configureGnss2216ConfigureNmeaOutputFrequencyRead(
+        self,
+    ) -> tuple[bool, list[str]]:
+        """
+        Configure GNSS 2216: Read the NMEA output frequency.
+
+        :return: Tuple containing the status of the command and the response.
+        :rtype: tuple[bool, list[str]]
+        """
+        return self.sendCommand(f'AT+QGPSCFG="fixfreq"')
+
+    def configureGnss2216ConfigureNmeaOutputFrequencyWrite(
+        self, p_freq: int
+    ) -> tuple[bool, list[str]]:
+        """
+        Configure GNSS 2216: Configure the NMEA output frequency.
+
+        :param p_freq: Integer type. NMEA sentence output frequency:
+
+                        - **1**: 1 Hz
+                        - **2**: 2 Hz
+                        - **5**: 5 Hz
+                        - **10**: 10 Hz
+
+        :type p_freq: int
+
+        :return: Tuple containing the status of the command and the response.
+        :rtype: tuple[bool, list[str]]
+        """
+        return self.sendCommand(f'AT+QGPSCFG="fixfreq",{p_freq}')
+
+    def gnssGeneralCommands2300DeleteAssistanceData(
+        self, pdelete_type: int
+    ) -> tuple[bool, list[str]]:
+        """
+        GNSS General Commands 2300: Delete assistance data.
+
+        :param pdelete_type: Integer type. The type of GNSS assistance data to be deleted:
+
+        - **0**: Delete all assistance data. Enforce cold start after starting GNSS.
+        - **1**: Do not delete any data. Perform hot start if the conditions are permitted after starting GNSS.
+        - **2**: Delete some related data. Perform warm start if the conditions are permitted after starting GNSS.
+        - **3**: Delete the gpsOneXTRA assistance data injected into GNSS engine.
+
+        :type pdelete_type: int
+
+        :return: Tuple containing the status of the command and the response.
+        :rtype: tuple[bool, list[str]]
+        """
+        return self.sendCommand(f"AT+QGPSDEL={pdelete_type}")
+
+    def gnssGeneralCommands2400TurnOnGnssRead(self) -> tuple[bool, list[str]]:
+        """
+        GNSS General Commands 2400: Turn on GNSS.
+
+        :return: Tuple containing the status of the command and the response.
+        :rtype: tuple[bool, list[str]]
+        """
+        return self.sendCommand("AT+QGPS?")
+
+    def gnssGeneralCommands2400TurnOnGnssWrite(
+        self,
+        p_gnss_mode: int,
+        p_fix_maxtime: Optional[int],
+        p_fix_maxdist: Optional[int],
+        p_fix_count: Optional[int],
+        p_fix_rate: Optional[int],
+    ) -> tuple[bool, list[str]]:
+        """
+                        GNSS General Commands 2400: Turn on GNSS.
+
+                        :param p_gnss_mode: Integer type. GNSS working mode:
+
+                                    - **1**: Stand-alone
+                                    - **2**: MS-based
+                                    - **3**: MS-assisted
+                                    - **4**: Speed-optimal
+
+                        :type p_gnss_mode: int
+                        :param p_fix_maxtime: Integer type. The maximum positioning time, which indicates the response time of
+                GNSS receiver while measuring the GNSS pseudo range and the upper time limit of
+                GNSS satellite searching. It also includes the time for demodulating the ephemeris
+                data and calculating the position. Range: 1–255. Default: 255. Unit: second.
+
+                        :type p_fix_maxtime: int
+                        :param p_fix_maxdist: Integer type. Accuracy threshold of positioning. Range: 0–1000. Default: 50. Unit:
+        meter.
+
+                        :type p_fix_maxdist: int
+                        :param p_fix_count: Integer type. Positioning times. Range: 0–1000. Default: 0:
+
+                                    -**0**: Continuous positioning.
+                                    -**Other values**: Actual positioning times.
+
+                        :type p_fix_count: int
+                        :param p_fix_rate: nteger type. The interval between the first and the second positioning.
+        Range: 1–65535. Default value: 1. Unit: second.
+
+                        :type p_fix_rate: int
+
+                        :return: Tuple containing the status of the command and the response.
+                        :rtype: tuple[bool, list[str]]
+        """
+        if (
+            p_fix_maxtime is not None
+            and p_fix_maxdist is not None
+            and p_fix_count is not None
+            and p_fix_rate is not None
+        ):
+            return self.sendCommand(
+                f"AT+QGPS={p_gnss_mode},{p_fix_maxtime},{p_fix_maxdist},{p_fix_count},{p_fix_rate}"
+            )
+        elif (
+            p_fix_maxtime is not None
+            and p_fix_maxdist is not None
+            and p_fix_count is not None
+        ):
+            return self.sendCommand(
+                f"AT+QGPS={p_gnss_mode},{p_fix_maxtime},{p_fix_maxdist},{p_fix_count}"
+            )
+        elif p_fix_maxtime is not None and p_fix_maxdist is not None:
+            return self.sendCommand(
+                f"AT+QGPS={p_gnss_mode},{p_fix_maxtime},{p_fix_maxdist}"
+            )
+        elif p_fix_maxtime is not None:
+            return self.sendCommand(f"AT+QGPS={p_gnss_mode},{p_fix_maxtime}")
+        else:
+            return self.sendCommand(f"AT+QGPS={p_gnss_mode}")
+
 
 import click
 
@@ -352,12 +742,12 @@ Configure the output port of NMEA sentences:
                     - **"uartdebug"**: Output via debug UART port
 """,
 )
-def write(ctx, o: str):  # type: ignore[reportRedeclaration]
+def write(ctx, out_port: str):  # type: ignore[reportRedeclaration]
     """Write the output port of NMEA sentences."""
     client: QuectelGnssATCommands = ctx.obj["client"]
     client.open()
     status, response = client.configureGnss2201ConfigureOutputPortOfNmeaSentencesWrite(
-        o
+        out_port
     )
     print(response if status else "Error")
     client.close()
@@ -397,12 +787,12 @@ If enabled, original NMEA sentences can be acquired via AT+QGPSGNMEA. Meanwhile,
                             - **1**: Enablee
 """,
 )
-def write(ctx, n: int):  # type: ignore[reportRedeclaration]
+def write(ctx, nmea_src: int):  # type: ignore[reportRedeclaration]
     """Write the acquisition of NMEA sentences."""
     client: QuectelGnssATCommands = ctx.obj["client"]
     client.open()
     status, response = (
-        client.configureGnss2202EnableDisableAcquisitionOfNmeaSentencesWrite(n)
+        client.configureGnss2202EnableDisableAcquisitionOfNmeaSentencesWrite(nmea_src)
     )
     print(response if status else "Error")
     client.close()
@@ -445,11 +835,13 @@ Configure the output type of GPS NMEA sentences:
                                 - **31**: All the five types of sentences     
 """,
 )
-def write(ctx, g: int):  # type: ignore[reportRedeclaration]
+def write(ctx, gps_nmea_type: int):  # type: ignore[reportRedeclaration]
     """Write the output type of GPS NMEA sentences."""
     client: QuectelGnssATCommands = ctx.obj["client"]
     client.open()
-    status, response = client.configureGnss2203ConfigureOutputTypeOfGpsNmeaWrite(g)
+    status, response = client.configureGnss2203ConfigureOutputTypeOfGpsNmeaWrite(
+        gps_nmea_type
+    )
     print(response if status else "Error")
     client.close()
 
@@ -490,12 +882,14 @@ Configure output type of GLONASS NMEA sentences in ORed:
                         - **4**: GNGNS
 """,
 )
-def write(ctx, g: int):  # type: ignore[reportRedeclaration]
+def write(ctx, glonass_nmea_type: int):  # type: ignore[reportRedeclaration]
     """Write the output type of GLONASS NMEA sentences."""
     client: QuectelGnssATCommands = ctx.obj["client"]
     client.open()
     status, response = (
-        client.configureGnss2204ConfigureOutputTypeOfGlonassNmeaSentencesWrite(g)
+        client.configureGnss2204ConfigureOutputTypeOfGlonassNmeaSentencesWrite(
+            glonass_nmea_type
+        )
     )
     print(response if status else "Error")
     client.close()
@@ -535,12 +929,14 @@ Configure output type of Galileo NMEA sentences in ORed:
                         - **1**: GAGSV
 """,
 )
-def write(ctx, g: int):  # type: ignore[reportRedeclaration]
+def write(ctx, galileo_nmea_type: int):  # type: ignore[reportRedeclaration]
     """Write the output type of Galileo NMEA sentences."""
     client: QuectelGnssATCommands = ctx.obj["client"]
     client.open()
     status, response = (
-        client.configureGnss2205ConfigureOutputTypeOfGalileoNmeaSentencesWrite(g)
+        client.configureGnss2205ConfigureOutputTypeOfGalileoNmeaSentencesWrite(
+            galileo_nmea_type
+        )
     )
     print(response if status else "Error")
     client.close()
@@ -581,12 +977,14 @@ Configure output type of Beidou NMEA sentences in ORed:
                             - **2**: PQGSV
 """,
 )
-def write(ctx, b: int):  # type: ignore[reportRedeclaration]
+def write(ctx, beidou_nmea_type: int):  # type: ignore[reportRedeclaration]
     """Write the output type of Beidou NMEA sentences."""
     client: QuectelGnssATCommands = ctx.obj["client"]
     client.open()
     status, response = (
-        client.configureGnss2206ConfigureOutputTypeOfBeidouNmeaSentencesWrite(b)
+        client.configureGnss2206ConfigureOutputTypeOfBeidouNmeaSentencesWrite(
+            beidou_nmea_type
+        )
     )
     print(response if status else "Error")
     client.close()
@@ -632,12 +1030,528 @@ Supported GNSS constellations. GPS is always ON:
                         - **7**: GLONASS OFF/BeiDou ON/Galileo OFF
 """,
 )
-def write(ctx, g: int):  # type: ignore[reportRedeclaration]
+def write(ctx, gnss_config: int):  # type: ignore[reportRedeclaration]
     """Write the supported GNSS constellations."""
     client: QuectelGnssATCommands = ctx.obj["client"]
     client.open()
     status, response = (
-        client.configureGnss2207ConfigureSupportedGnssConstellationsWrite(g)
+        client.configureGnss2207ConfigureSupportedGnssConstellationsWrite(gnss_config)
+    )
+    print(response if status else "Error")
+    client.close()
+
+
+@configure_gnss.group()
+@click.pass_context
+def configure_odp_mode(ctx):
+    """Configure ODP mode."""
+    pass
+
+
+@configure_odp_mode.command("read")
+@click.pass_context
+def read(ctx):  # type: ignore[reportRedeclaration]
+    """Read the ODP mode."""
+    client: QuectelGnssATCommands = ctx.obj["client"]
+    client.open()
+    status, response = client.configureGnss2208ConfigureOdpModeRead()
+    print(response if status else "Error")
+    client.close()
+
+
+@configure_odp_mode.command("write")
+@click.pass_context
+@click.option(
+    "--odp-control",
+    "-o",
+    type=int,
+    required=True,
+    help="""
+Set ODP mode.
+                        - **0**: Disable ODP
+                        - **1**: Low power mode
+                        - **2**: Ready mode
+""",
+)
+def write(ctx, odp_control: int):  # type: ignore[reportRedeclaration]
+    """Write the ODP mode."""
+    client: QuectelGnssATCommands = ctx.obj["client"]
+    client.open()
+    status, response = client.configureGnss2208ConfigureOdpModeWrite(odp_control)
+    print(response if status else "Error")
+    client.close()
+
+
+@configure_gnss.group()
+@click.pass_context
+def enable_disable_dpo_mode(ctx):
+    """Enable/disable DPO mode."""
+    pass
+
+
+@enable_disable_dpo_mode.command("read")
+@click.pass_context
+def read(ctx):  # type: ignore[reportRedeclaration]
+    """Read the DPO mode."""
+    client: QuectelGnssATCommands = ctx.obj["client"]
+    client.open()
+    status, response = client.configureGnss2209EnableDisableDpoModeRead()
+    print(response if status else "Error")
+    client.close()
+
+
+@enable_disable_dpo_mode.command("write")
+@click.pass_context
+@click.option(
+    "--dpo-enable",
+    "-d",
+    type=int,
+    required=True,
+    help="""
+Enable/Disable DPO.
+                        - **0**: Disable DPO
+                        - **1**: Enable DPO with dynamic duty cycle
+""",
+)
+def write(ctx, dpo_enable: int):  # type: ignore[reportRedeclaration]
+    """Write the DPO mode."""
+    client: QuectelGnssATCommands = ctx.obj["client"]
+    client.open()
+    status, response = client.configureGnss2209EnableDisableDpoModeWrite(dpo_enable)
+    print(response if status else "Error")
+    client.close()
+
+
+@configure_gnss.group()
+@click.pass_context
+def enable_disable_gnss_extended_ggsv(ctx):
+    """Enable/disable GNSS extended GGSV."""
+    pass
+
+
+@enable_disable_gnss_extended_ggsv.command("read")
+@click.pass_context
+def read(ctx):  # type: ignore[reportRedeclaration]
+    """Read the GNSS extended GGSV."""
+    client: QuectelGnssATCommands = ctx.obj["client"]
+    client.open()
+    status, response = client.configureGnss2210EnableDisableGnssExtendedGgsvRead()
+    print(response if status else "Error")
+    client.close()
+
+
+@enable_disable_gnss_extended_ggsv.command("write")
+@click.pass_context
+@click.option(
+    "--gsvext-nmea-type",
+    "-g",
+    type=int,
+    required=True,
+    help="""
+Enable/Disable extended GGSV.
+                        - **0**: Disable extended GGSV
+                        - **1**: Display extended GGSV
+""",
+)
+def write(ctx, gsvext_nmea_type: int):  # type: ignore[reportRedeclaration]
+    """Write the GNSS extended GGSV."""
+    client: QuectelGnssATCommands = ctx.obj["client"]
+    client.open()
+    status, response = client.configureGnss2210EnableDisableGnssExtendedGgsvWrite(
+        gsvext_nmea_type
+    )
+    print(response if status else "Error")
+    client.close()
+
+
+@configure_gnss.group()
+@click.pass_context
+def configure_plane_mode_used_by_mo_agps_session(ctx):
+    """Configure plane mode used by MO AGPS session."""
+    pass
+
+
+@configure_plane_mode_used_by_mo_agps_session.command("read")
+@click.pass_context
+def read(ctx):  # type: ignore[reportRedeclaration]
+    """Read the plane mode used by MO AGPS session."""
+    client: QuectelGnssATCommands = ctx.obj["client"]
+    client.open()
+    status, response = (
+        client.configureGnss2211ConfigurePlaneModeUsedByMoAgpsSessionRead()
+    )
+    print(response if status else "Error")
+    client.close()
+
+
+@configure_plane_mode_used_by_mo_agps_session.command("write")
+@click.pass_context
+@click.option(
+    "--plane",
+    "-p",
+    type=int,
+    required=True,
+    help="""
+The plane mode used by MO AGPS session.
+                        - **0**: User plane without SSL
+                        - **1**: User plane with SSL
+                        - **2**: Control plane
+""",
+)
+def write(ctx, plane: int):  # type: ignore[reportRedeclaration]
+    """Write the plane mode used by MO AGPS session."""
+    client: QuectelGnssATCommands = ctx.obj["client"]
+    client.open()
+    status, response = (
+        client.configureGnss2211ConfigurePlaneModeUsedByMoAgpsSessionWrite(plane)
+    )
+    print(response if status else "Error")
+    client.close()
+
+
+@configure_gnss.group()
+@click.pass_context
+def enable_disable_gnss_to_run_automatically(ctx):
+    """Enable/disable GNSS to run automatically."""
+    pass
+
+
+@enable_disable_gnss_to_run_automatically.command("read")
+@click.pass_context
+def read(ctx):  # type: ignore[reportRedeclaration]
+    """Read the GNSS to run automatically."""
+    client: QuectelGnssATCommands = ctx.obj["client"]
+    client.open()
+    status, response = client.configureGnss2212EnableDisableGnssToRunAutomaticallyRead()
+    print(response if status else "Error")
+    client.close()
+
+
+@enable_disable_gnss_to_run_automatically.command("write")
+@click.pass_context
+@click.option(
+    "--autogps",
+    "-a",
+    type=int,
+    required=True,
+    help="""
+Enable/disable GNSS to run automatically after the module is powered on.
+                        - **0**: Disable GNSS to run automatically
+                        - **1**: Enable GNSS to run automatically
+""",
+)
+def write(ctx, autogps: int):  # type: ignore[reportRedeclaration]
+    """Write the GNSS to run automatically."""
+    client: QuectelGnssATCommands = ctx.obj["client"]
+    client.open()
+    status, response = client.configureGnss2212EnableDisableGnssToRunAutomaticallyWrite(
+        autogps
+    )
+    print(response if status else "Error")
+    client.close()
+
+
+@configure_gnss.group()
+@click.pass_context
+def configure_supl_protocol_version(ctx):
+    """Configure SUPL protocol version."""
+    pass
+
+
+@configure_supl_protocol_version.command("read")
+@click.pass_context
+def read(ctx):  # type: ignore[reportRedeclaration]
+    """Read the SUPL protocol version."""
+    client: QuectelGnssATCommands = ctx.obj["client"]
+    client.open()
+    status, response = client.configureGnss2213ConfigureSuplProtocolVersionRead()
+    print(response if status else "Error")
+    client.close()
+
+
+@configure_supl_protocol_version.command("write")
+@click.pass_context
+@click.option(
+    "--supl-version",
+    "-s",
+    type=int,
+    required=True,
+    help="""
+The SUPL protocol version.
+                        - **0**: SUPL version 1.0
+                        - **1**: SUPL version 2.0
+""",
+)
+def write(ctx, supl_version: int):  # type: ignore[reportRedeclaration]
+    """Write the SUPL protocol version."""
+    client: QuectelGnssATCommands = ctx.obj["client"]
+    client.open()
+    status, response = client.configureGnss2213ConfigureSuplProtocolVersionWrite(
+        supl_version
+    )
+    print(response if status else "Error")
+    client.close()
+
+
+@configure_gnss.group()
+@click.pass_context
+def configure_agps_positioning_mode(ctx):
+    """Configure AGPS positioning mode."""
+    pass
+
+
+@configure_agps_positioning_mode.command("read")
+@click.pass_context
+def read(ctx):  # type: ignore[reportRedeclaration]
+    """Read the AGPS positioning mode."""
+    client: QuectelGnssATCommands = ctx.obj["client"]
+    client.open()
+    status, response = client.configureGnss2214ConfigureAgpsPositioningModeRead()
+    print(response if status else "Error")
+    client.close()
+
+
+@configure_agps_positioning_mode.command("write")
+@click.pass_context
+@click.option(
+    "--agps-posmode",
+    "-a",
+    type=int,
+    required=True,
+    help="""
+The AGPS positioning mode.
+            - **Bit 0**: Standalone
+            - **Bit 1**: UP MS-based
+            - **Bit 2**: UP MS-assisted
+            - **Bit 3**: CP MS-based (2G)
+            - **Bit 4**: CP MS-assisted (2G)
+            - **Bit 5**: CP UE-based (3G)
+            - **Bit 6**: CP UE-assisted (3G)
+            - **Bit 7**: UP network measurement report (2G)
+            - **Bit 8**: UP MS-based (4G)
+            - **Bit 9**: UP MS-assisted (4G)
+            - **Bit 10**: CP MS-based (4G)
+            - **Bit 11**: CP MS-assisted (4G)
+            - **Bit 16**: Enabling of autonomous fallback for SUPL-MSB
+            - **Bit 17**: A-GLONASS UP MS-based for 3G
+            - **Bit 18**: A-GLONASS UP MS-assisted for 3G
+            - **Bit 19**: A-GLONASS CP MS-based for 3G
+            - **Bit 20**: A-GLONASS CP MS-assisted for 3G
+            - **Bit 21**: A-GLONASS UP MS-based for 4G
+            - **Bit 22**: A-GLONASS UP MS-assisted for 4G
+            - **Bit 23**: A-GLONASS CP MS-based for 4G
+            - **Bit 24**: A-GLONASS CP MS-assisted for 4Ge
+""",
+)
+def write(ctx, agps_posmode: int):  # type: ignore[reportRedeclaration]
+    """Write the AGPS positioning mode."""
+    client: QuectelGnssATCommands = ctx.obj["client"]
+    client.open()
+    status, response = client.configureGnss2214ConfigureAgpsPositioningModeWrite(
+        agps_posmode
+    )
+    print(response if status else "Error")
+    client.close()
+
+
+@configure_gnss.group()
+@click.pass_context
+def configure_agnss_positioning_protocols(ctx):
+    """Configure AGNSS positioning protocols."""
+    pass
+
+
+@configure_agnss_positioning_protocols.command("read")
+@click.pass_context
+def read(ctx):  # type: ignore[reportRedeclaration]
+    """Read the AGNSS positioning protocols."""
+    client: QuectelGnssATCommands = ctx.obj["client"]
+    client.open()
+    status, response = client.configureGnss2215ConfigureAgnssPositioningProtocolsRead()
+    print(response if status else "Error")
+    client.close()
+
+
+@configure_agnss_positioning_protocols.command("write")
+@click.pass_context
+@click.option(
+    "--agps-lp",
+    "-a",
+    type=int,
+    required=True,
+    help="""
+A-GPS LPP positioning protocol in ORed. Default: 3:
+                        - **1**: User plane LPP
+                        - **2**: Control plane LPP
+""",
+)
+@click.option(
+    "--aglonass-lp",
+    "-g",
+    type=int,
+    required=True,
+    help="""
+A-GLONASS positioning protocol in ORed. Default: 1287:
+                        - **1**:       Control plane RRLP
+                        - **2**:       Control plane RRC
+                        - **4**:       Control plane LPP
+                        - **256**:     User plane RRLP
+                        - **1024**:    User plane LPP
+""",
+)
+def write(ctx, agps_lp: int, aglonass_lp: int):  # type: ignore[reportRedeclaration]
+    """Write the AGNSS positioning protocols."""
+    client: QuectelGnssATCommands = ctx.obj["client"]
+    client.open()
+    status, response = client.configureGnss2215ConfigureAgnssPositioningProtocolsWrite(
+        agps_lp, aglonass_lp
+    )
+    print(response if status else "Error")
+    client.close()
+
+
+@configure_gnss.group()
+@click.pass_context
+def configure_nmea_output_frequency(ctx):
+    """Configure NMEA output frequency."""
+    pass
+
+
+@configure_nmea_output_frequency.command("read")
+@click.pass_context
+def read(ctx):  # type: ignore[reportRedeclaration]
+    """Read the NMEA output frequency."""
+    client: QuectelGnssATCommands = ctx.obj["client"]
+    client.open()
+    status, response = client.configureGnss2216ConfigureNmeaOutputFrequencyRead()
+    print(response if status else "Error")
+    client.close()
+
+
+@configure_nmea_output_frequency.command("write")
+@click.pass_context
+@click.option(
+    "--freq",
+    "-f",
+    type=int,
+    required=True,
+    help="""
+NMEA sentence output frequency:
+                        - **1**: 1 Hz
+                        - **2**: 2 Hz
+                        - **5**: 5 Hz
+                        - **10**: 10 Hz
+""",
+)
+def write(ctx, freq: int):  # type: ignore[reportRedeclaration]
+    """Write the NMEA output frequency."""
+    client: QuectelGnssATCommands = ctx.obj["client"]
+    client.open()
+    status, response = client.configureGnss2216ConfigureNmeaOutputFrequencyWrite(freq)
+    print(response if status else "Error")
+    client.close()
+
+
+@main.group()
+@click.pass_context
+def gnss_general_commands(ctx):
+    """GNSS General Commands."""
+    pass
+
+
+@gnss_general_commands.command("delete-assistance-data")
+@click.pass_context
+@click.option(
+    "--delete-type",
+    "-d",
+    type=int,
+    required=True,
+    help="""
+Delete assistance data.
+                        - **0**: Delete all assistance data. Enforce cold start after starting GNSS.
+                        - **1**: Do not delete any data. Perform hot start if the conditions are permitted after starting GNSS.
+                        - **2**: Delete some related data. Perform warm start if the conditions are permitted after starting GNSS.
+                        - **3**: Delete the gpsOneXTRA assistance data injected into GNSS engine.
+""",
+)
+def delete_assistance_data(ctx, delete_type: int):  # type: ignore[reportRedeclaration]
+    """Delete assistance data."""
+    client: QuectelGnssATCommands = ctx.obj["client"]
+    client.open()
+    status, response = client.gnssGeneralCommands2300DeleteAssistanceData(delete_type)
+    print(response if status else "Error")
+    client.close()
+
+
+@gnss_general_commands.group()
+@click.pass_context
+def turn_on_gnss(ctx):
+    """Turn on GNSS."""
+    pass
+
+
+@turn_on_gnss.command("read")
+@click.pass_context
+def read(ctx):  # type: ignore[reportRedeclaration]
+    """Read the GNSS."""
+    client: QuectelGnssATCommands = ctx.obj["client"]
+    client.open()
+    status, response = client.gnssGeneralCommands2400TurnOnGnssRead()
+    print(response if status else "Error")
+    client.close()
+
+
+@turn_on_gnss.command("write")
+@click.pass_context
+@click.option(
+    "--gnss-mode",
+    "-g",
+    type=int,
+    required=True,
+    help="""
+GNSS working mode:
+                        - **1**: Stand-alone
+                        - **2**: MS-based
+                        - **3**: MS-assisted
+                        - **4**: Speed-optimal
+""",
+)
+@click.option(
+    "--fix-maxtime",
+    "-t",
+    type=int,
+    help="""
+The maximum positioning time, which indicates the response time of GNSS receiver while measuring the GNSS pseudo range and the upper time limit of GNSS satellite searching. It also includes the time for demodulating the ephemeris data and calculating the position. Range: 1–255. Default: 255. Unit: second.
+""",
+)
+@click.option(
+    "--fix-maxdist",
+    "-d",
+    type=int,
+    help="Accuracy threshold of positioning. Range: 0–1000. Default: 50. Unit: meter.",
+)
+@click.option(
+    "--fix-count",
+    "-c",
+    type=int,
+    help="""
+Positioning times. Range: 0–1000. Default: 0:
+                        -**0**: Continuous positioning.
+                        -**Other values**: Actual positioning times.
+""",
+)
+@click.option(
+    "--fix-rate",
+    "-r",
+    type=int,
+    help="The interval between the first and the second positioning. Range: 1–65535. Default value: 1. Unit: second.",
+)
+def write(ctx, gnss_mode: int, fix_maxtime: int, fix_maxdist: int, fix_count: int, fix_rate: int):  # type: ignore[reportRedeclaration]
+    """Write the GNSS."""
+    client: QuectelGnssATCommands = ctx.obj["client"]
+    client.open()
+    status, response = client.gnssGeneralCommands2400TurnOnGnssWrite(
+        gnss_mode, fix_maxtime, fix_maxdist, fix_count, fix_rate
     )
     print(response if status else "Error")
     client.close()
