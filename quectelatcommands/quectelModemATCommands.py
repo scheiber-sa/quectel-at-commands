@@ -145,9 +145,11 @@ class QuectelModemATCommands:
         """
         General commands 210: Reset AT command settings to factory defaults.
 
-        :param p_value: Integer type. Range: 0–1.
-            0           Reset AT command settings to factory defaults.
-            1           Reset AT command settings to factory defaults and reset the device.
+        :param p_value: Integer type. Range: 0–1 :
+
+            - **0**:           Reset AT command settings to factory defaults.
+            - **1**:           Reset AT command settings to factory defaults and reset the device.
+
         :type p_value: int
 
         :return: Tuple containing the status of the command and the response.
@@ -198,9 +200,10 @@ class QuectelModemATCommands:
         """
         General commands 214: Set result code presentation mode.
 
-        :param p_n: Integer type. Range: 0–1.
-            0       Disable result code presentation.
-            1       Enable result code presentation.
+        :param p_n: Integer type. Range: 0–1:
+
+            - **0**:       Disable result code presentation.
+            - **1**:       Enable result code presentation.
         :type p_n: int
 
         :return: Tuple containing the status of the command and the response.
@@ -214,9 +217,10 @@ class QuectelModemATCommands:
         """
         General commands 215: Set response format.
 
-        :param p_value: Integer type. Range: 0–1.
-            0       Numeric response format.
-            1       Verbose response format.
+        :param p_value: Integer type. Range: 0–1:
+
+            - **0**:       Numeric response format.
+            - **1**:       Verbose response format.
         :type p_value: int
 
         :return: Tuple containing the status of the command and the response.
@@ -230,9 +234,10 @@ class QuectelModemATCommands:
         """
         General commands 216: Set command echo mode.
 
-        :param p_value: Integer type. Range: 0–1.
-            0       Disable command echo.
-            1       Enable command echo.
+        :param p_value: Integer type. Range: 0–1:
+
+            - **0**:       Disable command echo.
+            - **1**:       Enable command echo.
         :type p_value: int
 
         :return: Tuple containing the status of the command and the response.
@@ -322,12 +327,13 @@ class QuectelModemATCommands:
         """
         General commands 220: Set connect result format and monitor call in progress.
 
-        :param p_value: Integer type. Range: 0–4.
-            0       CONNECT result code returned only. Dial tone and busy detection are both disabled.
-            1       CONNECT<text> result code returned only. Dial tone and busy detection are both disabled.
-            2       CONNECT<text> result code returned. Dial tone detection is enabled, while busy detection is disabled.
-            3       CONNECT<text> result code returned. Dial tone detection is disabled, while busy detection is enabled.
-            4       CONNECT<text> result code returned. Both dial tone and busy detection are both enabled.
+        :param p_value: Integer type. Range: 0–4:
+
+            - **0**:       CONNECT result code returned only. Dial tone and busy detection are both disabled.
+            - **1**:       CONNECT<text> result code returned only. Dial tone and busy detection are both disabled.
+            - **2**:       CONNECT<text> result code returned. Dial tone detection is enabled, while busy detection is disabled.
+            - **3**:       CONNECT<text> result code returned. Dial tone detection is disabled, while busy detection is enabled.
+            - **4**:       CONNECT<text> result code returned. Both dial tone and busy detection are both enabled.
         :type p_value: int
 
         :return: Tuple containing the status of the command and the response.
@@ -350,16 +356,18 @@ class QuectelModemATCommands:
         """
         General commands 221: Set phone functionality.
 
-        :param p_fun: Integer type. Range: 0–5.
-            0       Minimum functionality
-            1       Full functionality
-            3       Disable the ME from receiving RF signals
-            4       Disable the ME from both transmitting and receiving RF signals
-            5       Disable (U)SIM
+        :param p_fun: Integer type. Range: 0–5:
+
+            - **0**:       Minimum functionality
+            - **1**:       Full functionality
+            - **3**:       Disable the ME from receiving RF signals
+            - **4**:       Disable the ME from both transmitting and receiving RF signals
+            - **5**:       Disable (U)SIM
         :type p_fun: int
-        :param p_rst: Integer type. Range: 0–1.
-            0       Do not reset the ME before setting it to <fun> functionality level.(This is the default setting when <rst> is not given.)
-            1       Reset the ME. The device is fully functional after the reset. This value is available only for <fun> = 1.
+        :param p_rst: Integer type. Range: 0–1:
+
+            - **0**:       Do not reset the ME before setting it to <fun> functionality level.(This is the default setting when <rst> is not given.)
+            - **1**:       Reset the ME. The device is fully functional after the reset. This value is available only for <fun> = 1.
         :type p_rst: int
 
         :return: Tuple containing the status of the command and the response.
@@ -385,10 +393,11 @@ class QuectelModemATCommands:
         """
         General commands 222: Error message format.
 
-        :param p_n: Integer type. Range: 0–2.
-            0       Disable result code
-            1       Enable result code with numeric values
-            2       Enable result code with verbose values
+        :param p_n: Integer type. Range: 0–2:
+
+            - **0**:       Disable result code
+            - **1**:       Enable result code with numeric values
+            - **2**:       Enable result code with verbose values
         :type p_n: int
 
         :return: Tuple containing the status of the command and the response.
@@ -411,10 +420,11 @@ class QuectelModemATCommands:
         """
         General commands 223: Select character set.
 
-        :param p_chset: String type. Character set.
-            "GSM"   GSM default alphabet
-            "IRA"   International reference Alphabet
-            "UCS2"  UCS2 alphabet
+        :param p_chset: String type. Character set:
+
+            - **"GSM"** :  GSM default alphabet
+            - **"IRA"** :  International reference Alphabet
+            - **"UCS2"** :  UCS2 alphabet
         :type p_chset: str
 
         :return: Tuple containing the status of the command and the response.
@@ -432,22 +442,23 @@ class QuectelModemATCommands:
         return self.sendCommand("AT+QURCCFG='urcport'")
 
     def generalCommands224ConfigureUrcIndicationWrite(
-        self, p_urc_port: str = ""
+        self, p_urc_port: str = None
     ) -> tuple[bool, list[str]]:
         """
         General commands 224: Configure URC indication.
 
-        :param p_urc_port: String type. Set URC output port.
-            "usbat"     USB AT port
-            "usbmodem"  USB modem port
-            "uart1"     Main UART port
+        :param p_urc_port: String type. Set URC output port:
+
+            - **"usbat"** :  USB AT port
+            - **"usbmodem"** :  USB modem port
+            - **"uart1"** :  Main UART port
         :type p_urc_port: str
 
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
         command = "AT+QURCCFG"
-        if p_urc_port != "" and p_urc_port is not None:
+        if p_urc_port is not None:
             command += f'="urcport","{p_urc_port}"'
         return self.sendCommand(command)
 
@@ -457,10 +468,11 @@ class QuectelModemATCommands:
         """
         General commands 225: Terminate PPP connection.
 
-        :param p_option: Integer type. The operation about dropping PPP connection.
-            0       Hang up PPP connection without sending TERM REQ frame to peer.
-            1       Hang up PPP connection and automatically send TERM REQ frame to peer.
-            2       Hang up PPP connection with sending TERM REQ frame to peer.
+        :param p_option: Integer type. The operation about dropping PPP connection:
+
+            - **0**:       Hang up PPP connection without sending TERM REQ frame to peer.
+            - **1**:       Hang up PPP connection and automatically send TERM REQ frame to peer.
+            - **2**:       Hang up PPP connection with sending TERM REQ frame to peer.
         :type p_option: int
 
         :return: Tuple containing the status of the command and the response.
@@ -474,9 +486,10 @@ class QuectelModemATCommands:
         """
         Serial interface control commands 301: Set DCD function mode.
 
-        :param p_value: Integer type. Determines how the state of circuit (DCD) relates to the detection of received line signal from the distant end.
-            0       DCD function is always ON
-            1       DCD function is ON only in the presence of data carrier
+        :param p_value: Integer type. Determines how the state of circuit (DCD) relates to the detection of received line signal from the distant end:
+
+            - **0**:       DCD function is always ON
+            - **1**:       DCD function is ON only in the presence of data carrier
         :type p_value: int
 
         :return: Tuple containing the status of the command and the response.
@@ -490,10 +503,11 @@ class QuectelModemATCommands:
         """
         Serial interface control commands 302: Set DTR function mode.
 
-        :param p_value: Integer type. Determines the behavior of the DTR signal.
-            0       TA ignores status on DTR
-            1       Low→High on DTR: Change to command mode while remaining the connected call
-            2       Low→High on DTR: Disconnect data call and change to command mode. When DTR is at high level, auto-answer function is disabled
+        :param p_value: Integer type. Determines the behavior of the DTR signal:
+
+            - **0**:       TA ignores status on DTR
+            - **1**:       Low→High on DTR: Change to command mode while remaining the connected call
+            - **2**:       Low→High on DTR: Disconnect data call and change to command mode. When DTR is at high level, auto-answer function is disabled
         :type p_value: int
 
         :return: Tuple containing the status of the command and the response.
@@ -518,13 +532,15 @@ class QuectelModemATCommands:
         """
         Serial interface control commands 303: Set TE-TA local data flow control.
 
-        :param p_dce_by_dte: Integer type. Specifies the method that will be used by TE when receiving data from TA.
-            0       None
-            2       RTS flow control
+        :param p_dce_by_dte: Integer type. Specifies the method that will be used by TE when receiving data from TA:
+
+            - **0**:       None
+            - **2**:       RTS flow control
         :type p_dce_by_dte: int
-        :param p_dte_by_dce: Integer type. Specifies the method that will be used by TA when receiving data from TE.
-            0       None
-            2       CTS flow control
+        :param p_dte_by_dce: Integer type. Specifies the method that will be used by TA when receiving data from TE:
+
+            - **0**:       None
+            - **2**:       CTS flow control
         :type p_dte_by_dce: int
 
         :return: Tuple containing the status of the command and the response.
@@ -547,17 +563,18 @@ class QuectelModemATCommands:
         """
         Serial interface control commands 304: Set TE-TA fixed local rate.
 
-        :param p_rate: Integer type. Baud rate per second on the serial port. Unit: bps.
-            0       Adaptive baud rate
-            4800
-            9600
-            19200
-            38400
-            57600
-            115200
-            230400
-            460800
-            921600
+        :param p_rate: Integer type. Baud rate per second on the serial port. Unit: bps:
+
+            - **0** :       Adaptive baud rate
+            - **4800**
+            - **9600**
+            - **19200**
+            - **38400**
+            - **57600**
+            - **115200**
+            - **230400**
+            - **460800**
+            - **921600**
         :type p_rate: int
 
         :return: Tuple containing the status of the command and the response.
@@ -602,13 +619,15 @@ class QuectelModemATCommands:
         """
         Status control commands 40301: Configure GPRS attach mode.
 
-        :param p_attach_mode: Integer type. The mode to attach GRPS when UE is powered on.
-            0       Manual attach
-            1       Auto attach
+        :param p_attach_mode: Integer type. The mode to attach GRPS when UE is powered on:
+
+            - **0**:       Manual attach
+            - **1**:       Auto attach
         :type p_attach_mode: int
-        :param p_effect: Integer format. When to take effect.
-            0       Take effect after UE reboots (currently not supported)
-            1       Take effect immediately
+        :param p_effect: Integer format. When to take effect:
+
+            - **0**:       Take effect after UE reboots (currently not supported)
+            - **1**:       Take effect immediately
         :type p_effect: int
 
         :return: Tuple containing the status of the command and the response.
@@ -622,11 +641,12 @@ class QuectelModemATCommands:
         """
         CStatus control commands 40302: Configure network search mode.
 
-        :param p_scan_mode: Integer type. Network searching mode.
-            0       Automatic (LTE/WCDMA/GSM)
-            1       GSM only
-            2       WCDMA only
-            3       LTE only
+        :param p_scan_mode: Integer type. Network searching mode:
+
+            - **0**:       Automatic (LTE/WCDMA/GSM)
+            - **1**:       GSM only
+            - **2**:       WCDMA only
+            - **3**:       LTE only
         :type p_scan_mode: int
 
         :return: Tuple containing the status of the command and the response.
@@ -640,20 +660,21 @@ class QuectelModemATCommands:
         """
         Status control commands 40303: Configure network searching sequence.
 
-        :param p_scanseq: Integer type. Network searching sequence.
-            0       Automatic (LTE/WCDMA/GSM)
-            1       GSM only
-            2       WCDMA only
-            3       LTE only
-            4       GSM/WCDMA/LTE
-            5       WCDMA/GSM/LTE
-            6       LTE/WCDMA
-            7       LTE/GSM
-            8       WCDMA/LTE
-            9       WCDMA/GSM
-            10      GSM/LTE
-            11      GSM/WCDMA
-            12      LTE/WCDMA/GSM
+        :param p_scanseq: Integer type. Network searching sequence:
+
+            - **0**:       Automatic (LTE/WCDMA/GSM)
+            - **1**:       GSM only
+            - **2**:       WCDMA only
+            - **3**:       LTE only
+            - **4**:       GSM/WCDMA/LTE
+            - **5**:       WCDMA/GSM/LTE
+            - **6**:       LTE/WCDMA
+            - **7**:       LTE/GSM
+            - **8**:       WCDMA/LTE
+            - **9**:       WCDMA/GSM
+            - **10**:      GSM/LTE
+            - **11**:      GSM/WCDMA
+            - **12**:      LTE/WCDMA/GSM
         :type p_scanseq: int
 
         :return: Tuple containing the status of the command and the response.
@@ -667,10 +688,11 @@ class QuectelModemATCommands:
         """
         Status control commands 40304: Configure relevant functions in roaming state.
 
-        :param p_roam_modeex: Integer type. Roaming operating mode. Range: 0–3.
-            0       Normal operating mode, unlimited service
-            Bit 1   Disable dial-up internet access function when UE is in roaming state
-            Bit 2   Disable voice call function when UE is in roaming state
+        :param p_roam_modeex: Integer type. Roaming operating mode. Range: 0–3:
+
+            - **0**:       Normal operating mode, unlimited service
+            - **Bit 1**:   Disable dial-up internet access function when UE is in roaming state
+            - **Bit 2**:   Disable voice call function when UE is in roaming state
         :type p_roam_modeex: int
 
         :return: Tuple containing the status of the command and the response.
@@ -684,14 +706,16 @@ class QuectelModemATCommands:
         """
         Status control commands 40305: Configure service domain.
 
-        :param p_service: Integer type. Service domain of UE.
-            0       CS only
-            1       PS only
-            2       CS & PS
+        :param p_service: Integer type. Service domain of UE:
+
+            - **0**:       CS only
+            - **1**:       PS only
+            - **2**:       CS & PS
         :type p_service: int
-        :param p_effect: Integer format. When to take effect.
-            0       Take effect after UE reboots (currently not supported)
-            1       Take effect immediately
+        :param p_effect: Integer format. When to take effect:
+
+            - **0**:       Take effect after UE reboots (currently not supported)
+            - **1**:       Take effect immediately
         :type p_effect: int
 
         :return: Tuple containing the status of the command and the response.
@@ -705,35 +729,37 @@ class QuectelModemATCommands:
         """
         Status control commands 40306: Configure band.
 
-        :param p_bandval: Integer type. A hexadecimal value that specifies the GSM and WCDMA frequency band.
-            0x00           No change
-            0x01           GSM900
-            0x02           GSM1800
-            0x10           WCDMA 2100
-            0x20           WCDMA 1900
-            0x40           WCDMA 850
-            0x80           WCDMA 900
-            0xFFFF         Any frequency band
+        :param p_bandval: Integer type. A hexadecimal value that specifies the GSM and WCDMA frequency band:
+
+            - **0x00**:           No change
+            - **0x01**:           GSM900
+            - **0x02**:           GSM1800
+            - **0x10**:           WCDMA 2100
+            - **0x20**:           WCDMA 1900
+            - **0x40**:           WCDMA 850
+            - **0x80**:           WCDMA 900
+            - **0xFFFF** :         Any frequency band
         :type p_bandval: int
-        :param p_ltebandval: Integer type. A hexadecimal value that specifies the LTE frequency band.
-            0x1 (CM_BAND_PREF_LTE_EUTRAN_BAND1)                     LTE B1
-            0x2 (CM_BAND_PREF_LTE_EUTRAN_BAND2)                     LTE B2
-            0x4 (CM_BAND_PREF_LTE_EUTRAN_BAND3)                     LTE B3
-            0x8 (CM_BAND_PREF_LTE_EUTRAN_BAND4)                     LTE B4
-            0x10 (CM_BAND_PREF_LTE_EUTRAN_BAND5)                    LTE B5
-            0x40 (CM_BAND_PREF_LTE_EUTRAN_BAND7)                    LTE B7
-            0x80 (CM_BAND_PREF_LTE_EUTRAN_BAND8)                    LTE B8
-            0x80000 (CM_BAND_PREF_LTE_EUTRAN_BAND20)                LTE B20
-            0x8000000 (CM_BAND_PREF_LTE_EUTRAN_BAND28)              LTE B28
-            0x40000000 (CM_BAND_PREF_LTE_EUTRAN_BAND31)             LTE B31
-            0x200000000(CM_BAND_PREF_LTE_EUTRAN_BAND34)             LTE B34
-            0x2000000000 (CM_BAND_PREF_LTE_EUTRAN_BAND38)           LTE B38
-            0x4000000000 (CM_BAND_PREF_LTE_EUTRAN_BAND39)           LTE B39
-            0x8000000000 (CM_BAND_PREF_LTE_EUTRAN_BAND40)           LTE B40
-            0x10000000000 (CM_BAND_PREF_LTE_EUTRAN_BAND41)          LTE B41
-            0x20000000000000000 (CM_BAND_PREF_LTE_EUTRAN_BAND66)    LTE B66
-            0x800000000000000000 (CM_BAND_PREF_LTE_EUTRAN_BAND72)   LTE B72
-            0x7FFFFFFFFFFFFFFFF (CM_BAND_PREF_ANY)                  Any frequency band
+        :param p_ltebandval: Integer type. A hexadecimal value that specifies the LTE frequency band:
+
+            - **0x1**: (CM_BAND_PREF_LTE_EUTRAN_BAND1)                     LTE B1
+            - **0x2**: (CM_BAND_PREF_LTE_EUTRAN_BAND2)                     LTE B2
+            - **0x4**: (CM_BAND_PREF_LTE_EUTRAN_BAND3)                     LTE B3
+            - **0x8**: (CM_BAND_PREF_LTE_EUTRAN_BAND4)                     LTE B4
+            - **0x10**: (CM_BAND_PREF_LTE_EUTRAN_BAND5)                    LTE B5
+            - **0x40**: (CM_BAND_PREF_LTE_EUTRAN_BAND7)                    LTE B7
+            - **0x80**: (CM_BAND_PREF_LTE_EUTRAN_BAND8)                    LTE B8
+            - **0x80000**: (CM_BAND_PREF_LTE_EUTRAN_BAND20)                LTE B20
+            - **0x8000000**: (CM_BAND_PREF_LTE_EUTRAN_BAND28)              LTE B28
+            - **0x40000000**: (CM_BAND_PREF_LTE_EUTRAN_BAND31)             LTE B31
+            - **0x200000000**:(CM_BAND_PREF_LTE_EUTRAN_BAND34)             LTE B34
+            - **0x2000000000**: (CM_BAND_PREF_LTE_EUTRAN_BAND38)           LTE B38
+            - **0x4000000000**: (CM_BAND_PREF_LTE_EUTRAN_BAND39)           LTE B39
+            - **0x8000000000**: (CM_BAND_PREF_LTE_EUTRAN_BAND40)           LTE B40
+            - **0x10000000000**: (CM_BAND_PREF_LTE_EUTRAN_BAND41)          LTE B41
+            - **0x20000000000000000** : (CM_BAND_PREF_LTE_EUTRAN_BAND66)    LTE B66
+            - **0x800000000000000000** : (CM_BAND_PREF_LTE_EUTRAN_BAND72)   LTE B72
+            - **0x7FFFFFFFFFFFFFFFF** : (CM_BAND_PREF_ANY)                  Any frequency band
         :type p_ltebandval: int
 
         :return: Tuple containing the status of the command and the response.
@@ -747,9 +773,10 @@ class QuectelModemATCommands:
         """
         Status control commands 40307: Specify RI behavior when other URCs are presented.
 
-        :param p_typeRI: String type. RI behavior when URCs are presented.
-            "off"       No change. Ring indicator keeps inactive
-            "pulse"     Pulse. Pulse width determined by <pulse_duration>
+        :param p_typeRI: String type. RI behavior when URCs are presented:
+
+            - **"off"** :       No change. Ring indicator keeps inactive
+            - **"pulse"** :     Pulse. Pulse width determined by <pulse_duration>
         :type p_typeRI: str
         :param p_pulse_duration: Integer type. The width of pulse. This parameter is effect only when <typeRI> is''pulse''. Range: 5–2000. Default value: 120. Unit: ms.
         :type p_pulse_duration: int
@@ -769,8 +796,9 @@ class QuectelModemATCommands:
         """
         Status control commands 40308: Set delay time of URC indication.
 
-        :param p_time: Integer type. Set the delay time of URC indication when ring indicator pulse starts. Range: 0–120. Unit: ms.
-            0       No delay.
+        :param p_time: Integer type. Set the delay time of URC indication when ring indicator pulse starts. Range: 0–120. Unit: ms:
+
+           - **0** :       No delay.
         :type p_time: int
 
         :return: Tuple containing the status of the command and the response.
@@ -784,9 +812,10 @@ class QuectelModemATCommands:
         """
         Status control commands 40309: Enable/disable URC cache function.
 
-        :param p_enable: Integer type. Enable/disable URC cache function.
-            0       Disable URC cache function.
-            1       Enable URC cache function.
+        :param p_enable: Integer type. Enable/disable URC cache function:
+
+            - **0** :       Disable URC cache function.
+            - **1** :       Enable URC cache function.
         :type p_enable: int
 
         :return: Tuple containing the status of the command and the response.
@@ -800,9 +829,10 @@ class QuectelModemATCommands:
         """
         Status control commands 40310: Configure the network card type interface.
 
-        :param p_net: Integer type. The protocol of net port.
-            1       ECM interface
-            3       RNIDS interface
+        :param p_net: Integer type. The protocol of net port:
+
+            - **1** :       ECM interface
+            - **3** :       RNIDS interface
         :type p_net: int
 
         :return: Tuple containing the status of the command and the response.
@@ -816,9 +846,10 @@ class QuectelModemATCommands:
         """
         Status control commands 40311: Enable/disable the PPP TERM frame sending.
 
-        :param p_flag: Integer type.
-            0       Disable TERM frame sending when hang up PPP by module itself.
-            1       Enable TERM frame sending when hang up PPP by module itself.
+        :param p_flag: Integer type:
+
+            - **0** :       Disable TERM frame sending when hang up PPP by module itself.
+            - **1** :       Enable TERM frame sending when hang up PPP by module itself.
         :type p_flag: int
 
         :return: Tuple containing the status of the command and the response.
@@ -832,13 +863,15 @@ class QuectelModemATCommands:
         """
         Status control commands 40312: Enable/disable airplane mode control via W_DISABLE#.
 
-        :param p_enable: Integer type. Enable/disable the airplane mode control via W_DISABLE# pin.
-            0       Disable the airplane mode control via W_DISABLE# pin
-            1       Enable the airplane mode control via W_DISABLE# pin. The module enters airplane mode when W_DISABLE# pin is active and exit airplane mode when it is inactive. AT+CFUN=1 is not allowed to be used to enable the module to exit airplane mode when the W_DISABLE# pin is active. Unsolicited result code +QIND: airplanestatus,<status> is reported when the status of W_DISABLE# pin changes
+        :param p_enable: Integer type. Enable/disable the airplane mode control via W_DISABLE# pin:
+
+            - **0** :       Disable the airplane mode control via W_DISABLE# pin
+            - **1** :       Enable the airplane mode control via W_DISABLE# pin. The module enters airplane mode when W_DISABLE# pin is active and exit airplane mode when it is inactive. AT+CFUN=1 is not allowed to be used to enable the module to exit airplane mode when the W_DISABLE# pin is active. Unsolicited result code +QIND: airplanestatus,<status> is reported when the status of W_DISABLE# pin changes
         :type p_enable: int
-        :param p_status: Integer type.
-            0       Exit airplane mode
-            1       Enter airplane mode
+        :param p_status: Integer type:
+
+            - **0** :       Exit airplane mode
+            - **1** :       Enter airplane mode
         :type p_status: int
 
         :return: Tuple containing the status of the command and the response.
@@ -852,9 +885,10 @@ class QuectelModemATCommands:
         """
         Status control commands 40313: Ring line behavior of ring.
 
-        :param p_typeRI: String type. The behavior of the ring line when URCs are presented.
-            "off"       No change. Ring line keeps inactive.
-            "pulse"     Pulse. Pulse width is determined by <pulse_duration>
+        :param p_typeRI: String type. The behavior of the ring line when URCs are presented:
+
+            - **"off"** :       No change. Ring line keeps inactive.
+            - **"pulse"** :     Pulse. Pulse width is determined by <pulse_duration>
         :type p_typeRI: str
         :param p_pulse_duration: Integer type. The width of pulse. This parameter is meaningful only when <typeRI> is ''pulse''. If this parameter is not needed, you can set it to null. Range: 5–2000. Default value: 120. Unit: ms.
         :type p_pulse_duration: int
@@ -875,15 +909,20 @@ class QuectelModemATCommands:
         Status control commands 40314: RI signal output carrier.
 
         :param p_ri_signal_type: String type. RI signal output carrier.
-            "respective"        The ring indicator behaves on the port where URC is presented. For
-                                example, if a URC is presented on UART port, it is physical ring
-                                indicator. If the URC is presented on USB port, it is virtual ring
-                                indicator. If the URC is presented on USB AT port, and the port does
-                                not support ring indicator, then there will be no ring indicator.
-                                AT+QURCCFG="urcport" can get the port on which URC is
-                                presented.
-            "physical"          No matter which port URC is presented on, URC only causes the
-                                behavior of physical ring indicator.
+
+            **"respective"**: The ring indicator behaves on the port where URC is presented.
+
+            For example:
+
+                - If a URC is presented on the UART port, it is a physical ring indicator.
+                - If the URC is presented on the USB port, it is a virtual ring indicator.
+                - If the URC is presented on the USB AT port, and the port does not support a ring indicator,
+                    there will be no ring indicator.
+
+            Use ``AT+QURCCFG="urcport"`` to get the port on which URC is presented.
+
+            **"physical"**: Regardless of which port URC is presented on, only the physical ring indicator is used.
+
         :type p_ri_signal_type: str
 
         :return: Tuple containing the status of the command and the response.
@@ -897,16 +936,17 @@ class QuectelModemATCommands:
         """
         Status control commands 40315: Configure baud rate.
 
-        :param p_ipr: Integer type. Baud rate per second on the serial port. Unit: bps.
-            4800
-            9600
-            19200
-            38400
-            57600
-            115200
-            230400
-            460800
-            921600
+        :param p_ipr: Integer type. Baud rate per second on the serial port. Unit: bps:
+
+            - **4800**
+            - **9600**
+            - **19200**
+            - **38400**
+            - **57600**
+            - **115200**
+            - **230400**
+            - **460800**
+            - **921600**
         :type p_ipr: int
 
         :return: Tuple containing the status of the command and the response.
@@ -920,9 +960,10 @@ class QuectelModemATCommands:
         """
         Status control commands 40316: Configure working mode of NIC.
 
-        :param p_nat: Integer type. The working mode of NIC.
-            0       Routing mode
-            1       NIC mode
+        :param p_nat: Integer type. The working mode of NIC:
+
+            - **0** :       Routing mode
+            - **1** :       NIC mode
         :type p_nat: int
 
         :return: Tuple containing the status of the command and the response.
@@ -936,14 +977,16 @@ class QuectelModemATCommands:
         """
         Status control commands 40317: Configure IMS function.
 
-        :param p_ims_conf: Integer type. IMS function configuration.
-            0       IMS function is not configured
-            1       Enable IMS function
-            2       Disable IMS function
+        :param p_ims_conf: Integer type. IMS function configuration:
+
+            - **0** :       IMS function is not configured
+            - **1** :       Enable IMS function
+            - **2** :       Disable IMS function
         :type p_ims_conf: int
-        :param p_voltecap: Integer type. Whether VoLTE is supported.
-            0       VoLTE is not supported
-            1       VoLTE is supported
+        :param p_voltecap: Integer type. Whether VoLTE is supported:
+
+            - **0** :       VoLTE is not supported
+            - **1** :       VoLTE is supported
         :type p_voltecap: int
 
         :return: Tuple containing the status of the command and the response.
@@ -971,26 +1014,29 @@ class QuectelModemATCommands:
         """
         Status control commands 40400: Control URC indication.
 
-        :param p_urctype: String type. The type of URC.
-            "all"           Main switch of all URCs. Default is ON.
-            "csq"           Indication of signal strength and channel bit error rate change (similar to AT+CSQ). Default is OFF. If this configuration is ON, present: +QIND: "csq",<rssi>,<ber>
-            "datastatus"    Indication of data service status. Default is OFF. If this configuration is ON, present: +QIND: "datastatus",<suspended>,<reason> <reason> is number format as below: 0 SUSPEND_NO_CAUSE 1 SUSPEND_BY_RAU_ATTACH 2 SUSPEND_BY_LAU 3 SUSPEND_BY_TAU 4 SUSPEND_BY_CS_SERVICE 5 SUSPEND_BY_DS_OPERATION 6 SUSPEND_BY_POWERUP
-            "mode"          Indication of network main mode and sub mode. Default is OFF. If this configuration is ON, present: ^MODE:<main_mode>,<sub_mode> <main_mode> is an integer type listed as below: 0 SYSINFO_SYSTEMO_MODE_NO_SERVICE 1 SYSINFO_SYSTEMO_MODE_RESERVED_1 2 SYSINFO_SYSTEMO_MODE_RESERVED_2 3 SYSINFO_SYSTEMO_MODE_GSM_GPRS 5 SYSINFO_SYSTEMO_MODE_WCDMA 17 SYSINFO_SYSTEMO_MODE_LTE <sub_mode> is an integer type listed as below: 0 SYSINFO_SYSTEMO_SUBMODE_NO_SERVICE 1 SYSINFO_SYSTEMO_SUBMODE_GSM 3 SYSINFO_SYSTEMO_SUBMODE_GSM_EGPRS 5 SYSINFO_SYSTEMO_SUBMODE_UTRAN_HSDPA 6 SYSINFO_SYSTEMO_SUBMODE_UTRAN_HSUPA 7 SYSINFO_SYSTEMO_SUBMODE_UTRAN_HSPA 8 SYSINFO_SYSTEMO_SUBMODE_UTRAN 17 SYSINFO_SYSTEMO_SUBMODE_EUTRAN
-            "smsfull"       SMS storage full indication. Default is OFF. If this configuration is ON, present: +QIND: "smsfull",<storage>
-            "smsincoming"   Incoming message indication. Default is ON. Related URC list: +CMTI, +CMT, +CDS
-            "act"           Indication of network access technology change. Default is OFF. If this configuration is ON, present: +QIND: "act",<actvalue> <actvalue> is string format. The values are as below: ''GSM'' ''EGPRS'' ''WCDMA'' ''HSDPA'' ''HSUPA'' ''HSDPA&HSUPA'' ''LTE'' ''UNKNOWN'' The examples of URC are as below: +QIND: "act","HSDPA&HSUPA" +QIND: "act","UNKNOWN" The description of ''act'' is as below: 1. If module does not register on network, <actvalue> would be ''UNKNOWN''. 2. If this configuration is ON, the URC of "act" will be reported immediately. Only when the network access technology changes, a new URC will be reported.
-            "sqi"           Indication of reference signal receiving power, reference signal receiving quality and signal to interference plus noise ratio change. Default is OFF. If this configuration is ON, present: +QIND: "SQI",<RSRP>,<RSRQ>,<SINR> <RSRP> Integer type. Reference signal receiving power. Unit: dBm. (See 3GPP 36.214 Chapter 5.1.1). <RSRQ> Integer type. Reference signal receiving quality. Unit: dB. (See 3GPP 36.214 Chapter 5.1.3). <SINR> Integer type. Signal to interference plus noise ratio. Range: -20–30. Unit: dB.
-            "phonebook"     Incoming phonebook indication. Default is ON. Related URC list: +QIND: PB DONE
-            "ring"          Incoming call indication. Default is ON. Related URC list: RING
-            "nocarrier"     Incoming hang up call indication. Default is ON. Related URC list: NO CARRIER
+        :param p_urctype: String type. The type of URC:
+
+            - **"all"** :           Main switch of all URCs. Default is ON.
+            - **"csq"** :           Indication of signal strength and channel bit error rate change (similar to AT+CSQ). Default is OFF. If this configuration is ON, present: +QIND: "csq",<rssi>,<ber>
+            - **"datastatus"** :    Indication of data service status. Default is OFF. If this configuration is ON, present: +QIND: "datastatus",<suspended>,<reason> <reason> is number format as below: 0 SUSPEND_NO_CAUSE 1 SUSPEND_BY_RAU_ATTACH 2 SUSPEND_BY_LAU 3 SUSPEND_BY_TAU 4 SUSPEND_BY_CS_SERVICE 5 SUSPEND_BY_DS_OPERATION 6 SUSPEND_BY_POWERUP
+            - **"mode"** :          Indication of network main mode and sub mode. Default is OFF. If this configuration is ON, present: ^MODE:<main_mode>,<sub_mode> <main_mode> is an integer type listed as below: 0 SYSINFO_SYSTEMO_MODE_NO_SERVICE 1 SYSINFO_SYSTEMO_MODE_RESERVED_1 2 SYSINFO_SYSTEMO_MODE_RESERVED_2 3 SYSINFO_SYSTEMO_MODE_GSM_GPRS 5 SYSINFO_SYSTEMO_MODE_WCDMA 17 SYSINFO_SYSTEMO_MODE_LTE <sub_mode> is an integer type listed as below: 0 SYSINFO_SYSTEMO_SUBMODE_NO_SERVICE 1 SYSINFO_SYSTEMO_SUBMODE_GSM 3 SYSINFO_SYSTEMO_SUBMODE_GSM_EGPRS 5 SYSINFO_SYSTEMO_SUBMODE_UTRAN_HSDPA 6 SYSINFO_SYSTEMO_SUBMODE_UTRAN_HSUPA 7 SYSINFO_SYSTEMO_SUBMODE_UTRAN_HSPA 8 SYSINFO_SYSTEMO_SUBMODE_UTRAN 17 SYSINFO_SYSTEMO_SUBMODE_EUTRAN
+            - **"smsfull"** :       SMS storage full indication. Default is OFF. If this configuration is ON, present: +QIND: "smsfull",<storage>
+            - **"smsincoming"** :   Incoming message indication. Default is ON. Related URC list: +CMTI, +CMT, +CDS
+            - **"act"** :           Indication of network access technology change. Default is OFF. If this configuration is ON, present: +QIND: "act",<actvalue> <actvalue> is string format. The values are as below: ''GSM'' ''EGPRS'' ''WCDMA'' ''HSDPA'' ''HSUPA'' ''HSDPA&HSUPA'' ''LTE'' ''UNKNOWN'' The examples of URC are as below: +QIND: "act","HSDPA&HSUPA" +QIND: "act","UNKNOWN" The description of ''act'' is as below: 1. If module does not register on network, <actvalue> would be ''UNKNOWN''. 2. If this configuration is ON, the URC of "act" will be reported immediately. Only when the network access technology changes, a new URC will be reported.
+            - **"sqi"** :           Indication of reference signal receiving power, reference signal receiving quality and signal to interference plus noise ratio change. Default is OFF. If this configuration is ON, present: +QIND: "SQI",<RSRP>,<RSRQ>,<SINR> <RSRP> Integer type. Reference signal receiving power. Unit: dBm. (See 3GPP 36.214 Chapter 5.1.1). <RSRQ> Integer type. Reference signal receiving quality. Unit: dB. (See 3GPP 36.214 Chapter 5.1.3). <SINR> Integer type. Signal to interference plus noise ratio. Range: -20–30. Unit: dB.
+            - **"phonebook"** :     Incoming phonebook indication. Default is ON. Related URC list: +QIND: PB DONE
+            - **"ring"** :          Incoming call indication. Default is ON. Related URC list: RING
+            - **"nocarrier"** :     Incoming hang up call indication. Default is ON. Related URC list: NO CARRIER
         :type p_urctype: str
-        :param p_enable: Integer type. URC indication is ON or OFF.
-            0       OFF
-            1       ON
+        :param p_enable: Integer type. URC indication is ON or OFF:
+
+            - **0** :       OFF
+            - **1** :       ON
         :type p_enable: int
-        :param p_savetonvram: Integer type. Save the configuration to NVRAM.
-            0       Do not save the configuration to NVRAM
-            1       Save the configuration to NVRAM
+        :param p_savetonvram: Integer type. Save the configuration to NVRAM:
+
+            - **0** :       Do not save the configuration to NVRAM
+            - **1** :       Save the configuration to NVRAM
         :type p_savetonvram: int
 
         :return: Tuple containing the status of the command and the response.
@@ -1015,42 +1061,46 @@ class QuectelModemATCommands:
         """
         Sim related commands 502: Facility lock.
 
-        :param p_fac: String type. The facility to lock.
-            "SC"        (U)SIM (lock SIM/UICC card installed in the currently selected card slot)
-            "AO"        BAOC (Bar All Outgoing Calls) (see 3GPP TS 22.088 clause 1)
-            "OI"        BOIC (Bar Outgoing International Calls) (see 3GPP TS 22.088 clause 1)
-            "OX"        BOIC-exHC (Bar Outgoing International Calls except to Home Country) (see 3GPP TS 22.088 clause 1)
-            "AI"        BAIC (Bar All Incoming Calls) (see 3GPP TS 22.088 clause 2)
-            "IR"        BIC-Roam (Bar Incoming Calls when Roaming outside the home country) (see 3GPP TS 22.088 clause 2)
-            "AB"        All Barring services (see 3GPP TS 22.030) (applicable only for <mode>=0)
-            "AG"        All outgoing barring services (see 3GPP TS 22.030) (applicable only for <mode>=0)
-            "AC"        All incoming barring services (see 3GPP TS 22.030) (applicable only for <mode>=0)
-            "FD"        (U)SIM card or active application in the UICC (GSM or USIM) fixed dialing memory feature (If PIN2 authentication has not been done during the current session, PIN2 is required as <passwd>)
-            "PF"        Lock Phone to the very first inserted SIM/UICC card (also referred in the present document as PH-FSIM) (MT asks password when other SIM/UICC cards are inserted)
-            "PN"        Network Personalization (see 3GPP TS 22.022)
-            "PU"        Network Subset Personalization (see 3GPP TS 22.022)
-            "PP"        Service Provider Personalization (see 3GPP TS 22.022)
-            "PC"        Corporate Personalization (see 3GPP TS 22.022)
+        :param p_fac: String type. The facility to lock:
+
+            - **"SC"** :        (U)SIM (lock SIM/UICC card installed in the currently selected card slot)
+            - **"AO"** :        BAOC (Bar All Outgoing Calls) (see 3GPP TS 22.088 clause 1)
+            - **"OI"** :        BOIC (Bar Outgoing International Calls) (see 3GPP TS 22.088 clause 1)
+            - **"OX"** :        BOIC-exHC (Bar Outgoing International Calls except to Home Country) (see 3GPP TS 22.088 clause 1)
+            - **"AI"** :        BAIC (Bar All Incoming Calls) (see 3GPP TS 22.088 clause 2)
+            - **"IR"** :        BIC-Roam (Bar Incoming Calls when Roaming outside the home country) (see 3GPP TS 22.088 clause 2)
+            - **"AB"** :        All Barring services (see 3GPP TS 22.030) (applicable only for <mode>=0)
+            - **"AG"** :        All outgoing barring services (see 3GPP TS 22.030) (applicable only for <mode>=0)
+            - **"AC"** :        All incoming barring services (see 3GPP TS 22.030) (applicable only for <mode>=0)
+            - **"FD"** :        (U)SIM card or active application in the UICC (GSM or USIM) fixed dialing memory feature (If PIN2 authentication has not been done during the current session, PIN2 is required as <passwd>)
+            - **"PF"** :        Lock Phone to the very first inserted SIM/UICC card (also referred in the present document as PH-FSIM) (MT asks password when other SIM/UICC cards are inserted)
+            - **"PN"** :        Network Personalization (see 3GPP TS 22.022)
+            - **"PU"** :        Network Subset Personalization (see 3GPP TS 22.022)
+            - **"PP"** :        Service Provider Personalization (see 3GPP TS 22.022)
+            - **"PC"** :        Corporate Personalization (see 3GPP TS 22.022)
         :type p_fac: str
-        :param p_mode: Integer type. The mode of the facility lock.
-            0       Unlock
-            1       Lock
-            2       Query status
+        :param p_mode: Integer type. The mode of the facility lock:
+
+            - **0** :       Unlock
+            - **1** :       Lock
+            - **2** :       Query status
         :type p_mode: int
         :param p_passwd: String type. Password.
         :type p_passwd: str
-        :param p_class: Integer type. The class of the facility lock.
-            1       Voice
-            2       Data
-            4       FAX
-            7       All telephony except SMS
-            8       Short message service
-            16      Data circuit synchronization
-            32      Data circuit asynchronization
+        :param p_class: Integer type. The class of the facility lock:
+
+            - **1** :       Voice
+            - **2** :       Data
+            - **4** :       FAX
+            - **7** :       All telephony except SMS
+            - **8** :       Short message service
+            - **16** :      Data circuit synchronization
+            - **32** :      Data circuit asynchronization
         :type p_class: int
-        :param p_status: Integer type. The status of the facility lock.
-            0       Off
-            1       On
+        :param p_status: Integer type. The status of the facility lock:
+
+            - **0** :       Off
+            - **1** :       On
         :type p_status: int
 
         :return: Tuple containing the status of the command and the response.
@@ -1066,20 +1116,21 @@ class QuectelModemATCommands:
         """
         Sim related commands 503: Enter PIN.
 
-        :param p_code: String type. The code of the SIM card.
-            "READY"
-            "SIM PIN"
-            "SIM PUK"
-            "SIM PIN2"
-            "SIM PUK2"
-            "PH-NET PIN"
-            "PH-NET PUK"
-            "PH-NETSUB PIN"
-            "PH-NETSUB PUK"
-            "PH-SP PIN"
-            "PH-SP PUK"
-            "PH-CORP PIN"
-            "PH-CORP PUK"
+        :param p_code: String type. The code of the SIM card:
+
+            - **"READY"**
+            - **"SIM PIN"**
+            - **"SIM PUK"**
+            - **"SIM PIN2"**
+            - **"SIM PUK2"**
+            - **"PH-NET PIN"**
+            - **"PH-NET PUK"**
+            - **"PH-NETSUB PIN"**
+            - **"PH-NETSUB PUK"**
+            - **"PH-SP PIN"**
+            - **"PH-SP PUK"**
+            - **"PH-CORP PIN"**
+            - **"PH-CORP PUK"**
         :type p_code: str
         :param p_pin: String type. The PIN of the SIM card.
         :type p_pin: str
@@ -1097,27 +1148,26 @@ class QuectelModemATCommands:
         """
         Sim related commands 504: Change password.
 
-        :param p_fac: String type. The facility to lock.
-            "SC"        (U)SIM (lock SIM/UICC card) (SIM/UICC asks password in MT power-up and
-                        when this lock command is issued)
-            "AO"        BAOC (Bar All Outgoing Calls, see 3GPP TS 22.088 clause 1)
-            "OI"        BOIC (Bar Outgoing International Calls, see 3GPP TS 22.088 clause 1)
-            "OX"        BOIC-exHC (Bar Outgoing International Calls except to Home Country, see
-                        3GPP TS 22.088 clause 1)
-            "AI"        BAIC (Bar All Incoming Calls, see 3GPP TS 22.088 clause 2)
-            "IR"        BIC-Roam (Bar Incoming Calls when Roaming outside the home country,
-                        see 3GPP TS 22.088 clause 2)
-            "AB"        All barring services (see 3GPP TS 22.030, applicable only for <mode>=0)
-            "AG"        All outgoing barring services (see 3GPP TS 22.030, applicable only for
-                        <mode>=0)
-            "AC"        All incoming barring services (see 3GPP TS 22.030, applicable only for
-                        <mode>=0)
-            "P2"        (U)SIM PIN2
+        :param p_fac: String type. The facility to lock:
+
+                    - **"SC"**: (U)SIM (lock SIM/UICC card)
+                    - **"AO"**: BAOC (Bar All Outgoing Calls, see 3GPP TS 22.088 clause 1)
+                    - **"OI"**: BOIC (Bar Outgoing International Calls, see 3GPP TS 22.088 clause 1)
+                    - **"OX"**: BOIC-exHC (Bar Outgoing International Calls except to Home Country, see 3GPP TS 22.088 clause 1)
+                    - **"AI"**: BAIC (Bar All Incoming Calls, see 3GPP TS 22.088 clause 2)
+                    - **"IR"**: BIC-Roam (Bar Incoming Calls when Roaming outside the home country, see 3GPP TS 22.088 clause 2)
+                    - **"AB"**: All barring services (see 3GPP TS 22.030, applicable only for <mode>=0)
+                    - **"AG"**: All outgoing barring services (see 3GPP TS 22.030, applicable only for <mode>=0)
+                    - **"AC"**: All incoming barring services (see 3GPP TS 22.030, applicable only for <mode>=0)
+                    - **"P2"**: (U)SIM PIN2
         :type p_fac: str
+
         :param p_pwdlength: Integer type. Maximum length of password.
         :type p_pwdlength: int
+
         :param p_oldpwd: String type. Password specified for the facility from the user interface or with command.
         :type p_oldpwd: str
+
         :param p_newpwd: String type. New password.
         :type p_newpwd: str
 
@@ -1157,13 +1207,14 @@ class QuectelModemATCommands:
         """
         Sim related commands 506: Restricted (U)SIM access.
 
-        :param p_command: Integer type. (U)SIM command number.
-            176     READ BINARY
-            178     READ RECORD
-            192     GET RESPONSE
-            214     UPDATE BINARY
-            220     UPDATE RECORD
-            242     STATUS
+        :param p_command: Integer type. (U)SIM command number:
+
+            - **176** :     READ BINARY
+            - **178** :     READ RECORD
+            - **192** :     GET RESPONSE
+            - **214** :     UPDATE BINARY
+            - **220** :     UPDATE RECORD
+            - **242** :     STATUS
         :type p_command: int
         :param p_filed: Integer type. Identifier for an elementary data file on (U)SIM, if used by <command>.
         :type p_filed: int
@@ -1212,9 +1263,10 @@ class QuectelModemATCommands:
         """
         Sim related commands 508: Display PIN remainder counter.
 
-        :param p_facility: String type. The facility to lock.
-            "SC"        (U)SIM PIN
-            "P2"        (U)SIM PIN2
+        :param p_facility: String type. The facility to lock:
+
+            - **"SC"** :        (U)SIM PIN
+            - **"P2"** :        (U)SIM PIN2
         :type p_facility: str
 
         :return: Tuple containing the status of the command and the response.
@@ -1248,13 +1300,15 @@ class QuectelModemATCommands:
         """
         Sim related commands 510: (U)SIM card detection.
 
-        :param p_enable: Integer type. Enable or disable (U)SIM card detection.
-            0       Disable
-            1       Enable
+        :param p_enable: Integer type. Enable or disable (U)SIM card detection:
+
+            - **0** :       Disable
+            - **1** :       Enable
         :type p_enable: int
-        :param p_insert_level: Integer type. The level of (U)SIM detection pin when a (U)SIM card is inserted.
-            0       Low level
-            1       High level
+        :param p_insert_level: Integer type. The level of (U)SIM detection pin when a (U)SIM card is inserted:
+
+            - **0** :       Low level
+            - **1** :       High level
         :type p_insert_level: int
 
         :return: Tuple containing the status of the command and the response.
@@ -1277,9 +1331,10 @@ class QuectelModemATCommands:
         """
         Sim related commands 511: (U)SIM card insertion status report.
 
-        :param p_enable: Integer type. Enable or disable (U)SIM card insertion status report.
-            0       Disable
-            1       Enable
+        :param p_enable: Integer type. Enable or disable (U)SIM card insertion status report:
+
+            - **0** :       Disable
+            - **1** :       Enable
         :type p_enable: int
 
         :return: Tuple containing the status of the command and the response.
@@ -1302,9 +1357,10 @@ class QuectelModemATCommands:
         """
         Sim related commands 512: Select (U)SIM card.
 
-        :param p_sim_id: Integer type. (U)SIM card ID.
-            0       SIM1
-            1       SIM2
+        :param p_sim_id: Integer type. (U)SIM card ID:
+
+            - **0** :       SIM1
+            - **1** :       SIM2
         :type p_sim_id: int
 
         :return: Tuple containing the status of the command and the response.
@@ -1327,29 +1383,32 @@ class QuectelModemATCommands:
         """
         Network service commands 6010: Operator selection write.
 
-        :param p_mode: Integer type. The mode of the operator selection.
-            0       Automatic mode. <oper> field is ignored
-            1       Manual operator selection. <oper> field shall be present and <Act> optionally
-            2       Manually deregister from network
-            3       Set only <format> (for AT+COPS? Read Command), and do not attempt registration/deregistration (<oper> and <Act> fields are ignored). This value is invalid in the response of Read Command.
-            4       Manual/automatic selection. <oper> field shall be presented. If manual selection fails, automatic mode (<mode>=0) is entered
+        :param p_mode: Integer type. The mode of the operator selection:
+
+            - **0** :       Automatic mode. <oper> field is ignored
+            - **1** :       Manual operator selection. <oper> field shall be present and <Act> optionally
+            - **2** :       Manually deregister from network
+            - **3** :       Set only <format> (for AT+COPS? Read Command), and do not attempt registration/deregistration (<oper> and <Act> fields are ignored). This value is invalid in the response of Read Command.
+            - **4** :       Manual/automatic selection. <oper> field shall be presented. If manual selection fails, automatic mode (<mode>=0) is entered
         :type p_mode: int
-        :param p_format: Integer type. The format of the operator.
-            0       Long format alphanumeric <oper> which can be up to 16 characters long
-            1       Short format alphanumeric <oper>
-            2       Numeric <oper>. GSM location area identification number
+        :param p_format: Integer type. The format of the operator:
+
+            - **0** :       Long format alphanumeric <oper> which can be up to 16 characters long
+            - **1** :       Short format alphanumeric <oper>
+            - **2** :       Numeric <oper>. GSM location area identification number
         :type p_format: int
         :param p_operator: String type. Operator in format as per <format>.
         :type p_operator: str
-        :param p_act: Integer type. Access technology selected.
-            0       GSM
-            2       UTRAN
-            3       GSM W/EGPRS
-            4       UTRAN W/HSDPA
-            5       UTRAN W/HSUPA
-            6       UTRAN W/HSDPA and HSUPA
-            7       E-UTRAN
-            8       UTRAN HSPA+
+        :param p_act: Integer type. Access technology selected:
+
+            - **0** :       GSM
+            - **2** :       UTRAN
+            - **3** :       GSM W/EGPRS
+            - **4** :       UTRAN W/HSDPA
+            - **5** :       UTRAN W/HSUPA
+            - **6** :       UTRAN W/HSDPA and HSUPA
+            - **7** :       E-UTRAN
+            - **8** :       UTRAN HSPA+
         :type p_act: int
 
         :return: Tuple containing the status of the command and the response.
@@ -1374,10 +1433,11 @@ class QuectelModemATCommands:
         """
         Network service commands 602: Domain network registration status write.
 
-        :param p_n: Integer type. The mode of the network registration unsolicited result code.
-            0       Disable network registration unsolicited result code
-            1       Enable network registration unsolicited result code: +CREG: <stat>
-            2       Enable network registration unsolicited result code with location information: +CREG: <stat>[,<lac>,<ci>[,<Act>]]
+        :param p_n: Integer type. The mode of the network registration unsolicited result code:
+
+            - **0** :       Disable network registration unsolicited result code
+            - **1** :       Enable network registration unsolicited result code: +CREG: <stat>
+            - **2** :       Enable network registration unsolicited result code with location information: +CREG: <stat>[,<lac>,<ci>[,<Act>]]
         :type p_n: int
 
         :return: Tuple containing the status of the command and the response.
@@ -1421,28 +1481,33 @@ class QuectelModemATCommands:
 
         :param p_index: Integer type. The order number of operator in the (U)SIM preferred operator list.
         :type p_index: int
-        :param p_format: Integer type.
-            0       Long format alphanumeric <oper>
-            1       Short format alphanumeric <oper>
-            2       Numeric <oper>
+        :param p_format: Integer type:
+
+            - **0** :       Long format alphanumeric <oper>
+            - **1** :       Short format alphanumeric <oper>
+            - **2** :       Numeric <oper>
         :type p_format: int
         :param p_oper: String type. <format> indicates the format is alphanumeric or numeric (see AT+COPS).
         :type p_oper: str
-        :param p_gsm: Integer type. GSM access technology.
-            0       Access technology is not selected
-            1       Access technology is selected
+        :param p_gsm: Integer type. GSM access technology:
+
+            - **0** :       Access technology is not selected
+            - **1** :       Access technology is selected
         :type p_gsm: int
-        :param p_gsm_compact: Integer type. GSM compact access technology.
-            0       Access technology is not selected
-            1       Access technology is selected
+        :param p_gsm_compact: Integer type. GSM compact access technology:
+
+            - **0** :       Access technology is not selected
+            - **1** :       Access technology is selected
         :type p_gsm_compact: int
-        :param p_utran: Integer type. UTRAN access technology.
-            0       Access technology is not selected
-            1       Access technology is selected
+        :param p_utran: Integer type. UTRAN access technology:
+
+            - **0** :       Access technology is not selected
+            - **1** :       Access technology is selected
         :type p_utran: int
-        :param p_e_utran: Integer type. E-UTRAN access technology.
-            0       Access technology is not selected
-            1       Access technology is selected
+        :param p_e_utran: Integer type. E-UTRAN access technology:
+
+            - **0** :       Access technology is not selected
+            - **1** :       Access technology is selected
         :type p_e_utran: int
 
         :return: Tuple containing the status of the command and the response.
@@ -1478,10 +1543,11 @@ class QuectelModemATCommands:
         """
         Network service commands 606: Automatic time zone update write.
 
-        :param p_onoff: Integer type. The mode of automatic time zone update.
-            0       Disable automatic time zone update via NITZ.
-            1       Enable automatic time zone update via NITZ and update GMT time to URC
-            3       Enable automatic time zone update via NITZ and update LOCAL time to RTC
+        :param p_onoff: Integer type. The mode of automatic time zone update:
+
+            - **0** :       Disable automatic time zone update via NITZ.
+            - **1** :       Enable automatic time zone update via NITZ and update GMT time to URC
+            - **3** :       Enable automatic time zone update via NITZ and update LOCAL time to RTC
         :type p_onoff: int
 
         :return: Tuple containing the status of the command and the response.
@@ -1504,10 +1570,11 @@ class QuectelModemATCommands:
         """
         Network service commands 607: Time zone reporting write.
 
-        :param p_reporting: Integer type. The mode of time zone reporting.
-            0       Disable time zone reporting of changed event
-            1       Enable time zone reporting of changed event by unsolicited result code: +CTZV: <tz>
-            2       Enable extended time zone reporting by unsolicited result code: +CTZE: <tz>,<dst>,<time>
+        :param p_reporting: Integer type. The mode of time zone reporting:
+
+            - **0** :       Disable time zone reporting of changed event
+            - **1** :       Enable time zone reporting of changed event by unsolicited result code: +CTZV: <tz>
+            - **2** :       Enable extended time zone reporting by unsolicited result code: +CTZE: <tz>,<dst>,<time>
         :type p_reporting: int
 
         :return: Tuple containing the status of the command and the response.
@@ -1553,14 +1620,15 @@ class QuectelModemATCommands:
         Call related commands 702: Mobile originated call to dial a number.
 
         :param p_n: String of dialing digits and optionally V.25ter modifiers.
-            Dialing digits: 0–9, *, #, +, A, B, C
+            Dialing digits: 0–9, \*, #, +, A, B, C
             Following V.25ter modifiers are ignored: ,(comma), T, P, !, W, @
         :type p_n: str
-        :param p_mgsm: String of GSM modifiers.
-            I   Activate CLIR (Disable presentation of own number to the called party)
-            i   Deactivate CLIR (Enable presentation of own number to the called party)
-            G   Activate closed user group invocation for this call only
-            g   Deactivate closed user group invocation for this call only
+        :param p_mgsm: String of GSM modifiers:
+
+            - **I** :   Activate CLIR (Disable presentation of own number to the called party)
+            - **i** :   Deactivate CLIR (Enable presentation of own number to the called party)
+            - **G** :   Activate closed user group invocation for this call only
+            - **g** :   Deactivate closed user group invocation for this call only
         :type p_mgsm: str
 
         :return: Tuple containing the status of the command and the response.
@@ -1585,9 +1653,10 @@ class QuectelModemATCommands:
         """
         Call related commands 703: Connected line identification presentation write.
 
-        :param p_n: Integer type. Sets/shows the result code presentation status in the TA.
-            0       Disable
-            1       Enable
+        :param p_n: Integer type. Sets/shows the result code presentation status in the TA:
+
+            - **0** :       Disable
+            - **1** :       Enable
         :type p_n: int
 
         :return: Tuple containing the status of the command and the response.
@@ -1654,9 +1723,10 @@ class QuectelModemATCommands:
         """
         Call related commands 708: Set number of rings before automatic answering write.
 
-        :param p_n: Integer type. This parameter setting determines the number of rings before automatic answering.
-            0       Automatic answering is disabled
-            1–255   Enable automatic answering on the ring number specified
+        :param p_n: Integer type. This parameter setting determines the number of rings before automatic answering:
+
+            - **0** :       Automatic answering is disabled
+            - **1–255** :   Enable automatic answering on the ring number specified
         :type p_n: int
 
         :return: Tuple containing the status of the command and the response.
@@ -1688,9 +1758,10 @@ class QuectelModemATCommands:
         """
         Call related commands 710: Call status indication write.
 
-        :param p_n: Integer type. The mode of the call status indication.
-            0       Disable call status indication
-            1       Enable call status indication
+        :param p_n: Integer type. The mode of the call status indication:
+
+            - **0** :       Disable call status indication
+            - **1** :       Enable call status indication
         :type p_n: int
 
         :return: Tuple containing the status of the command and the response.
@@ -1752,15 +1823,16 @@ class QuectelModemATCommands:
         """
         Phonebook commands 804: Select phonebook memory storage write.
 
-        :param p_storage: String type.
-            "SM"              (U)SIM phonebook
-            "DC"              ME dialed calls list (AT+CPBW may not be applicable to this storage)
-            "FD"              (U)SIM fix dialing-phone book (AT+CPBW operation need the authority of PIN2)
-            "LD"              (U)SIM last-dialing-phone book (AT+CPBW may not be applicable to this storage)
-            "EN"              (U)SIM (or ME) emergency number (AT+CPBW may not be applicable to this storage)
-            "ON"              (U)SIM own numbers (MSISDNs) list
-            "AP"              Selected application phonebook. If a UICC with an active USIM application is present, the application phonebook, DFPHONEBOOK under ADFUSIM is selected
-            "SDN"             Service Dialing Number
+        :param p_storage: String type:
+
+            - **"SM"** :              (U)SIM phonebook
+            - **"DC"** :              ME dialed calls list (AT+CPBW may not be applicable to this storage)
+            - **"FD"** :              (U)SIM fix dialing-phone book (AT+CPBW operation need the authority of PIN2)
+            - **"LD"** :              (U)SIM last-dialing-phone book (AT+CPBW may not be applicable to this storage)
+            - **"EN"** :              (U)SIM (or ME) emergency number (AT+CPBW may not be applicable to this storage)
+            - **"ON"** :              (U)SIM own numbers (MSISDNs) list
+            - **"AP"** :              Selected application phonebook. If a UICC with an active USIM application is present, the application phonebook, DFPHONEBOOK under ADFUSIM is selected
+            - **"SDN"** :             Service Dialing Number
         :type p_storage: str
 
         :return: Tuple containing the status of the command and the response.
@@ -1778,10 +1850,11 @@ class QuectelModemATCommands:
         :type p_index: int
         :param p_number: String type. Phone number in format specified by <type>.
         :type p_number: str
-        :param p_type: Integer type. Type of address of octet (see 3GPP TS 24.008 subclause 10.5.4.7 for details).
-            129             Unknown type (IDSN format)
-            145             International number type (ISDN format)
-            161             National type
+        :param p_type: Integer type. Type of address of octet (see 3GPP TS 24.008 subclause 10.5.4.7 for details):
+
+            - **129** :             Unknown type (IDSN format)
+            - **145** :             International number type (ISDN format)
+            - **161** :             National type
         :type p_type: int
         :param p_text: String type field of maximum length <tlength> in current TE character set specified by AT+CSCS.
         :type p_text: str
@@ -1808,9 +1881,10 @@ class QuectelModemATCommands:
         """
         Short message service commands 901: Select message service write.
 
-        :param p_service: Integer type. Type of message service
-            0       3GPP TS 23.040 and 3GPP TS 23.041 (the syntax of SMS AT commands is compatible with 3GPP TS 27.005 Phase 2 version 4.7.0; Phase 2+ features which do not require new command syntax may be supported, e.g. correct routing of messages with new Phase 2+ data coding schemes)
-            1       3GPP TS 23.040 and 3GPP TS 23.041 (the syntax of SMS AT commands is compatible with 3GPP TS 27.005 Phase 2+ version; the requirement of <service> setting 1 is mentioned under corresponding command descriptions)
+        :param p_service: Integer type. Type of message service:
+
+            - **0** :       3GPP TS 23.040 and 3GPP TS 23.041 (the syntax of SMS AT commands is compatible with 3GPP TS 27.005 Phase 2 version 4.7.0; Phase 2+ features which do not require new command syntax may be supported, e.g. correct routing of messages with new Phase 2+ data coding schemes)
+            - **1** :       3GPP TS 23.040 and 3GPP TS 23.041 (the syntax of SMS AT commands is compatible with 3GPP TS 27.005 Phase 2+ version; the requirement of <service> setting 1 is mentioned under corresponding command descriptions)
         :type p_service: int
 
         :return: Tuple containing the status of the command and the response.
@@ -1882,17 +1956,20 @@ class QuectelModemATCommands:
         """
         Short message service commands 904: Preferred message storage write.
 
-        :param p_mem1: Messages to be read and deleted from this memory storage.
-            "SM"            (U)SIM message storage
-            "ME"            Mobile equipment message storage
+        :param p_mem1: Messages to be read and deleted from this memory storage:
+
+            - **"SM"** :            (U)SIM message storage
+            - **"ME"** :            Mobile equipment message storage
         :type p_mem1: str
-        :param p_mem2: Messages will be written and sent to this memory storage.
-            "SM"            (U)SIM message storage
-            "ME"            Mobile equipment message storage
+        :param p_mem2: Messages will be written and sent to this memory storage:
+
+            - **"SM"** :            (U)SIM message storage
+            - **"ME"** :            Mobile equipment message storage
         :type p_mem2: str
-        :param p_mem3: Received messages will be placed in this memory storage if routing to PC is not set (AT+CNMI).
-            "SM"            (U)SIM message storage
-            "ME"            Mobile equipment message storage
+        :param p_mem3: Received messages will be placed in this memory storage if routing to PC is not set (AT+CNMI):
+
+            - **"SM"** :            (U)SIM message storage
+            - **"ME"** :            Mobile equipment message storage
         :type p_mem3: str
 
         :return: Tuple containing the status of the command and the response.
@@ -1908,12 +1985,13 @@ class QuectelModemATCommands:
 
         :param p_index: Integer type. Value in the range of location numbers supported by the associated memory.
         :type p_index: int
-        :param p_delflag: Integer type.
-            0       Delete the message specified in <index>
-            1       Delete all read messages from <mem1> storage
-            2       Delete all read messages from <mem1> storage and sent mobile originated messages
-            3       Delete all read messages, sent and unsent mobile originated messages from <mem1> storage
-            4       Delete all messages from <mem1> storage
+        :param p_delflag: Integer type:
+
+            - **0** :       Delete the message specified in <index>
+            - **1** :       Delete all read messages from <mem1> storage
+            - **2** :       Delete all read messages from <mem1> storage and sent mobile originated messages
+            - **3** :       Delete all read messages, sent and unsent mobile originated messages from <mem1> storage
+            - **4** :       Delete all messages from <mem1> storage
         :type p_delflag: int
 
         :return: Tuple containing the status of the command and the response.
@@ -1939,11 +2017,12 @@ class QuectelModemATCommands:
         Short message service commands 906: List messages query.
 
         :param p_stat: String type. In text mode:
-            "REC UNREAD"        Received unread messages
-            "REC READ"          Received read messages
-            "STO UNSENT"        Stored unsent messages
-            "STO SENT"          Stored sent messages
-            "ALL"               All messages
+
+            - **"REC UNREAD"** :        Received unread messages
+            - **"REC READ"** :          Received read messages
+            - **"STO UNSENT"** :        Stored unsent messages
+            - **"STO SENT"** :          Stored sent messages
+            - **"ALL"** :               All messages
         :type p_stat: str
 
         :return: Tuple containing the status of the command and the response.
@@ -2011,10 +2090,11 @@ class QuectelModemATCommands:
         """
         Short message service commands 909: Send more messages write.
 
-        :param p_n: Integer type.
-            0       Feature disabled
-            1       Keep enabled until the time between the response of the latest message send command (AT+CMGS, AT+CMSS, etc.) and the next send command exceeds 1–5 seconds (the exact value is up to ME implementation), and then ME shall close the link and TA switches <n> back to 0 automatically.
-            2       Feature enabled (If the time between the response of the latest message send command and the next send command exceeds 1-5 seconds (the exact value is up to ME implementation), ME shall close the link but TA will not switch <n> back to 0 automatically).
+        :param p_n: Integer type:
+
+            - **0** :       Feature disabled
+            - **1** :       Keep enabled until the time between the response of the latest message send command (AT+CMGS, AT+CMSS, etc.) and the next send command exceeds 1–5 seconds (the exact value is up to ME implementation), and then ME shall close the link and TA switches <n> back to 0 automatically.
+            - **2** :       Feature enabled (If the time between the response of the latest message send command and the next send command exceeds 1-5 seconds (the exact value is up to ME implementation), ME shall close the link but TA will not switch <n> back to 0 automatically).
         :type p_n: int
 
         :return: Tuple containing the status of the command and the response.
@@ -2042,12 +2122,13 @@ class QuectelModemATCommands:
         :type p_tooa: int
         :param p_toda: Type of recipient address. 3GPP TS 24.011 TP-Recipient-Address Type-of-Address octet in integer format.
         :type p_toda: int
-        :param p_stat: PDU mode        Text mode       Explanation
-            0               ''REC UNREAD''  Received unread messages
-            1               ''REC READ''    Received read messages
-            2               ''STO UNSENT''  Stored unsent messages
-            3               ''STO SENT''    Stored sent messages
-            4               ''ALL''         All messages
+        :param p_stat: PDU mode        Text mode       Explanation:
+
+            - **0** :               **"REC UNREAD"** :  Received unread messages
+            - **1** :               **"REC READ"** :  Received read messages
+            - **2** :               **"STO UNSENT"** :  Stored unsent messages
+            - **3** :               **"STO SENT"** :  Stored sent messages
+            - **4** :               **"ALL** :  All messages
         :type p_stat: str
         :param p_text: String type. Message content.
         :type p_text: str
@@ -2105,10 +2186,11 @@ class QuectelModemATCommands:
         """
         Short message service commands 912: New message acknowledgement to UE/TE write.
 
-        :param p_n: Integer type.
-            0       Command operates similarly as in text mode
-            1       Send positive (RP-ACK) acknowledgement to the network. Accepted only in PDU mode
-            2       Send negative (RP-ERROR) acknowledgement to the network. Accepted only in PDU mode
+        :param p_n: Integer type:
+
+            - **0** :       Command operates similarly as in text mode
+            - **1** :       Send positive (RP-ACK) acknowledgement to the network. Accepted only in PDU mode
+            - **2** :       Send negative (RP-ERROR) acknowledgement to the network. Accepted only in PDU mode
         :type p_n: int
 
         :return: Tuple containing the status of the command and the response.
@@ -2133,29 +2215,34 @@ class QuectelModemATCommands:
         """
         Short message service commands 913: SMS event reporting configuration write.
 
-        :param p_mode: Integer type.
-            0       Buffer unsolicited result codes in the TA. If TA result code buffer is full, indications can be buffered in some other place or the oldest indications may be discarded and replaced with the new received indications.
-            1       Discard indication and reject new received message unsolicited result codes when TA-TE link is reserved (e.g. in on-line data mode). Otherwise forward them directly to the TE.
-            2       Buffer unsolicited result codes in the TA when TA-TE link is reserved (e.g. in data mode) and flush them to the TE after reservation. Otherwise forward them directly to the TE.
+        :param p_mode: Integer type:
+
+            - **0** :       Buffer unsolicited result codes in the TA. If TA result code buffer is full, indications can be buffered in some other place or the oldest indications may be discarded and replaced with the new received indications.
+            - **1** :       Discard indication and reject new received message unsolicited result codes when TA-TE link is reserved (e.g. in on-line data mode). Otherwise forward them directly to the TE.
+            - **2** :       Buffer unsolicited result codes in the TA when TA-TE link is reserved (e.g. in data mode) and flush them to the TE after reservation. Otherwise forward them directly to the TE.
         :type p_mode: int
         :param p_mt: Integer type. The rules for storing received SMS depend on its data coding scheme (see GPPTS 23.038) and preferred memory storage (AT+CPMS) setting, and the value is:
-            0       No SMS-DELIVER indications are routed to the TE
-            1       If SMS-DELIVER is stored into ME/TA, indication of the memory location is routed to the TE by using unsolicited result code: +CMTI: <mem>,<index>
-            2       SMS-DELIVERs (except class 2) are routed directly to the TE using unsolicited result code: +CMT: [<alpha>],<length><CR><LF><pdu> (PDU mode enabled) or +CMT:<oa>,[<alpha>],<scts>[,<tooa>,<fo>,<pid>,<dcs>,<sca>,<tosca>,<length>]<CR><LF><data> (text mode enabled; about the parameters in italics, see AT+CSDH) or ^HCMT: <oa>,<scts>,<lang>,<fmt>,<length>,<prt>,<prv>,<type>,<stat><CR><LF><data> (text mode for CDMA SMS). Class 2 messages result in indication as defined in <mt>=1
-            3       Class 3 SMS-DELIVERs are routed directly to TE by using unsolicited result codes defined in <mt>=2. Messages of other classes result in indication as defined in <mt>=1
+
+            - **0** :       No SMS-DELIVER indications are routed to the TE
+            - **1** :       If SMS-DELIVER is stored into ME/TA, indication of the memory location is routed to the TE by using unsolicited result code: +CMTI: <mem>,<index>
+            - **2** :       SMS-DELIVERs (except class 2) are routed directly to the TE using unsolicited result code: +CMT: [<alpha>],<length><CR><LF><pdu> (PDU mode enabled) or +CMT:<oa>,[<alpha>],<scts>[,<tooa>,<fo>,<pid>,<dcs>,<sca>,<tosca>,<length>]<CR><LF><data> (text mode enabled; about the parameters in italics, see AT+CSDH) or ^HCMT: <oa>,<scts>,<lang>,<fmt>,<length>,<prt>,<prv>,<type>,<stat><CR><LF><data> (text mode for CDMA SMS). Class 2 messages result in indication as defined in <mt>=1
+            - **3** :       Class 3 SMS-DELIVERs are routed directly to TE by using unsolicited result codes defined in <mt>=2. Messages of other classes result in indication as defined in <mt>=1
         :type p_mt: int
         :param p_bm: Integer type. The rules for storing received CBMs depend on its data coding scheme (see 3GPP TS 23.038) and the setting of Select CBM Types (AT+CSCB), and the value is:
-            0       No CBM indications are routed to the TE
-            2       New CBMs are routed directly to the TE using unsolicited result code: +CBM:   <length><CR><LF><pdu>   (PDU mode); or +CBM: <sn>,<mid>,<dcs>,<page>,<pages><CR><LF><data> (text mode)
+
+            - **0** :       No CBM indications are routed to the TE
+            - **2** :       New CBMs are routed directly to the TE using unsolicited result code: +CBM:   <length><CR><LF><pdu>   (PDU mode); or +CBM: <sn>,<mid>,<dcs>,<page>,<pages><CR><LF><data> (text mode)
         :type p_bm: int
-        :param p_ds: Integer type.
-            0       No SMS-STATUS-REPORTs are routed to the TE
-            1       SMS-STATUS-REPORTs are routed to the TE using unsolicited result code: +CDS: <length><CR><LF><pdu> (PDU mode) +CDS: <fo>,<mr>,[<ra>],[<tora>],<scts>,<dt>,<st> (text mode)
-            2       If SMS-STATUS-REPORT is stored into ME/TA, indication of the memory location is routed to the TE using unsolicited result code: +CDSI: <mem>,<index>
+        :param p_ds: Integer type:
+
+            - **0** :       No SMS-STATUS-REPORTs are routed to the TE
+            - **1** :       SMS-STATUS-REPORTs are routed to the TE using unsolicited result code: +CDS: <length><CR><LF><pdu> (PDU mode) +CDS: <fo>,<mr>,[<ra>],[<tora>],<scts>,<dt>,<st> (text mode)
+            - **2** :       If SMS-STATUS-REPORT is stored into ME/TA, indication of the memory location is routed to the TE using unsolicited result code: +CDSI: <mem>,<index>
         :type p_ds: int
-        :param p_bfr: Integer type.
-            0       TA buffer of unsolicited result codes defined within this command is flushed to the TE when <mode> 1 or 2 is entered (OK response shall be given before flushing the codes)
-            1       TA buffer of unsolicited result codes defined within this command is cleared when <mode> 1 or 2 is entered
+        :param p_bfr: Integer type:
+
+            - **0** :       TA buffer of unsolicited result codes defined within this command is flushed to the TE when <mode> 1 or 2 is entered (OK response shall be given before flushing the codes)
+            - **1** :       TA buffer of unsolicited result codes defined within this command is cleared when <mode> 1 or 2 is entered
         :type p_bfr: int
 
         :return: Tuple containing the status of the command and the response.
@@ -2180,9 +2267,10 @@ class QuectelModemATCommands:
         """
         Short message service commands 914: Select cell broadcast message types write.
 
-        :param p_mode: Integer type.
-            0       Message types specified in <mids> and <dcss> are accepted
-            1       Message types specified in <mids> and <dcss> are not accepted
+        :param p_mode: Integer type:
+
+            - **0** :       Message types specified in <mids> and <dcss> are accepted
+            - **1** :       Message types specified in <mids> and <dcss> are not accepted
         :type p_mode: int
         :param p_mids: String type. All different possible combinations of CBM message identifiers (see <mid>), e.g. “0,1,5,320-478,922”.
         :type p_mids: str
@@ -2211,9 +2299,10 @@ class QuectelModemATCommands:
         """
         Short message service commands 915: Show SMS text mode parameters write.
 
-        :param p_show: Integer type.
-            0       Do not show header values defined in commands +CSCA, +CSMP (<sca>, <tosca>, <fo>, <vp>, <pid>, <dcs>) and <length>, <toda> or <tooa> in +CMT, +CMGL, +CMGR result codes for SMS-DELIVERs and SMS-SUBMITs in text mode
-            1       Show the values in result codes
+        :param p_show: Integer type:
+
+            - **0** :       Do not show header values defined in commands +CSCA, +CSMP (<sca>, <tosca>, <fo>, <vp>, <pid>, <dcs>) and <length>, <toda> or <tooa> in +CMT, +CMGL, +CMGR result codes for SMS-DELIVERs and SMS-SUBMITs in text mode
+            - **1** :       Show the values in result codes
         :type p_show: int
 
         :return: Tuple containing the status of the command and the response.
@@ -2324,10 +2413,11 @@ class QuectelModemATCommands:
         """
         Packet domain commands 1001 attachment detachment of PS write.
 
-        :param p_state: Integer type. Indicates the state of PS attachment
-            0       Detached
-            1       Attached
-            Other values are reserved and will result in an ERROR response to the Write Command
+        :param p_state: Integer type. Indicates the state of PS attachment:
+
+            - **0** :       Detached
+            - **1** :       Attached
+            - Other values are reserved and will result in an ERROR response to the Write Command
         :type p_state: int
 
         :return: Tuple containing the status of the command and the response.
@@ -2362,43 +2452,49 @@ class QuectelModemATCommands:
 
         :param p_cid: PDP context identifier. Range: 1–15. A numeric parameter which specifies a particular PDP context definition. The parameter is local to the TE-MT interface and is used in other PDP context-related commands. The range of permitted values (minimum value=1) is returned by the test form of the command.
         :type p_cid: int
-        :param p_pdp_type: Packet data protocol type, a string parameter which specifies the type of packet data protocol.
-            "IP"            Internet Protocol (IETF STD 5)
-            "PPP"           Point to Point Protocol (IETF STD 51).
-            "IPV6"          Internet Protocol, version 6
-            "IPV4V6"        Virtual <PDP_type> introduced to handle dual IP stack UE capability
+        :param p_pdp_type: Packet data protocol type, a string parameter which specifies the type of packet data protocol:
+
+            - **"IP"** :            Internet Protocol (IETF STD 5)
+            - **"PPP"** :           Point to Point Protocol (IETF STD 51).
+            - **"IPV6"** :          Internet Protocol, version 6
+            - **"IPV4V6"** :        Virtual <PDP_type> introduced to handle dual IP stack UE capability
         :type p_pdp_type: str
         :param p_apn: Access point name, a string parameter that is a logical name used to select the GGSN or the external packet data network. If the value is null or omitted, then the subscription value will be requested.
         :type p_apn: str
         :param p_pdp_addr: A string parameter identifies the MT in the address space applicable to the PDP. If the value is null or omitted, then a value may be provided by the TE during the PDP startup procedure or, failing that, a dynamic address will be requested. The allocated address may be read using the AT+CGPADDR command.
         :type p_pdp_addr: str
-        :param p_data_comp: A numeric parameter that controls PDP data compression (applicable for SNDCP only) (see 3GPP TS 44.065).
-            0       Off (Default if value is omitted)
-            1       On (Manufacturer preferred compression)
-            2       V.42bis
-            3       V.44 (Not supported currently)
+        :param p_data_comp: A numeric parameter that controls PDP data compression (applicable for SNDCP only) (see 3GPP TS 44.065):
+
+            - **0** :       Off (Default if value is omitted)
+            - **1** :       On (Manufacturer preferred compression)
+            - **2** :       V.42bis
+            - **3** :       V.44 (Not supported currently)
         :type p_data_comp: int
-        :param p_head_comp: A numeric parameter that controls PDP header compression (see 3GPP TS 44.065 and 3GPP TS 25.323).
-            0       Off
-            1       On
-            2       RFC1144
-            3       RFC2507
-            4       RFC3095
+        :param p_head_comp: A numeric parameter that controls PDP header compression (see 3GPP TS 44.065 and 3GPP TS 25.323):
+
+            - **0** :       Off
+            - **1** :       On
+            - **2** :       RFC1144
+            - **3** :       RFC2507
+            - **4** :       RFC3095
         :type p_head_comp: int
-        :param p_ipv4_addr_alloc: Numeric type. Control how the MT/TA requests to get the IPv4 address information.
-            0       IPv4 address allocated through NAS signalling
-            1       IPv4 address allocated through DHCP
+        :param p_ipv4_addr_alloc: Numeric type. Control how the MT/TA requests to get the IPv4 address information:
+
+            - **0** :       IPv4 address allocated through NAS signalling
+            - **1** :       IPv4 address allocated through DHCP
         :type p_ipv4_addr_alloc: int
         :param p_request_type: Numeric type. Indicate the type of PDP context activation request for the PDP context.Please see 3GPP TS 24.301 (subclause 6.5.1.2) and 3GPP TS 24.008 (subclause10.5.6.17). If the initial PDP context is supported (subclause 10.1.0), it is not allowed toassign <cid>=0 for emergency bearer services. According to 3GPP TS 24.008(subclause 4.2.4.2.2 and 4.2.5.1.4) and 3GPP TS 24.301 (subclause 5.2.2.3.3 and5.2.3.2.2), a separate PDP context must be established for emergency bearer services.
         :type p_request_type: int
-        :param p_p_cscf_discovery: Numeric type. Affect how the MT/TA requests to get the P-CSCF address, (see 3GPP TS 24.229 annex B and L).
-            0       Preference of P-CSCF address discovery not affected by AT+CGDCONT
-            1       Preference of P-CSCF address discovery through NAS signaling
-            2       Preference of P-CSCF address discovery through DHCP
+        :param p_p_cscf_discovery: Numeric type. Affect how the MT/TA requests to get the P-CSCF address, (see 3GPP TS 24.229 annex B and L):
+
+            - **0** :       Preference of P-CSCF address discovery not affected by AT+CGDCONT
+            - **1** :       Preference of P-CSCF address discovery through NAS signaling
+            - **2** :       Preference of P-CSCF address discovery through DHCP
         :type p_p_cscf_discovery: int
-        :param p_im_cn_signalling_flag_ind: Numeric type. Indicates to the network whether the PDP context is for IM CN subsystem-related signaling only or not.
-            0       UE indicates that the PDP context is not for IM CN subsystem-related signaling only
-            1       UE indicates that the PDP context is for IM CN subsystem-related signaling only
+        :param p_im_cn_signalling_flag_ind: Numeric type. Indicates to the network whether the PDP context is for IM CN subsystem-related signaling only or not:
+
+            - **0** :       UE indicates that the PDP context is not for IM CN subsystem-related signaling only
+            - **1** :       UE indicates that the PDP context is for IM CN subsystem-related signaling only
         :type p_im_cn_signalling_flag_ind: int
 
         :return: Tuple containing the status of the command and the response.
@@ -2433,56 +2529,61 @@ class QuectelModemATCommands:
 
         :param p_cid: A numeric parameter which specifies a particular PDP context definition (see AT+CGDCONT command)
         :type p_cid: int
-        :param p_precedence: A numeric parameter which specifies the precedence class.
-            0       Network subscribed value
-            1       High Priority. Service commitments shall be maintained ahead of precedence classes 2 and 3
-            2       Normal priority. Service commitments shall be maintained ahead of precedence class 3
-            3       Low priority. Service commitments shall be maintained
+        :param p_precedence: A numeric parameter which specifies the precedence class:
+
+            - **0** :       Network subscribed value
+            - **1** :       High Priority. Service commitments shall be maintained ahead of precedence classes 2 and 3
+            - **2** :       Normal priority. Service commitments shall be maintained ahead of precedence class 3
+            - **3** :       Low priority. Service commitments shall be maintained
         :type p_precedence: int
-        :param p_delay: A numeric parameter which specifies the delay class. This parameter defines the end-to-end transfer delay incurred in the transmission of SDUs through the network.
-            0       Network subscribed value
+        :param p_delay: A numeric parameter which specifies the delay class. This parameter defines the end-to-end transfer delay incurred in the transmission of SDUs through the network:
+
+            - **0** :       Network subscribed value
         :type p_delay: int
-        :param p_reliability: A numeric parameter which specifies the reliability class
-            0       Network subscribed value
-            1       Non real-time traffic, error-sensitive application that cannot cope with data loss
-            2       Non real-time traffic, error-sensitive application that can cope with infrequent data loss
-            3       Non real-time traffic, error-sensitive application that can cope with data loss,GMM/SM, and SMS
-            4       Real-time traffic, error-sensitive application that can cope with data loss
-            5       Real-time traffic, error non-sensitive application that can cope with data loss
+        :param p_reliability: A numeric parameter which specifies the reliability class:
+
+            - **0** :       Network subscribed value
+            - **1** :       Non real-time traffic, error-sensitive application that cannot cope with data loss
+            - **2** :       Non real-time traffic, error-sensitive application that can cope with infrequent data loss
+            - **3** :       Non real-time traffic, error-sensitive application that can cope with data loss,GMM/SM, and SMS
+            - **4** :       Real-time traffic, error-sensitive application that can cope with data loss
+            - **5** :       Real-time traffic, error non-sensitive application that can cope with data loss
         :type p_reliability: int
-        :param p_peak: A numeric parameter which specifies the peak throughput class, in octets per second.
-            0       Network subscribed value
-            1       Up to 1 000 (8 kbit/s)
-            2       Up to 2 000 (16 kbit/s)
-            3       Up to 4 000 (32 kbit/s)
-            4       Up to 8 000 (64 kbit/s)
-            5       Up to 16 000 (128 kbit/s)
-            6       Up to 32 000 (256 kbit/s)
-            7       Up to 64 000 (512 kbit/s)
-            8       Up to 128 000 (1024 kbit/s)
-            9       Up to 256 000 (2048 kbit/s)
+        :param p_peak: A numeric parameter which specifies the peak throughput class, in octets per second:
+
+            - **0** :       Network subscribed value
+            - **1** :       Up to 1 000 (8 kbit/s)
+            - **2** :       Up to 2 000 (16 kbit/s)
+            - **3** :       Up to 4 000 (32 kbit/s)
+            - **4** :       Up to 8 000 (64 kbit/s)
+            - **5** :       Up to 16 000 (128 kbit/s)
+            - **6** :       Up to 32 000 (256 kbit/s)
+            - **7** :       Up to 64 000 (512 kbit/s)
+            - **8** :       Up to 128 000 (1024 kbit/s)
+            - **9** :       Up to 256 000 (2048 kbit/s)
         :type p_peak: int
-        :param p_mean: A numeric parameter which specifies the mean throughput class, in octets per hour.
-            0       Network subscribed value
-            1       100 (~0.22 bit/s)
-            2       200 (~0.44 bit/s)
-            3       500 (~1.11 bit/s)
-            4       1 000 (~2.2 bit/s)
-            5       2 000 (~4.4 bit/s)
-            6       5 000 (~11.1 bit/s)
-            7       10 000 (~22 bit/s)
-            8       20 000 (~44 bit/s)
-            9       50 000 (~111 bit/s)
-            10      100 000 (~0.22 kbit/s)
-            11      200 000 (~0.44 kbit/s)
-            12      500 000(~1.11 kbit/s)
-            13      1000 000 (~2.2 kbit/s)
-            14      2 000 000 (~4.4 kbit/s)
-            15      5 000 000 (~11.1 kbit/s)
-            16      10 000 000 (~22 kbit/s)
-            17      20 000 000 (~44 kbit/s)
-            18      50 000 000 (~111 kbit/s)
-            31      Best effort
+        :param p_mean: A numeric parameter which specifies the mean throughput class, in octets per hour:
+
+            - **0** :       Network subscribed value
+            - **1** :       100 (~0.22 bit/s)
+            - **2** :       200 (~0.44 bit/s)
+            - **3** :       500 (~1.11 bit/s)
+            - **4** :       1 000 (~2.2 bit/s)
+            - **5** :       2 000 (~4.4 bit/s)
+            - **6** :       5 000 (~11.1 bit/s)
+            - **7** :       10 000 (~22 bit/s)
+            - **8** :       20 000 (~44 bit/s)
+            - **9** :       50 000 (~111 bit/s)
+            - **10** :      100 000 (~0.22 kbit/s)
+            - **11** :      200 000 (~0.44 kbit/s)
+            - **12** :      500 000(~1.11 kbit/s)
+            - **13** :      1000 000 (~2.2 kbit/s)
+            - **14** :      2 000 000 (~4.4 kbit/s)
+            - **15** :      5 000 000 (~11.1 kbit/s)
+            - **16** :      10 000 000 (~22 kbit/s)
+            - **17** :      20 000 000 (~44 kbit/s)
+            - **18** :      50 000 000 (~111 kbit/s)
+            - **31** :      Best effort
         :type p_mean: int
 
         :return: Tuple containing the status of the command and the response.
@@ -2517,56 +2618,61 @@ class QuectelModemATCommands:
 
         :param p_cid: A numeric parameter which specifies a particular PDP context definition (see AT+CGDCONT command)
         :type p_cid: int
-        :param p_precedence: A numeric parameter which specifies the precedence class.
-            0       Network subscribed value
-            1       High Priority. Service commitments shall be maintained ahead of precedence classes 2 and 3
-            2       Normal priority. Service commitments shall be maintained ahead of precedence class 3
-            3       Low priority. Service commitments shall be maintained
+        :param p_precedence: A numeric parameter which specifies the precedence class:
+
+            - **0** :       Network subscribed value
+            - **1** :       High Priority. Service commitments shall be maintained ahead of precedence classes 2 and 3
+            - **2** :       Normal priority. Service commitments shall be maintained ahead of precedence class 3
+            - **3** :       Low priority. Service commitments shall be maintained
         :type p_precedence: int
-        :param p_delay: A numeric parameter which specifies the delay class. This parameter defines the end-to-end transfer delay incurred in the transmission of SDUs through the network.
-            0       Network subscribed value
+        :param p_delay: A numeric parameter which specifies the delay class. This parameter defines the end-to-end transfer delay incurred in the transmission of SDUs through the network:
+
+            - **0** :       Network subscribed value
         :type p_delay: int
-        :param p_reliability: A numeric parameter which specifies the reliability class
-            0       Network subscribed value
-            1       Non real-time traffic, error-sensitive application that cannot cope with data loss
-            2       Non real-time traffic, error-sensitive application that can cope with infrequent data loss
-            3       Non real-time traffic, error-sensitive application that can cope with data loss,GMM/SM, and SMS
-            4       Real-time traffic, error-sensitive application that can cope with data loss
-            5       Real-time traffic, error non-sensitive application that can cope with data loss
+        :param p_reliability: A numeric parameter which specifies the reliability class:
+
+            - **0** :       Network subscribed value
+            - **1** :       Non real-time traffic, error-sensitive application that cannot cope with data loss
+            - **2** :       Non real-time traffic, error-sensitive application that can cope with infrequent data loss
+            - **3** :       Non real-time traffic, error-sensitive application that can cope with data loss,GMM/SM, and SMS
+            - **4** :       Real-time traffic, error-sensitive application that can cope with data loss
+            - **5** :       Real-time traffic, error non-sensitive application that can cope with data loss
         :type p_reliability: int
-        :param p_peak: A numeric parameter which specifies the peak throughput class, in octets per second.
-            0               Network subscribed value
-            1               Up to 1 000 (8 kbit/s)
-            2               Up to 2 000 (16 kbit/s)
-            3               Up to 4 000 (32 kbit/s)
-            4               Up to 8 000 (64 kbit/s)
-            5               Up to 16 000 (128 kbit/s)
-            6               Up to 32 000 (256 kbit/s)
-            7               Up to 64 000 (512 kbit/s)
-            8               Up to 128 000 (1024 kbit/s)
-            9               Up to 256 000 (2048 kbit/s)
+        :param p_peak: A numeric parameter which specifies the peak throughput class, in octets per second:
+
+            - **0** :               Network subscribed value
+            - **1** :               Up to 1 000 (8 kbit/s)
+            - **2** :               Up to 2 000 (16 kbit/s)
+            - **3** :               Up to 4 000 (32 kbit/s)
+            - **4** :               Up to 8 000 (64 kbit/s)
+            - **5** :               Up to 16 000 (128 kbit/s)
+            - **6** :               Up to 32 000 (256 kbit/s)
+            - **7** :               Up to 64 000 (512 kbit/s)
+            - **8** :               Up to 128 000 (1024 kbit/s)
+            - **9** :               Up to 256 000 (2048 kbit/s)
         :type p_peak: int
-        :param p_mean: A numeric parameter which specifies the mean throughput class, in octets per hour.
-            0               Network subscribed value
-            1               100 (~0.22 bit/s)
-            2               200 (~0.44 bit/s)
-            3               500 (~1.11 bit/s)
-            4               1 000 (~2.2 bit/s)
-            5               2 000 (~4.4 bit/s)
-            6               5 000 (~11.1 bit/s)
-            7               10 000 (~22 bit/s)
-            8               20 000 (~44 bit/s)
-            9               50 000 (~111 bit/s)
-            10              100 000 (~0.22 kbit/s)
-            11              200 000 (~0.44 kbit/s)
-            12              500 000(~1.11 kbit/s)
-            13              1000 000 (~2.2 kbit/s)
-            14              2 000 000 (~4.4 kbit/s)
-            15              5 000 000 (~11.1 kbit/s)
-            16              10 000 000 (~22 kbit/s)
-            17              20 000 000 (~44 kbit/s)
-            18              50 000 000 (~111 kbit/s)
-            31              Best effort
+        :param p_mean: A numeric parameter which specifies the mean throughput class, in octets per hour:
+
+            - **0** :               Network subscribed value
+            - **1** :               100 (~0.22 bit/s)
+            - **2** :               200 (~0.44 bit/s)
+            - **3** :               500 (~1.11 bit/s)
+            - **4** :               1 000 (~2.2 bit/s)
+            - **5** :               2 000 (~4.4 bit/s)
+            - **6** :               5 000 (~11.1 bit/s)
+            - **7** :               10 000 (~22 bit/s)
+            - **8** :               20 000 (~44 bit/s)
+            - **9** :               50 000 (~111 bit/s)
+            - **10** :              100 000 (~0.22 kbit/s)
+            - **11** :              200 000 (~0.44 kbit/s)
+            - **12** :              500 000(~1.11 kbit/s)
+            - **13** :              1000 000 (~2.2 kbit/s)
+            - **14** :              2 000 000 (~4.4 kbit/s)
+            - **15** :              5 000 000 (~11.1 kbit/s)
+            - **16** :              10 000 000 (~22 kbit/s)
+            - **17** :              20 000 000 (~44 kbit/s)
+            - **18** :              50 000 000 (~111 kbit/s)
+            - **31** :              Best effort
         :type p_mean: int
 
         :return: Tuple containing the status of the command and the response.
@@ -2608,98 +2714,109 @@ class QuectelModemATCommands:
         """
         Packet domain commands 1005 quality of service profile 3g requested write.
 
-        :param p_cid: PDP context identifier, a numeric parameter which specifies a particular PDP context definition. The parameter is local to the TE-MT interface and is used in other PDP context-related commands. The range of permitted values (minimum value=1) is returned by the test form of the command.
+        :param p_cid: PDP context identifier, a numeric parameter which specifies a particular PDP context definition.
+                    The parameter is local to the TE-MT interface and is used in other PDP context-related commands.
+                    The range of permitted values (minimum value=1) is returned by the test form of the command.
         :type p_cid: int
-        :param p_traffic_class: Integer type. Indicates the type of application for which the UMTS bearer service is optimized (see 3GPP TS 24.008 subclause 10.5.6.5). If the parameter is specified as conversational or streaming, then the Guaranteed and Maximum bitrate parameters should also be provided.
-            0       Conversational
-            1       Streaming
-            2       Interactive
-            3       Background
-            4       Subscribed value
+
+        :param p_traffic_class: Integer type. Indicates the type of application for which the UMTS bearer service is optimized:
+                                (see 3GPP TS 24.008 subclause 10.5.6.5). If specified as conversational or streaming, then
+                                the Guaranteed and Maximum bitrate parameters should also be provided:
+
+                                - **0** : - Conversational
+                                - **1** : - Streaming
+                                - **2** : - Interactive
+                                - **3** : - Background
+                                - **4** : - Subscribed value
         :type p_traffic_class: int
-        :param p_max_bitrate_ul: Integer type. Indicates the maximum number of kbits/s delivered to UMTS (up-link traffic) at a SAP. As an example, a bit rate of 32 kbit/s would be specified as ‘32’ (e.g. AT+CGEQREQ=…,32, …). Range: 0–256000.
-            0                               Subscribed value
-            0–64
-            64–568                          (value needs to be a multiple of 8)
-            568–8640                        (value needs to be a multiple of 64)
-            8640–16000                      (value needs to be a multiple of 100)
-            16000–128000                    (value needs to be a multiple of 1000)
-            128000–256000                   (value needs to be a multiple of 2000)
+
+        :param p_max_bitrate_ul: Integer type. Indicates the maximum number of kbits/s delivered to UMTS (up-link traffic) at a SAP.
+                                Range: 0–256000:
+
+                                - **0** : - Subscribed value
+                                - **0–64** : Values in the ranges:
+                                - **64–568** : (multiple of 8)
+                                - **568–8640** : (multiple of 64)
+                                - **8640–16000** : (multiple of 100)
+                                - **16000–128000** : (multiple of 1000)
+                                - **128000–256000** : (multiple of 2000)
         :type p_max_bitrate_ul: int
-        :param p_max_bitrate_dl: Integer type. Indicates the maximum number of kbits/s delivered by UMTS (down-link traffic) at a SAP. As an example, a bitrate of 32 kbit/s would be specified as ‘32’ (e.g. AT+CGEQREQ=…,32, …). Range: 0–256000.
-            0                               Subscribed value
-            0–64
-            64–568                          (value needs to be a multiple of 8)
-            568–8640                        (value needs to be a multiple of 64)
-            8640–16000                      (value needs to be a multiple of 100)
-            16000–128000                    (value needs to be a multiple of 1000)
-            128000–256000                   (value needs to be a multiple of 2000)
+
+        :param p_max_bitrate_dl: Integer type. Indicates the maximum number of kbits/s delivered by UMTS (down-link traffic) at a SAP.
+                                Range: 0–256000.
+                                Same format as p_max_bitrate_ul.
         :type p_max_bitrate_dl: int
-        :param p_guaranteed_bitrate_ul: Integer type. Indicates the guaranteed number of kbits/s delivered to UMTS (up-link traffic) at a SAP (provided that there is data to deliver). As an example, a bitrate of 32 kbit/s would be specified as ‘32’ (e.g. AT+CGEQREQ=…,32, …). Range: 0–256000.
-            0                               Subscribed value
-            0–64
-            64–568                          (value needs to be a multiple of 8)
-            568–8640                        (value needs to be a multiple of 64)
-            8640–16000                      (value needs to be a multiple of 100)
-            16000–128000                    (value needs to be a multiple of 1000)
-            128000–256000                   (value needs to be a multiple of 2000)
+
+        :param p_guaranteed_bitrate_ul: Integer type. Indicates the guaranteed number of kbits/s delivered to UMTS (up-link traffic) at a SAP.
+                                        Range: 0–256000.
+                                        Same format as p_max_bitrate_ul.
         :type p_guaranteed_bitrate_ul: int
-        :param p_guaranteed_bitrate_dl: Integer type. Indicates the guaranteed number of kbits/s delivered by UMTS (down-link traffic) at a SAP (provided that there is data to deliver). As an example, a bitrate of 32 kbit/s would be specified as ‘32’ (e.g. AT+CGEQREQ=…,32, …). Range: 0–256000.
-            0                               Subscribed value
-            0–64
-            64–568                          (value needs to be a multiple of 8)
-            568–8640                        (value needs to be a multiple of 64)
-            8640–16000                      (value needs to be a multiple of 100)
-            16000–128000                    (value needs to be a multiple of 1000)
-            128000–256000                   (value needs to be a multiple of 2000)
+
+        :param p_guaranteed_bitrate_dl: Integer type. Indicates the guaranteed number of kbits/s delivered by UMTS (down-link traffic) at a SAP.
+                                        Range: 0–256000.
+                                        Same format as p_max_bitrate_ul.
         :type p_guaranteed_bitrate_dl: int
-        :param p_delivery_order: Integer type. Indicates the delivery order requested by the UMTS user.
-            0       Delivery of SDUs in the order of the SDU sequence numbers
-            1       Delivery of SDUs not guaranteed in the order of the SDU sequence numbers
+
+        :param p_delivery_order: Integer type. Indicates the delivery order requested by the UMTS user:
+
+                                - **0** : - Delivery of SDUs in the order of the SDU sequence numbers
+                                - **1** : - Delivery of SDUs not guaranteed in the order of the SDU sequence numbers
         :type p_delivery_order: int
+
         :param p_max_sdu_size: Integer type. Indicates the maximum SDU size requested by the UMTS user. Range: 0–1520.
         :type p_max_sdu_size: int
-        :param p_sdu_error_ratio: String type. Indicates the acceptable residual SDU error ratio requested by the UMTS user.
-            "0E0"                                   Subscribed value
-            "1E1"
-            "1E2"
-            "7E3"
-            "1E3"
-            "1E4"
-            "1E5"
-            "1E6"
+
+        :param p_sdu_error_ratio: String type. Indicates the acceptable residual SDU error ratio requested by the UMTS user:
+
+                                - **"0E0"** : - Subscribed value
+                                - **"1E1"**
+                                - **"1E2"**
+                                - **"7E3"**
+                                - **"1E3"**
+                                - **"1E4"**
+                                - **"1E5"**
+                                - **"1E6"**
         :type p_sdu_error_ratio: str
-        :param p_residual_bit_error_ratio: String type. Indicates the acceptable residual bit error ratio requested by the UMTS user.
-            "0E0"                                   Subscribed value
-            "1E1"
-            "7E2"
-            "1E2"
-            "1E3"
-            "1E4"
-            "1E5"
-            "1E6"
+
+        :param p_residual_bit_error_ratio: String type. Indicates the acceptable residual bit error ratio requested by the UMTS user:
+
+                                        - **"0E0"** :     - Subscribed value
+                                        - **"1E1"**
+                                        - **"7E2"**
+                                        - **"1E2"**
+                                        - **"1E3"**
+                                        - **"1E4"**
+                                        - **"1E5"**
+                                        - **"1E6"**
         :type p_residual_bit_error_ratio: str
-        :param p_delivery_of_err_sdu: Integer type. Indicates the delivery of erroneous SDUs requested by the UMTS user.
-            0       No detect
-            1       Erroneous SDUs are delivered
+
+        :param p_delivery_of_err_sdu: Integer type. Indicates the delivery of erroneous SDUs requested by the UMTS user:
+
+                                    - **0** : No detect
+                                    - **1** : Erroneous SDUs are delivered
         :type p_delivery_of_err_sdu: int
+
         :param p_transfer_delay: Integer type. Indicates the transfer delay requested by the UMTS user. Range: 0–400.
         :type p_transfer_delay: int
-        :param p_traffic_handling_priority: Integer type. Indicates the traffic handling priority requested by the UMTS user.
-            0                               Subscribed
-            1
-            2
-            3
-        :param p_traffic_handling_priority: int
-        :param p_source_statistics_descriptor: Integer type. Indicates the source statistics descriptor requested by the UMTS user.
-                                            SDUs for a PDP context.
-            0                               Characteristics of SDUs is unknown
-            1                               Characteristics of SDUs correspond to a speech source
+
+        :param p_traffic_handling_priority: Integer type. Indicates the traffic handling priority requested by the UMTS user:
+
+                                            - **0** :  Subscribe:
+                                            - **1**
+                                            - **2**
+                                            - **3**
+        :type p_traffic_handling_priority: int
+
+        :param p_source_statistics_descriptor: Integer type. Indicates the source statistics descriptor requested by the UMTS user:
+
+                                            - **0** :  Characteristics of SDUs is unknown
+                                            - **1** :  Characteristics of SDUs correspond to a speech source
         :type p_source_statistics_descriptor: int
-        :param p_signalling_indication: Integer type. Indicates the signalling indication requested by the UMTS user.
-                                            PDP context.
-            0                               PDP context is not optimized for signaling
-            1                               PDP context is optimized for signaling
+
+        :param p_signalling_indication: Integer type. Indicates the signalling indication requested by the UMTS user:
+
+                                        - **0** : - PDP context is not optimized for signaling
+                                        - **1** : - PDP context is optimized for signaling
         :type p_signalling_indication: int
 
         :return: Tuple containing the status of the command and the response.
@@ -2741,98 +2858,109 @@ class QuectelModemATCommands:
         """
         Packet domain commands 1005 quality of service profile 3g requested write.
 
-        :param p_cid: PDP context identifier, a numeric parameter which specifies a particular PDP context definition. The parameter is local to the TE-MT interface and is used in other PDP context-related commands. The range of permitted values (minimum value=1) is returned by the test form of the command.
+        :param p_cid: PDP context identifier, a numeric parameter which specifies a particular PDP context definition.
+                    The parameter is local to the TE-MT interface and is used in other PDP context-related commands.
+                    The range of permitted values (minimum value=1) is returned by the test form of the command.
         :type p_cid: int
-        :param p_traffic_class: Integer type. Indicates the type of application for which the UMTS bearer service is optimized (see 3GPP TS 24.008 subclause 10.5.6.5). If the parameter is specified as conversational or streaming, then the Guaranteed and Maximum bitrate parameters should also be provided.
-            0       Conversational
-            1       Streaming
-            2       Interactive
-            3       Background
-            4       Subscribed value
+
+        :param p_traffic_class: Integer type. Indicates the type of application for which the UMTS bearer service is optimized
+                                (see 3GPP TS 24.008 subclause 10.5.6.5). If the parameter is specified as conversational or streaming, then
+                                the Guaranteed and Maximum bitrate parameters should also be provided:
+
+                                - **0** :       Conversational
+                                - **1** :       Streaming
+                                - **2** :       Interactive
+                                - **3** :       Background
+                                - **4** :       Subscribed value
         :type p_traffic_class: int
-        :param p_max_bitrate_ul: Integer type. Indicates the maximum number of kbits/s delivered to UMTS (up-link traffic) at a SAP. As an example, a bit rate of 32 kbit/s would be specified as ‘32’ (e.g. AT+CGEQREQ=…,32, …). Range: 0–256000.
-            0                               Subscribed value
-            0–64
-            64–568                          (value needs to be a multiple of 8)
-            568–8640                        (value needs to be a multiple of 64)
-            8640–16000                      (value needs to be a multiple of 100)
-            16000–128000                    (value needs to be a multiple of 1000)
-            128000–256000                   (value needs to be a multiple of 2000)
+
+        :param p_max_bitrate_ul: Integer type. Indicates the maximum number of kbits/s delivered to UMTS (up-link traffic) at a SAP.
+                                Range: 0–256000:
+
+                                - **0** :       Subscribed value
+                                - **0–64**
+                                - **64–568** :      (value needs to be a multiple of 8)
+                                - **568–8640** :    (value needs to be a multiple of 64)
+                                - **8640–16000** :  (value needs to be a multiple of 100)
+                                - **16000–128000** : (value needs to be a multiple of 1000)
+                                - **128000–256000** : (value needs to be a multiple of 2000)
         :type p_max_bitrate_ul: int
-        :param p_max_bitrate_dl: Integer type. Indicates the maximum number of kbits/s delivered by UMTS (down-link traffic) at a SAP. As an example, a bitrate of 32 kbit/s would be specified as ‘32’ (e.g. AT+CGEQREQ=…,32, …). Range: 0–256000.
-            0                               Subscribed value
-            0–64
-            64–568                          (value needs to be a multiple of 8)
-            568–8640                        (value needs to be a multiple of 64)
-            8640–16000                      (value needs to be a multiple of 100)
-            16000–128000                    (value needs to be a multiple of 1000)
-            128000–256000                   (value needs to be a multiple of 2000)
+
+        :param p_max_bitrate_dl: Integer type. Indicates the maximum number of kbits/s delivered by UMTS (down-link traffic) at a SAP.
+                                Range: 0–256000.
+                                Same format as p_max_bitrate_ul.
         :type p_max_bitrate_dl: int
-        :param p_guaranteed_bitrate_ul: Integer type. Indicates the guaranteed number of kbits/s delivered to UMTS (up-link traffic) at a SAP (provided that there is data to deliver). As an example, a bitrate of 32 kbit/s would be specified as ‘32’ (e.g. AT+CGEQREQ=…,32, …). Range: 0–256000.
-            0                               Subscribed value
-            0–64
-            64–568                          (value needs to be a multiple of 8)
-            568–8640                        (value needs to be a multiple of 64)
-            8640–16000                      (value needs to be a multiple of 100)
-            16000–128000                    (value needs to be a multiple of 1000)
-            128000–256000                   (value needs to be a multiple of 2000)
+
+        :param p_guaranteed_bitrate_ul: Integer type. Indicates the guaranteed number of kbits/s delivered to UMTS (up-link traffic) at a SAP (provided that there is data to deliver).
+                                        Range: 0–256000.
+                                        Same format as p_max_bitrate_ul.
         :type p_guaranteed_bitrate_ul: int
-        :param p_guaranteed_bitrate_dl: Integer type. Indicates the guaranteed number of kbits/s delivered by UMTS (down-link traffic) at a SAP (provided that there is data to deliver). As an example, a bitrate of 32 kbit/s would be specified as ‘32’ (e.g. AT+CGEQREQ=…,32, …). Range: 0–256000.
-            0                               Subscribed value
-            0–64
-            64–568                          (value needs to be a multiple of 8)
-            568–8640                        (value needs to be a multiple of 64)
-            8640–16000                      (value needs to be a multiple of 100)
-            16000–128000                    (value needs to be a multiple of 1000)
-            128000–256000                   (value needs to be a multiple of 2000)
+
+        :param p_guaranteed_bitrate_dl: Integer type. Indicates the guaranteed number of kbits/s delivered by UMTS (down-link traffic) at a SAP (provided that there is data to deliver).
+                                        Range: 0–256000.
+                                        Same format as p_max_bitrate_ul.
         :type p_guaranteed_bitrate_dl: int
-        :param p_delivery_order: Integer type. Indicates the delivery order requested by the UMTS user.
-            0       Delivery of SDUs in the order of the SDU sequence numbers
-            1       Delivery of SDUs not guaranteed in the order of the SDU sequence numbers
+
+        :param p_delivery_order: Integer type. Indicates the delivery order requested by the UMTS user:
+
+                                - **0** :       Delivery of SDUs in the order of the SDU sequence numbers
+                                - **1** :       Delivery of SDUs not guaranteed in the order of the SDU sequence numbers
         :type p_delivery_order: int
+
         :param p_max_sdu_size: Integer type. Indicates the maximum SDU size requested by the UMTS user. Range: 0–1520.
         :type p_max_sdu_size: int
-        :param p_sdu_error_ratio: String type. Indicates the acceptable residual SDU error ratio requested by the UMTS user.
-            "0E0"                                   Subscribed value
-            "1E1"
-            "1E2"
-            "7E3"
-            "1E3"
-            "1E4"
-            "1E5"
-            "1E6"
+
+        :param p_sdu_error_ratio: String type. Indicates the acceptable residual SDU error ratio requested by the UMTS user:
+
+                                - **"0E0"** :       Subscribed value
+                                - **"1E1"**
+                                - **"1E2"**
+                                - **"7E3"**
+                                - **"1E3"**
+                                - **"1E4"**
+                                - **"1E5"**
+                                - **"1E6"**
         :type p_sdu_error_ratio: str
-        :param p_residual_bit_error_ratio: String type. Indicates the acceptable residual bit error ratio requested by the UMTS user.
-            "0E0"                                   Subscribed value
-            "1E1"
-            "7E2"
-            "1E2"
-            "1E3"
-            "1E4"
-            "1E5"
-            "1E6"
+
+        :param p_residual_bit_error_ratio: String type. Indicates the acceptable residual bit error ratio requested by the UMTS user:
+
+                                        - **"0E0"** :       Subscribed value
+                                        - **"1E1"**
+                                        - **"7E2"**
+                                        - **"1E2"**
+                                        - **"1E3"**
+                                        - **"1E4"**
+                                        - **"1E5"**
+                                        - **"1E6"**
         :type p_residual_bit_error_ratio: str
-        :param p_delivery_of_err_sdu: Integer type. Indicates the delivery of erroneous SDUs requested by the UMTS user.
-            0       No detect
-            1       Erroneous SDUs are delivered
+
+        :param p_delivery_of_err_sdu: Integer type. Indicates the delivery of erroneous SDUs requested by the UMTS user:
+
+                                    - **0** :       No detect
+                                    - **1** :       Erroneous SDUs are delivered
         :type p_delivery_of_err_sdu: int
+
         :param p_transfer_delay: Integer type. Indicates the transfer delay requested by the UMTS user. Range: 0–400.
         :type p_transfer_delay: int
-        :param p_traffic_handling_priority: Integer type. Indicates the traffic handling priority requested by the UMTS user.
-            0                               Subscribed
-            1
-            2
-            3
-        :param p_traffic_handling_priority: int
-        :param p_source_statistics_descriptor: Integer type. Indicates the source statistics descriptor requested by the UMTS user.
-                                            SDUs for a PDP context.
-            0                               Characteristics of SDUs is unknown
-            1                               Characteristics of SDUs correspond to a speech source
+
+        :param p_traffic_handling_priority: Integer type. Indicates the traffic handling priority requested by the UMTS user:
+
+                                            - **0** :       Subscribed
+                                            - **1**
+                                            - **2**
+                                            - **3**
+        :type p_traffic_handling_priority: int
+
+        :param p_source_statistics_descriptor: Integer type. Indicates the source statistics descriptor requested by the UMTS user:
+
+                                            - **0** :       Characteristics of SDUs is unknown
+                                            - **1** :       Characteristics of SDUs correspond to a speech source
         :type p_source_statistics_descriptor: int
-        :param p_signalling_indication: Integer type. Indicates the signalling indication requested by the UMTS user.
-                                            PDP context.
-            0                               PDP context is not optimized for signaling
-            1                               PDP context is optimized for signaling
+
+        :param p_signalling_indication: Integer type. Indicates the signalling indication requested by the UMTS user:
+
+                                        - **0** :       PDP context is not optimized for signaling
+                                        - **1** :       PDP context is optimized for signaling
         :type p_signalling_indication: int
 
         :return: Tuple containing the status of the command and the response.
@@ -2859,10 +2987,11 @@ class QuectelModemATCommands:
         """
         Packet domain commands 1007 activate deactivate PDP context write.
 
-        :param p_state: Indicates the state of PDP context activation.
-            0       Deactivated
-            1       Activated
-            Other values are reserved and will result in an ERROR response to the Write Command
+        :param p_state: Indicates the state of PDP context activation:
+
+            - **0** :       Deactivated
+            - **1** :       Activated
+            - **Other values** : are reserved and will result in an ERROR response to the Write Command
         :type p_state: int
         :param p_cid: A numeric parameter which specifies a particular PDP context definition (see AT+CGDCONT)
         :type p_cid: int
@@ -2879,8 +3008,9 @@ class QuectelModemATCommands:
         Packet domain commands 1008 enter data state.
 
         :param p_l2p: The layer 2 protocol to be used between the TE and MT:
-            PPP (Point to Point protocol) for a PDP such as IP
-            Other values are not supported and will result in an ERROR response to the execution command
+
+            - **PPP** : (Point to Point protocol) for a PDP such as IP
+            - **Other values** : are not supported and will result in an ERROR response to the execution command
         :type p_l2p: str
         :param p_cid: The particular PDP context definition (see AT+CGDCONT)
         :type p_cid: int
@@ -2948,10 +3078,11 @@ class QuectelModemATCommands:
         """
         Packet domain commands 1011 PS domain network registration status write.
 
-        :param p_n: Integer type.
-            0       Disable network registration unsolicited result code
-            1       Enable network registration unsolicited result code +CGREG: <stat>
-            2       Enable network registration and location information unsolicited result code +CGREG: <stat>[,<lac>,<ci>[,<Act>]]
+        :param p_n: Integer type:
+
+            - **0** :       Disable network registration unsolicited result code
+            - **1** :       Enable network registration unsolicited result code +CGREG: <stat>
+            - **2** :       Enable network registration and location information unsolicited result code +CGREG: <stat>[,<lac>,<ci>[,<Act>]]
         :type p_n: int
 
         :return: Tuple containing the status of the command and the response.
@@ -2976,14 +3107,16 @@ class QuectelModemATCommands:
         """
         Packet domain commands 1012 packet domain event reporting write.
 
-        :param p_mode: Integer type.
-            0       Buffer unsolicited result codes in the MT; if MT result code buffer is full, the oldest ones can be discarded. No codes are forwarded to the TE.
-            1       Discard unsolicited result codes when MT-TE link is reserved (e.g. in on-line data mode), otherwise forward them directly to the TE.
-            2       Buffer unsolicited result codes in the MT when MT-TE link is reserved (e.g. in on-line data mode) and flush them to the TE when MT-TE link becomes available. Otherwise forward them directly to the TE.
+        :param p_mode: Integer type:
+
+            - **0** :       Buffer unsolicited result codes in the MT; if MT result code buffer is full, the oldest ones can be discarded. No codes are forwarded to the TE.
+            - **1** :       Discard unsolicited result codes when MT-TE link is reserved (e.g. in on-line data mode), otherwise forward them directly to the TE.
+            - **2** :       Buffer unsolicited result codes in the MT when MT-TE link is reserved (e.g. in on-line data mode) and flush them to the TE when MT-TE link becomes available. Otherwise forward them directly to the TE.
         :type p_mode: int
-        :param p_bfr: Integer type.
-            0       MT buffer of unsolicited result codes defined within this command is cleared when <mode> 1 or 2 is entered.
-            1       MT buffer of unsolicited result codes defined within this command is flushed to the TE when <mode> 1 or 2 is entered (OK response shall be given before flushing the codes).
+        :param p_bfr: Integer type:
+
+            - **0** :       MT buffer of unsolicited result codes defined within this command is cleared when <mode> 1 or 2 is entered.
+            - **1** :       MT buffer of unsolicited result codes defined within this command is flushed to the TE when <mode> 1 or 2 is entered (OK response shall be given before flushing the codes).
         :type p_bfr: int
 
         :return: Tuple containing the status of the command and the response.
@@ -3008,11 +3141,13 @@ class QuectelModemATCommands:
         """
         Packet domain commands 1013 select service for MO SMS messages write.
 
-        :param p_service: Integer type. Service or service preference to be used
-            0       GPRS
-            1       Circuit switch
-            2       GPRS preferred (use circuit switched if GPRS not available)
-            3       Circuit switch preferred (use GPRS if circuit switched not available)
+        :param p_service: Integer type. Service or service preference to be used:
+
+            - **0** : GPRS
+            - **1** : Circuit switch
+            - **2** : GPRS preferred (use circuit switched if GPRS not available)
+            - **3** : Circuit switch preferred (use GPRS if circuit switch not available)
+
         :type p_service: int
 
         :return: Tuple containing the status of the command and the response.
@@ -3035,10 +3170,11 @@ class QuectelModemATCommands:
         """
         Packet domain commands 1014 EPS network registration status write.
 
-        :param p_n: Integer type.
-            0       Disable network registration unsolicited result code
-            1       Enable network registration unsolicited result code +CEREG: <stat>
-            2       Enable network registration and location information unsolicited result code +CEREG: <stat>[,<tac>,<ci>[,<Act>]]
+        :param p_n: Integer type:
+
+            - **0** :       Disable network registration unsolicited result code
+            - **1** :       Enable network registration unsolicited result code +CEREG: <stat>
+            - **2** :       Enable network registration and location information unsolicited result code +CEREG: <stat>[,<tac>,<ci>[,<Act>]]
         :type p_n: int
 
         :return: Tuple containing the status of the command and the response.
@@ -3061,10 +3197,12 @@ class QuectelModemATCommands:
         """
         Packet domain commands 1015 packet data counter write.
 
-        :param p_op: Integer type. The operation about data counter
-            0       Reset the data counter
-            1       Save the results of data counter to NV
-                    If the results need to be automatically saved, see AT+QAUGDCNT.
+        :param p_op: Integer type. The operation for data counter:
+
+                    - **"0"** : : Reset the data counter.
+                    - **"1"** : : Save the results of the data counter to NV.
+
+                    *If the results need to be automatically saved, see AT+QAUGDCNT.*
         :type p_op: int
 
         :return: Tuple containing the status of the command and the response.
@@ -3115,9 +3253,10 @@ class QuectelModemATCommands:
         """
         Packet domain commands 1017 connect USB netcard to network write.
 
-        :param p_type: Integer type. The type of the network connection.
-            0       Disconnect the network connection.
-            1       Connect the network connection.
+        :param p_type: Integer type. The type of the network connection:
+
+            - **0** :       Disconnect the network connection.
+            - **1** :       Connect the network connection.
         :type p_type: int
         :param p_cid: Integer type. The PDP context identifier.
         :type p_cid: int
@@ -3144,9 +3283,11 @@ class QuectelModemATCommands:
         """
         Packet domain commands 1018 configure response format of AT+CEER in 2G/4G write.
 
-        :param p_mode: Integer type. Return format of AT+CEER.
-            0       The return format of AT+CEER is +CEER: <text>
-            1       The return format of AT+CEER is +CEER: <category>,<cause>,<description>
+        :param p_mode: Integer type. Return format of AT+CEER:
+
+            - **0** : The return format of AT+CEER is +CEER: <text>
+            - **1** : The return format of AT+CEER is +CEER: <category>,<cause>,<description>
+
         :type p_mode: int
 
         :return: Tuple containing the status of the command and the response.
@@ -3158,9 +3299,10 @@ class QuectelModemATCommands:
         """
         Hardware related commands 1101 power off.
 
-        :param p_n: Integer type.
-            0       Immediately power down
-            1       Normal power down
+        :param p_n: Integer type:
+
+            - **0** :       Immediately power down
+            - **1** :       Normal power down
         :type p_n: int
 
         :return: Tuple containing the status of the command and the response.
@@ -3211,9 +3353,10 @@ class QuectelModemATCommands:
         """
         Hardware related commands 1103 enable disable sleep mode write.
 
-        :param p_n: Integer type.
-            0       Disable
-            1       Enable. It is controlled by DTR pin and WAKEUP_IN pin.
+        :param p_n: Integer type:
+
+            - **0** :       Disable
+            - **1** :       Enable. It is controlled by DTR pin and WAKEUP_IN pin.
         :type p_n: int
 
         :return: Tuple containing the status of the command and the response.
@@ -3236,9 +3379,10 @@ class QuectelModemATCommands:
         """
         Hardware related commands 1105 read ADC value.
 
-        :param p_port: Integer type. Channel number of the ADC.
-            0       ADC Channel 0
-            1       ADC Channel 1
+        :param p_port: Integer type. Channel number of the ADC:
+
+            - **0** :       ADC Channel 0
+            - **1** :       ADC Channel 1
         :type p_port: int
 
         :return: Tuple containing the status of the command and the response.
