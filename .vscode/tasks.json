@@ -1,0 +1,44 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "deploy-python-file",
+            "isBackground": true,
+            "problemMatcher": {
+                "base": "$gcc",
+                "background": {
+                    "activeOnStart": true,
+                    "beginsPattern": "Deploying to target",
+                    "endsPattern": "Starting debugpy"
+                }
+            },
+            "type": "shell",
+            "command": "/usr/bin/bash",
+            "args": [
+                "deploy-remote-python-file.sh",
+                "${config:remote.address}",
+                "${workspaceFolder}/${config:local.python.debug.directory}",
+                "${file}",
+                "${config:distant.python.debug.directory}",
+                "${config:distant.python.debug.args}"
+            ]
+        },
+        {
+            "label": "launch-deploy-python-file",
+            "detail": "Wait for the embedded debugpy server to start",
+            "type": "shell",
+            "command": "sleep 3",
+            "group": {
+                "kind": "none",
+                "isDefault": false
+            },
+            "problemMatcher": [],
+            "dependsOn": "deploy-python-file"
+        },
+        {
+            "label": "kill-deploy-python-file",
+            "type": "shell",
+            "command": "pkill -f deploy-remote-python-file.sh"
+        }
+    ]
+}
