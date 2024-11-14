@@ -3424,6 +3424,7 @@ def main(ctx, port, baudrate, timeout):
 @main.command("free-at-command")
 @click.pass_context
 @click.option(
+    "--command",
     "-c",
     type=str,
     required=True,
