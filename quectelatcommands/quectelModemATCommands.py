@@ -313,9 +313,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <n>     Integer type. Command line editing character. Range: 0–127. (Default 8 = <Backspace>)
-        # """
 
         return self.sendCommand(f"ATS5={p_n}")
 
@@ -336,14 +333,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <value>         Integer type.
-        #     0           CONNECT result code returned only. Dial tone and busy detection are both disabled.
-        #     1           CONNECT<text> result code returned only. Dial tone and busy detection are both disabled.
-        #     2           CONNECT<text> result code returned. Dial tone detection is enabled, while busy detection is disabled.
-        #     3           CONNECT<text> result code returned. Dial tone detection is disabled, while busy detection is enabled.
-        #     4           CONNECT<text> result code returned. Both dial tone and busy detection are both enabled.
-        # """
         return self.sendCommand(f"ATX{p_value}")
 
     def generalCommands221SetPhoneFunctionalityRead(self) -> tuple[bool, list[str]]:
@@ -376,20 +365,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <fun>       Integer type.
-        #     0       Minimum functionality
-        #     1       Full functionality
-        #     3       Disable the ME from receiving RF signals
-        #     4       Disable the ME from both transmitting and receiving RF signals
-        #     5       Disable (U)SIM
-
-        # <rst>       Integer type.
-        #     0       Do not reset the ME before setting it to <fun> functionality level.(This is the default setting when <rst> is not given.)
-        #     1       Reset the ME. The device is fully functional after the reset. This value is available only for <fun> = 1.
-
-        # <err>       Error code. See Chapter 12.5 for details.
-        # """
         command = f"AT+CFUN={p_fun}"
         if p_rst is not None:
             command += f",{p_rst}"
@@ -419,12 +394,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <n>     Integer type.
-        #     0   Disable result code
-        #     1   Enable result code with numeric values
-        #     2   Enable result code with verbose values
-        # """
         return self.sendCommand(f"AT+CMEE={p_n}")
 
     def generalCommands223SelectCharacterSetRead(self) -> tuple[bool, list[str]]:
@@ -451,12 +420,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <chset>     String type. Character set.
-        #     "GSM"   GSM default alphabet
-        #     "IRA"   International reference Alphabet
-        #     "UCS2"  UCS2 alphabet
-        # """
         return self.sendCommand(f'AT+CSCS="{p_chset}"')
 
     def generalCommands224ConfigureUrcIndicationRead(self) -> tuple[bool, list[str]]:
@@ -483,12 +446,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <urc_port_value>        String type. Set URC output port.
-        # "usbat"                 USB AT port
-        # "usbmodem"              USB modem port
-        # "uart1"                 Main UART port
-        # """
         command = "AT+QURCCFG"
         if p_urc_port != "" and p_urc_port is not None:
             command += f'="urcport","{p_urc_port}"'
@@ -509,12 +466,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <op>    Integer type. The operation about dropping PPP connection.
-        # 0       Hang up PPP connection without sending TERM REQ frame to peer.
-        # 1       Hang up PPP connection and automatically send TERM REQ frame to peer.
-        # 2       Hang up PPP connection with sending TERM REQ frame to peer.
-        # """
         return self.sendCommand(f"AT+QPPPDROP={p_option}")
 
     def serialInterfaceControlCommands301SetDcdFunctionMode(
@@ -531,11 +482,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <value>         Integer type. It determines how the state of circuit (DCD) relates to the detection of received line signal from the distant end.
-        #     0           DCD function is always ON
-        #     1           DCD function is ON only in the presence of data carrier
-        # """
         return self.sendCommand(f"AT&C{p_value}")
 
     def serialInterfaceControlCommands302SetDtrFunctionMode(
@@ -553,12 +499,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <value>         Integer type.
-        # 0               TA ignores status on DTR
-        # 1               Low→High on DTR: Change to command mode while remaining the connected call
-        # 2               Low→High on DTR: Disconnect data call and change to command mode. When DTR is at high level, auto-answer function is disabled
-        # """
         return self.sendCommand(f"AT&D{p_value}")
 
     def serialInterfaceControlCommands303SetTeTaLocalDataFlowControlRead(
@@ -590,14 +530,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <dce_by_dte>        Integer type. Specifies the method that will be used by TE when receiving data from TA.
-        # 0                   None
-        # 2                   RTS flow control
-        # <dte_by_dce>        Integer type. Specifies the method that will be used by TA when receiving data from TE.
-        # 0                   None
-        # 2                   CTS flow control
-        # """
         return self.sendCommand(f"AT+IFC={p_dce_by_dte},{p_dte_by_dce}")
 
     def serialInterfaceControlCommands304SetTeTaFixedLocalRateRead(
@@ -631,19 +563,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <rate>          Integer type. Baud rate per second on the serial port. Unit: bps.
-        #                 0   (Adaptive baud rate)
-        #                 4800
-        #                 9600
-        #                 19200
-        #                 38400
-        #                 57600
-        #                 115200
-        #                 230400
-        #                 460800
-        #                 921600
-        # """
         return self.sendCommand(f"AT+IPR={p_rate}")
 
     def statusControlCommands40100QueryMobileEquipmentActivityStatus(
@@ -695,15 +614,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <attach_mode>       Integer type. The mode to attach GRPS when UE is powered on.
-        # 0                   Manual attach
-        # 1                   Auto attach
-        # <effect>            Integer format. When to take effect
-        # 0                   Take effect after UE reboots (currently not supported)
-        # 1                   Take effect immediately
-        # <err>               Error code. See Chapter 12.5 for details.
-        # """
         return self.sendCommand(f"AT+QCFG='gprsattach',{p_attach_mode},{p_effect}")
 
     def statusControlCommands40302ConfigureNetworkSearchMode(
@@ -722,14 +632,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <scan_mode>         Integer type. Network searching mode.
-        # 0                   Automatic (LTE/WCDMA/GSM)
-        # 1                   GSM only
-        # 2                   WCDMA only
-        # 3                   LTE only
-        # <err>               Error code. See Chapter 12.5 for details.
-        # """
         return self.sendCommand(f"AT+QCFG='nwscanmode',{p_scan_mode}")
 
     def statusControlCommands40303ConfigureNetworkSearchingSequence(
@@ -757,23 +659,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <scanseq>           Integer type. Network searching sequence.
-        # 0                   Automatic (LTE/WCDMA/GSM)
-        # 1                   GSM only
-        # 2                   WCDMA only
-        # 3                   LTE only
-        # 4                   GSM/WCDMA/LTE
-        # 5                   WCDMA/GSM/LTE
-        # 6                   LTE/WCDMA
-        # 7                   LTE/GSM
-        # 8                   WCDMA/LTE
-        # 9                   WCDMA/GSM
-        # 10                  GSM/LTE
-        # 11                  GSM/WCDMA
-        # 12                  LTE/WCDMA/GSM
-        # <err>               Error code. See Chapter 12.5 for details.
-        # """
         return self.sendCommand(f"AT+QCFG='nwscanseq',{p_scanseq}")
 
     def statusControlCommands40304ConfigureRelevantFunctionsInRoamingState(
@@ -791,14 +676,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <roam_modeex>       Integer type. Roaming operating mode. Range: 0–3. Default value: 0. Each bit corresponds to a feature. Set the bit to 1 indicates enabling the corresponding function.
-        # 0                   Normal operating mode, unlimited service
-        # Bit 1               Disable dial-up internet access function when UE is in roaming state
-        # Bit 2               Disable voice call function when UE is in roaming state
-        #                     The above reports can be combined at will.
-        # <err>               Error code. See Chapter 12.5 for details.
-        # """
         return self.sendCommand(f"AT+QCFG='roamserviceex',{p_roam_modeex}")
 
     def statusControlCommands40305ConfigureServiceDomain(
@@ -820,16 +697,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <service>           Integer type. Service domain of UE.
-        # 0                   CS only
-        # 1                   PS only
-        # 2                   CS & PS
-        # <effect>            Integer format. When to take effect
-        # 0                   Take effect after UE reboots (currently not supported)
-        # 1                   Take effect immediately
-        # <err>               Error code. See Chapter 12.5 for details.
-        # """
         return self.sendCommand(f"AT+QCFG='servicedomain',{p_service},{p_effect}")
 
     def statusControlCommands40306ConfigureBand(
@@ -872,37 +739,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <bandval>           A hexadecimal value that specifies the GSM and WCDMA frequency band. If it is set to 0, it means to clear the current band selection to default value. (e.g. 00000013=00000001(GSM900)+00000002(GSM1800)+00000010(WCDMA 2100)
-        # 00000000            No change
-        # 00000001            GSM900
-        # 00000002            GSM1800
-        # 00000010            WCDMA 2100
-        # 00000020            WCDMA 1900
-        # 00000040            WCDMA 850
-        # 00000080            WCDMA 900
-        # 0000FFFF            Any frequency band
-        # <ltebandval>        A hexadecimal value that specifies the LTE frequency band. If it is set to 0, it means to clear the current band selection to default value. (e.g. 0x15=0x1(LTE B1)+0x4(LTE B3)+0x10(LTE B5)
-        # 0x1 (CM_BAND_PREF_LTE_EUTRAN_BAND1)                     LTE B1
-        # 0x2 (CM_BAND_PREF_LTE_EUTRAN_BAND2)                     LTE B2
-        # 0x4 (CM_BAND_PREF_LTE_EUTRAN_BAND3)                     LTE B3
-        # 0x8 (CM_BAND_PREF_LTE_EUTRAN_BAND4)                     LTE B4
-        # 0x10 (CM_BAND_PREF_LTE_EUTRAN_BAND5)                    LTE B5
-        # 0x40 (CM_BAND_PREF_LTE_EUTRAN_BAND7)                    LTE B7
-        # 0x80 (CM_BAND_PREF_LTE_EUTRAN_BAND8)                    LTE B8
-        # 0x80000 (CM_BAND_PREF_LTE_EUTRAN_BAND20)                LTE B20
-        # 0x8000000 (CM_BAND_PREF_LTE_EUTRAN_BAND28)              LTE B28
-        # 0x40000000 (CM_BAND_PREF_LTE_EUTRAN_BAND31)             LTE B31
-        # 0x200000000(CM_BAND_PREF_LTE_EUTRAN_BAND34)             LTE B34
-        # 0x2000000000 (CM_BAND_PREF_LTE_EUTRAN_BAND38)           LTE B38
-        # 0x4000000000 (CM_BAND_PREF_LTE_EUTRAN_BAND39)           LTE B39
-        # 0x8000000000 (CM_BAND_PREF_LTE_EUTRAN_BAND40)           LTE B40
-        # 0x10000000000 (CM_BAND_PREF_LTE_EUTRAN_BAND41)          LTE B41
-        # 0x20000000000000000 (CM_BAND_PREF_LTE_EUTRAN_BAND66)    LTE B66
-        # 0x800000000000000000 (CM_BAND_PREF_LTE_EUTRAN_BAND72)   LTE B72
-        # 0x7FFFFFFFFFFFFFFFF (CM_BAND_PREF_ANY)                  Any frequency band
-        # <err>               Error code. See Chapter 12.5 for details.
-        # """
         return self.sendCommand(f"AT+QCFG='band',{p_bandval},0x{p_ltebandval:X}")
 
     def statusControlCommands40307SpecifyRiBehaviorWhenOtherUrcsArePresented(
@@ -923,15 +759,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <typeRI>            String type. RI behavior when URCs are presented.
-        # "off"               No change. Ring indicator keeps inactive
-        # "pulse"             Pulse. Pulse width determined by <pulse_duration>
-        # <pulse_duration>    Integer type. The width of pulse. This parameter is effect only when <typeRI> is''pulse''. Range: 5–2000. Default value: 120. Unit: ms.
-        # <pulse_count>       Integer type. The count of pulse. This parameter is only meaningful when <typeRI> is ''pulse''.
-        #                     The interval time between two pulses is equal to <pulse_duration>. Range: 1–5. Default value: 1. Unit: s.
-        # <err>               Error code. See Chapter 12.5 for details.
-        # """
         return self.sendCommand(
             f'AT+QCFG="urc/ri/other","{p_typeRI}",{p_pulse_duration},{p_pulse_count}'
         )
@@ -949,11 +776,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <time>              Integer type. Set the delay time of URC indication when ring indicator pulse starts.RI behavior when URCs are presented. Range: 0–120. Unit: ms.
-        # 0                   No delay.
-        # <err>               Error code. See Chapter 12.5 for details.
-        # """
         return self.sendCommand(f"AT+QCFG='urcdelay',{p_time}")
 
     def statusControlCommands40309EnableDisableUrcCacheFunction(
@@ -970,12 +792,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <enable>            Integer type. Enable/disable URC cache function.
-        # 0                   Disable URC cache function.
-        # 1                   Enable URC cache function.
-        # <err>               Error code. See Chapter 12.5 for details.
-        # """
         return self.sendCommand(f"AT+QCFG='urc/cache',{p_enable}")
 
     def statusControlCommands40310ConfigureTheNetworkCardTypeInterface(
@@ -992,12 +808,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <net>               Integer type. The protocol of net port.
-        # 1                   ECM interface
-        # 3                   RNIDS interface
-        # <err>               Error code. See Chapter 12.5 for details.
-        # """
         return self.sendCommand(f"AT+QCFG='usbnet',{p_net}")
 
     def statusControlCommands40311EnableDisableThePppTermFrameSending(
@@ -1014,12 +824,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <flag>              Integer type.
-        # 0                   Disable TERM frame sending when hang up PPP by module itself.
-        # 1                   Enable TERM frame sending when hang up PPP by module itself.
-        # <err>               Error code. See Chapter 12.5 for details.
-        # """
         return self.sendCommand(f"AT+QCFG='ppp/termframe',{p_flag}")
 
     def statusControlCommands40312EnableDisableAirplaneModeControlViaW_DISABLE(
@@ -1040,15 +844,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <enable>            Integer type. Enable/disable the airplane mode control via W_DISABLE# pin.
-        # 0                   Disable the airplane mode control via W_DISABLE# pin
-        # 1                   Enable the airplane mode control via W_DISABLE# pin. The module enters airplane mode when W_DISABLE# pin is active and exit airplane mode when it is inactive. AT+CFUN=1 is not allowed to be used to enable the module to exit airplane mode when the W_DISABLE# pin is active. Unsolicited result code +QIND: airplanestatus,<status> is reported when the status of W_DISABLE# pin changes
-        # <status>            Integer type.
-        # 0                   Exit airplane mode
-        # 1                   Enter airplane mode
-        # <err>               Error code. See Chapter 12.5 for details.
-        # """
         return self.sendCommand(f"AT+QCFG='airplanecontrol',{p_enable},{p_status}")
 
     def statusControlCommands40313RingLineBehaviorOfRing(
@@ -1069,17 +864,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <typeRI>            String type. The behavior of the ring line when URCs are presented
-        # "off"               No change. Ring line keeps inactive.
-        # "pulse"             Pulse. Pulse width is determined by <pulse_duration>
-        # <pulse_duration>    Integer type. The width of pulse. This parameter is meaningful only when <typeRI> is ''pulse''. If this parameter is not needed, you can set it to null. Range: 5–2000.
-        #                     Default value: 120. Unit: ms.
-        # <pulse_count>       Integer type. The count of pulse. This parameter is meaningful only when <typeRI>
-        #                     is ''pulse''. The interval time between two pulse is equal to <pulse_duration>.
-        #                     Range: 1–5. Default value: 1.
-        # <err>               Error code. See Chapter 12.5 for details.
-        # """
         return self.sendCommand(
             f'AT+QCFG="urc/ri/ring","{p_typeRI}",{p_pulse_duration},{p_pulse_count}'
         )
@@ -1105,19 +889,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <RI_signal_type>    String type. RI signal output carrier.
-        # "respective"        The ring indicator behaves on the port where URC is presented. For
-        #                     example, if a URC is presented on UART port, it is physical ring
-        #                     indicator. If the URC is presented on USB port, it is virtual ring
-        #                     indicator. If the URC is presented on USB AT port, and the port does
-        #                     not support ring indicator, then there will be no ring indicator.
-        #                     AT+QURCCFG="urcport" can get the port on which URC is
-        #                     presented.
-        # "physical"          No matter which port URC is presented on, URC only causes the
-        #                     behavior of physical ring indicator.
-        # <err>               Error code. See Chapter 12.5 for details.
-        # """
         return self.sendCommand(f'AT+QCFG="risignaltype","{p_ri_signal_type}"')
 
     def statusControlCommands40315ConfigureBaudRate(
@@ -1141,19 +912,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <ipr>               Integer type. Baud rate per second on the serial port. Unit: bps.
-        #                     4800
-        #                     9600
-        #                     19200
-        #                     38400
-        #                     57600
-        #                     115200
-        #                     230400
-        #                     460800
-        #                     921600
-        # <err>               Error code. See Chapter 12.5 for details.
-        # """
         return self.sendCommand(f"AT+QCFG='uart2ipr',{p_ipr}")
 
     def statusControlCommands40316ConfigureWorkingModeOfNic(
@@ -1170,12 +928,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <nat>           Integer type. The working mode of NIC.
-        # 0               Routing mode
-        # 1               NIC mode
-        # <err>           Error code. See Chapter 12.5 for details.
-        # """
         return self.sendCommand(f"AT+QCFG='nat',{p_nat}")
 
     def statusControlCommands40317ConfigureImsFunction(
@@ -1197,16 +949,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <IMS_conf>      Integer type. Whether IMS function is configured.Integer type. IMS function configuration.
-        # 0               IMS function is not configured
-        # 1               Enable IMS function
-        # 2               Disable IMS function
-        # <VoLTE_cap>     Integer type. Whether VoLTE is supported.
-        # 0               VoLTE is not supported
-        # 1               VoLTE is supported
-        # <err>           Error code. See Chapter 12.5 for details.
-        # """
         return self.sendCommand(f"AT+QCFG='ims', {p_ims_conf},{p_voltecap}")
 
     def statusControlCommands40318ConfigureConnectionExpirationTimeInHttpFota(
@@ -1221,11 +963,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <timeout>       Integer type. The connection expiration time in HTTP FOTA download.
-        #                 Range: 10–180. Default value: 60. Unit: second.
-        # <err>           Error code. See Chapter 12.5 for details.
-        # """
         return self.sendCommand(f"AT+QCFG='fota/times',{p_timeout}")
 
     def statusControlCommands40400ControlUrcIndication(
@@ -1259,95 +996,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <urctype>           String type. The type of URC.
-        # "all"               Main switch of all URCs. Default is ON.
-        # "csq"               Indication of signal strength and channel bit error rate change (similar to
-        #                     AT+CSQ). Default is OFF. If this configuration is ON, present:
-        #                     +QIND: "csq",<rssi>,<ber>
-        # "datastatus"        Indication of data service status. Default is OFF. If this configuration
-        #                     is ON, present:
-        #                     +QIND: "datastatus",<suspended>,<reason>
-        #                     <reason> is number format as below:
-        #                     0 SUSPEND_NO_CAUSE
-        #                     1 SUSPEND_BY_RAU_ATTACH
-        #                     2 SUSPEND_BY_LAU
-        #                     3 SUSPEND_BY_TAU
-        #                     4 SUSPEND_BY_CS_SERVICE
-        #                     5 SUSPEND_BY_DS_OPERATION
-        #                     6 SUSPEND_BY_POWERUP
-        # "mode"              Indication of network main mode and sub mode. Default is OFF. If this
-        #                     configuration is ON, present:
-        #                     ^MODE:<main_mode>,<sub_mode>
-        #                     <main_mode> is an integer type listed as below:
-        #                     0 SYSINFO_SYSTEMO_MODE_NO_SERVICE
-        #                     1 SYSINFO_SYSTEMO_MODE_RESERVED_1
-        #                     2 SYSINFO_SYSTEMO_MODE_RESERVED_2
-        #                     3 SYSINFO_SYSTEMO_MODE_GSM_GPRS
-        #                     5 SYSINFO_SYSTEMO_MODE_WCDMA
-        #                     17 SYSINFO_SYSTEMO_MODE_LTE
-        #                     <sub_mode> is an integer type listed as below:
-        #                     0 SYSINFO_SYSTEMO_SUBMODE_NO_SERVICE
-        #                     1 SYSINFO_SYSTEMO_SUBMODE_GSM
-        #                     3 SYSINFO_SYSTEMO_SUBMODE_GSM_EGPRS
-        #                     5 SYSINFO_SYSTEMO_SUBMODE_UTRAN_HSDPA
-        #                     6 SYSINFO_SYSTEMO_SUBMODE_UTRAN_HSUPA
-        #                     7 SYSINFO_SYSTEMO_SUBMODE_UTRAN_HSPA
-        #                     8 SYSINFO_SYSTEMO_SUBMODE_UTRAN
-        #                     17 SYSINFO_SYSTEMO_SUBMODE_EUTRAN
-        # "smsfull"           SMS storage full indication. Default is OFF. If this configuration is ON,
-        #                     present:
-        #                     +QIND: "smsfull",<storage>
-        # "smsincoming"       Incoming message indication. Default is ON. Related URC list:
-        #                     +CMTI, +CMT, +CDS
-        # "act"               Indication of network access technology change. Default is OFF. If this
-        #                     configuration is ON, present:
-        #                     +QIND: "act",<actvalue>
-        #                     <actvalue> is string format. The values are as below:
-        #                     ''GSM''
-        #                     ''EGPRS''
-        #                     ''WCDMA''
-        #                     ''HSDPA''
-        #                     ''HSUPA''
-        #                     ''HSDPA&HSUPA''
-        #                     ''LTE''
-        #                     ''UNKNOWN''
-        #                     The examples of URC are as below:
-        #                     +QIND: "act","HSDPA&HSUPA"
-        #                     +QIND: "act","UNKNOWN"
-        #                     The description of ''act'' is as below:
-        #                     1. If module does not register on network, <actvalue> would be
-        #                     ''UNKNOWN''.
-        #                     2. If this configuration is ON, the URC of "act" will be reported
-        #                     immediately. Only when the network access technology changes,
-        #                     a new URC will be reported.
-        # "sqi"               Indication of reference signal receiving power, reference signal receiving
-        #                     quality and signal to interference plus noise ratio change. Default is OFF.
-        #                     If this configuration is ON, present:
-        #                     +QIND: "SQI",<RSRP>,<RSRQ>,<SINR>
-        #                     <RSRP>
-        #                     Integer type. Reference signal receiving power. Unit: dBm.
-        #                     (See 3GPP 36.214 Chapter 5.1.1).
-        #                     <RSRQ>
-        #                     Integer type. Reference signal receiving quality. Unit: dB.
-        #                     (See 3GPP 36.214 Chapter 5.1.3).
-        #                     <SINR>
-        #                     Integer type. Signal to interference plus noise ratio.
-        #                     Range: -20–30. Unit: dB.
-        # "phonebook"         Incoming phonebook indication. Default is ON. Related URC list:
-        #                     +QIND: PB DONE
-        # "ring"              Incoming call indication. Default is ON. Related URC list:
-        #                     RING
-        # "nocarrier"         Incoming hang up call indication. Default is ON. Related URC list:
-        #                     NO CARRIER
-        # <enable>            Integer type. URC indication is ON or OFF.
-        # 0                   OFF
-        # 1                   ON
-        # <savetonvram>       Integer type. Whether to save configuration into NV.
-        # 0                   Not save
-        # 1                   Save
-        # <err>               Error code. See Chapter 12.5 for details.
-        # """
         return self.sendCommand(f'AT+QINDCFG="{p_urctype}",{p_enable},{p_savetonvram}')
 
     def simRelatedCommands501RequestInternationalMobileSubscriberIdentity(
@@ -1408,66 +1056,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <fac>           String type.
-        #                 ''SC''
-        #                 (U)SIM (lock SIM/UICC card installed in the currently selected card slot)
-        #                 (SIM/UICC asks password in MT power-up and when this lock command
-        #                 issued).
-        #                 ''AO''
-        #                 BAOC (Bar All Outgoing Calls) (see 3GPP TS 22.088 clause 1).
-        #                 ''OI''
-        #                 BOIC (Bar Outgoing International Calls) (see 3GPP TS 22.088 clause 1).
-        #                 ''OX''
-        #                 BOIC-exHC (Bar Outgoing International Calls except to Home Country) (see
-        #                 3GPP TS 22.088 clause 1).
-        #                 ''AI''
-        #                 BAIC (Bar All Incoming Calls) (see 3GPP TS 22.088 clause 2).
-        #                 ''IR''
-        #                 BIC-Roam (Bar Incoming Calls when Roaming outside the home country) (see
-        #                 3GPP TS 22.088 clause 2).
-        #                 ''AB''
-        #                 All Barring services (see 3GPP TS 22.030) (applicable only for <mode>=0).
-        #                 ''AG''
-        #                 All outgoing barring services (see 3GPP TS 22.030) (applicable only for
-        #                 <mode>=0).
-        #                 ''AC''
-        #                 All incoming barring services (see 3GPP TS 22.030) (applicable only for
-        #                 <mode>=0).
-        #                 ''FD''
-        #                 (U)SIM card or active application in the UICC (GSM or USIM) fixed dialing
-        #                 memory feature (If PIN2 authentication has not been done during the current
-        #                 session, PIN2 is required as <passwd>).
-        #                 ''PF''
-        #                 Lock Phone to the very first inserted SIM/UICC card (also referred in the present
-        #                 document as PH-FSIM) (MT asks password when other SIM/UICC cards are
-        #                 inserted).
-        #                 ''PN''
-        #                 Network Personalization (see 3GPP TS 22.022).
-        #                 ''PU''
-        #                 Network Subset Personalization (see 3GPP TS 22.022).
-        #                 ''PP''
-        #                 Service Provider Personalization (see 3GPP TS 22.022).
-        #                 ''PC''
-        #                 Corporate Personalization (see 3GPP TS 22.022).
-        # <mode>          Integer type.
-        #                 0 Unlock
-        #                 1 Lock
-        #                 2 Query status
-        # <passwd>        String type. Password.
-        # <class>         Integer type.
-        #                 1   Voice
-        #                 2   Data
-        #                 4   FAX
-        #                 7   All telephony except SMS
-        #                 8   Short message service
-        #                 16  Data circuit synchronization
-        #                 32  Data circuit asynchronization
-        # <status>        Integer type.
-        #                 0   Off
-        #                 1   On
-        # <err>           Error code. See Chapter 12.5 for details.
-        # """
         return self.sendCommand(
             f'AT+CLCK="{p_fac}",{p_mode},"{p_passwd}",{p_class},{p_status}'
         )
@@ -1501,45 +1089,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <code>          String type. The code of the SIM card.
-        #                 READY
-        #                 SIM PIN
-        #                 SIM PUK
-        #                 SIM PIN2
-        #                 SIM PUK2
-        #                 PH-NET PIN
-        #                 PH-NET PUK
-        #                 MT is not pending for any password
-        #                 MT is waiting for (U)SIM PIN to be given
-        #                 MT is waiting for (U)SIM PUK to be given
-        #                 MT is waiting for (U)SIM PIN2 to be given
-        #                 MT is waiting for (U)SIM PUK2 to be given
-        #                 MT is waiting for network personalization password to be given
-        #                 MT is waiting for network personalization unblocking password
-        #                 to be given
-        #                 PH-NETSUB PIN
-        #                 MT is waiting for network subset personalization password to
-        #                 be given
-        #                 PH-NETSUB PUK
-        #                 MT is waiting for network subset personalization unblocking
-        #                 password to be given
-        #                 PH-SP PIN
-        #                 MT is waiting for service provider personalization password to
-        #                 be given
-        #                 PH-SP PUK
-        #                 MT is waiting for service provider personalization unblocking
-        #                 password to be given
-        #                 PH-CORP PIN
-        #                 MT is waiting for corporate personalization password to be given
-        #                 PH-CORP PUK
-        #                 MT is waiting for corporate personalization unblocking password
-        #                 to be given
-        # <pin>           String type. The PIN of the SIM card.Password. If the requested password is a PUK, such as (U)SIM PUK1,
-        #                 PH-FSIM PUK or other passwords, then <pin> must be followed by <newpin>.
-        # <newpin>        String type. A new password required if the requested code is a PUK.
-        # <err>           Error code. See Chapter 12.5 for details.
-        # """
         return self.sendCommand(f'AT+CPIN="{p_code}","{p_pin}","{p_newpin}"')
 
     def simRelatedCommands504ChangePassword(
@@ -1575,28 +1124,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <fac>           String type.
-        # ''SC''      (U)SIM (lock SIM/UICC card) (SIM/UICC asks password in MT power-up and
-        #             when this lock command is issued)
-        # ''AO''      BAOC (Bar All Outgoing Calls, see 3GPP TS 22.088 clause 1)
-        # ''OI'       BOIC (Bar Outgoing International Calls, see 3GPP TS 22.088 clause 1)
-        # ''OX''      BOIC-exHC (Bar Outgoing International Calls except to Home Country, see
-        #             3GPP TS 22.088 clause 1)
-        # ''AI'       BAIC (Bar All Incoming Calls, see 3GPP TS 22.088 clause 2)
-        # ''IR''      BIC-Roam (Bar Incoming Calls when Roaming outside the home country,
-        #             see 3GPP TS 22.088 clause 2)
-        # ''AB''      All barring services (see 3GPP TS 22.030, applicable only for <mode>=0)
-        # ''AG''      All outgoing barring services (see 3GPP TS 22.030, applicable only for
-        #             <mode>=0)
-        # ''AC'       All incoming barring services (see 3GPP TS 22.030, applicable only for
-        #             <mode>=0)
-        # ''P2''      (U)SIM PIN2
-        # <pwdlength>     Integer type. Maximum length of password.
-        # <oldpwd>        String type. Password specified for the facility from the user interface or with command.
-        # <newpwd>        String type. New password.
-        # <err>           Error code. See Chapter 12.5 for details.
-        # """
         return self.sendCommand(
             f'AT+CPWD="{p_fac}",{p_pwdlength},"{p_oldpwd}","{p_newpwd}"'
         )
@@ -1615,13 +1142,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <length>        Integer type. Length of <command> or <response> string.
-        # <command>       Command transferred by the MT to the (U)SIM in the format as described in
-        #                 3GPP TS 51.011.
-        # <response>      Response to the command transferred by the (U)SIM to the MT in the format as
-        #                 described in 3GPP TS 51.011.
-        # """
         return self.sendCommand(f'AT+CRSM={p_length},"{p_command}"')
 
     def simRelatedCommands506RestrictedUsimAccess(
@@ -1661,28 +1181,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <command>       Integer type.(U)SIM command number
-        #                 176     READ BINARY
-        #                 178     READ RECORD
-        #                 192     GET RESPONSE
-        #                 214     UPDATE BINARY
-        #                 220     UPDATE RECORD
-        #                 242     STATUS
-        # <filed>         Integer type. Identifier for an elementary data file on (U)SIM, if used by
-        #                 <command>.
-        # <p1>,<p2>,<p3>  Integer type. Parameters transferred by the MT to the (U)SIM. These
-        #                 parameters are mandatory for every command, except GET RESPONSE and
-        #                 STATUS. The values are described in 3GPP TS 51.011.
-        #                 Information which shall be written to the (U)SIM (hexadecimal character
-        #                 format; see AT+CSCS).
-        # <data>          Information which shall be written to the (U)SIM (hexadecimal character
-        #                 format; see AT+CSCS).
-        # <pathId>        The directory path of an elementary file on a UICC in hexadecimal format.
-        # <sw1>           Integer type. SW1 parameter.
-        # <sw2>           Integer type. SW2 parameter.
-        # <response>      Response to the command transferred by the (U)SIM to the MT.
-        # """
         return self.sendCommand(
             f"AT+CRSM={p_command},{p_filed},0x{p_p1:X},0x{p_p2:X},0x{p_p3:X},0x{p_data:X},0x{p_pathId:X}"
         )
@@ -1722,11 +1220,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <facility>          String type.
-        #                     ''SC''      (U)SIM PIN
-        #                     ''P2''      (U)SIM PIN2
-        # """
         return self.sendCommand(f'AT+QPINC="{p_facility}"')
 
     def simRelatedCommands509QueryInitializationStatusOfUsimCard(
@@ -1767,14 +1260,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <enable>            Integer type. Enable or disable (U)SIM card detection
-        #                     0   Disable
-        #                     1   Enable
-        # <insert_level>      Integer type. The level of (U)SIM detection pin when a (U)SIM card is inserted
-        #                     0   Low level
-        #                     1   High level
-        # """
         return self.sendCommand(f"AT+QSIMDET={p_enable},{p_insert_level}")
 
     def simRelatedCommands511UsimCardInsertionStatusReportRead(
@@ -1800,13 +1285,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <enable>            Integer type. Enable or disable (U)SIM card insertion status report. If it is enabled,
-        #                     when (U)SIM card is removed or inserted, the URC +QSIMSTAT:
-        #                     <enable>,<inserted_status> will be reported.
-        #                     0       Disable
-        #                     1       Enable
-        # """
         return self.sendCommand(f"AT+QSIMSTAT={p_enable}")
 
     def simRelatedCommands512SelectUsimCardRead(self) -> tuple[bool, list[str]]:
@@ -1832,11 +1310,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <sim_id>            Integer type. (U)SIM card ID.
-        #                     0 SIM1
-        #                     1 SIM2
-        # """
         return self.sendCommand(f"AT+QDSIM={p_sim_id}")
 
     def networkServiceCommands601OperatorSelectionRead(self) -> tuple[bool, list[str]]:
@@ -1882,39 +1355,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <stat>          Integer type.
-        # 0               Unknown
-        # 1               Operator available
-        # 2               Current operator
-        # 3               Operator forbidden
-        # <oper>          String type. Operator in format as per <format>.
-        # <mode>          Integer type.
-        # 0               Automatic mode. <oper> field is ignored
-        # 1               Manual operator selection. <oper> field shall be present and <Act> optionally
-        # 2               Manually deregister from network
-        # 3               Set only <format> (for AT+COPS? Read Command), and do not attempt
-        #                 registration/deregistration (<oper> and <Act> fields are ignored). This value is
-        #                 invalid in the response of Read Command.
-        # 4               Manual/automatic selection. <oper> field shall be presented. If manual selection
-        #                 fails, automatic mode (<mode>=0) is entered
-        # <format>        Integer type.
-        # 0               Long format alphanumeric <oper> which can be up to 16 characters long
-        # 1               Short format alphanumeric <oper>
-        # 2               Numeric <oper>. GSM location area identification number
-        # <Act>           Integer type. Access technology selected. Values 3, 4, 5 and 6 occur only in the response
-        #                 of Read Command while MS is in data service state and is not intended for the AT+COPS
-        #                 Write Command.
-        # 0               GSM
-        # 2               UTRAN
-        # 3               GSM W/EGPRS
-        # 4               UTRAN W/HSDPA
-        # 5               UTRAN W/HSUPA
-        # 6               UTRAN W/HSDPA and HSUPA
-        # 7               E-UTRAN
-        # 8               UTRAN HSPA+
-        # <err>           Error code. See Chapter 12.5 for details.
-        # """
         return self.sendCommand(f'AT+COPS={p_mode},{p_format},"{p_operator}",{p_act}')
 
     def networkServiceCommands602DomainNetworkRegistrationStatusRead(
@@ -1943,32 +1383,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <n>             Integer type.
-        # 0               Disable network registration unsolicited result code
-        # 1               Enable network registration unsolicited result code: +CREG: <stat>
-        # 2               Enable network registration unsolicited result code with location information:
-        #                 +CREG: <stat>[,<lac>,<ci>[,<Act>]]
-        # <stat>          Integer type.
-        # 0               Not registered. ME is not currently searching a new operator to register to
-        # 1               Registered, home network
-        # 2               Not registered, but ME is currently searching a new operator to register to
-        # 3               Registration denied
-        # 4               Unknown
-        # 5               Registered, roaming
-        # <lac>           String type. Two bytes location area code in hexadecimal format
-        # <ci>            String type. 16-bit (GSM) or 28-bit (UMTS/LTE) cell ID in hexadecimal format
-        # <Act>           Integer type. Access technology selected
-        # 0               GSM
-        # 2               UTRAN
-        # 3               GSM W/EGPRS
-        # 4               UTRAN W/HSDPA
-        # 5               UTRAN W/HSUPA
-        # 6               UTRAN W/HSDPA and HSUPA
-        # 7               E-UTRAN
-        # 8               UTRAN HSPA+
-        # <err>           Error code. See Chapter 12.5 for details.
-        # """
         return self.sendCommand(f"AT+CREG={p_n}")
 
     def networkServiceCommands603SignalQualityReport(self) -> tuple[bool, list[str]]:
@@ -1979,25 +1393,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <rssi>              Integer type.
-        # 0                   -113 dBm or less
-        # 1                   -111 dBm
-        # 2–30                -109 to -53 dBm
-        # 31                  -51 dBm or greater
-        # 99                  Not known or not detectable
-        # 100                 -116 dBm or less
-        # 101                 -115 dBm
-        # 102–190             -114 to -26 dBm
-        # 191                 -25 dBm or greater
-        # 199                 Not known or not detectable
-        # 100–199             Extended to be used in TD-SCDMA indicating received signal code
-        #                     power (RSCP)
-        # <ber>               Integer type. Channel bit error rate (in percent)
-        # 0–7                 As RXQUAL values in the table in 3GPP TS 45.008 subclause 8.2.4
-        # 99                  Not known or not detectable
-        # <err>               Error code. See Chapter 12.5 for details.
-        # """
         return self.sendCommand("AT+CSQ")
 
     def networkServiceCommands604PreferredOperatorListRead(
@@ -2053,27 +1448,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <index>             Integer type. The order number of operator in the (U)SIM preferred operator list
-        # <format>            Integer type.
-        # 0                   Long format alphanumeric <oper>
-        # 1                   Short format alphanumeric <oper>
-        # 2                   Numeric <oper>
-        # <oper>              String type. <format> indicates the format is alphanumeric or numeric (see
-        #                     AT+COPS).
-        # <GSM>               Integer type. GSM access technology
-        # 0                   Access technology is not selected
-        # 1                   Access technology is selected
-        # <GSM_compact>       Integer type. GSM compact access technology
-        # 0                   Access technology is not selected
-        # 1                   Access technology is selected
-        # <UTRAN>             Integer type. UTRAN access technology
-        # 0                   Access technology is not selected
-        # 1                   Access technology is selected
-        # <E-UTRAN>           Integer type. E-UTRAN access technology
-        # 0                   Access technology is not selected
-        # 1                   Access technology is selected
-        # """
         return self.sendCommand(
             f'AT+CPOL={p_index},{p_format},"{p_oper}",{p_gsm},{p_gsm_compact},{p_utran},{p_e_utran}'
         )
@@ -2113,12 +1487,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <onoff>             Integer type. The mode of automatic time zone update.
-        # 0                   Disable automatic time zone update via NITZ.
-        # 1                   Enable automatic time zone update via NITZ and update GMT time to URC
-        # 3                   Enable automatic time zone update via NITZ and update LOCAL time to RTC
-        # """
         return self.sendCommand(f"AT+CTZU={p_onoff}")
 
     def networkServiceCommands607TimeZoneReportingRead(self) -> tuple[bool, list[str]]:
@@ -2145,30 +1513,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <reporting>         Integer type. The mode of time zone reporting.
-        # 0                   Disable time zone reporting of changed event
-        # 1                   Enable time zone reporting of changed event by unsolicited result code:
-        #                     +CTZV: <tz>
-        # 2                   Enable extended time zone reporting by unsolicited result code:
-        #                     +CTZE: <tz>,<dst>,<time>
-        # <tz>                String type. The sum of the local time zone (difference between the local time and GMT
-        #                     is expressed in quarters of an hour) plus daylight saving time. The format is “±zz”,
-        #                     expressed as a fixed width, two-digit integer with the range -48 to +56. To maintain a
-        #                     fixed width, numbers in the range -9 to +9 are expressed with a leading zero, e.g. “-09”,
-        #                     “+00” and “+09”.
-        # <dst>               Integer type. Indicates whether <tz> includes daylight savings adjustment.
-        # 0                   <tz> includes no adjustment for daylight saving time
-        # 1                   <tz> includes +1 hour (equals 4 quarters in <tz>) adjustment for daylight saving
-        #                     time
-        # 2                   <tz> includes +2 hours (equals 8 quarters in <tz>) adjustment for daylight saving
-        #                     time
-        # <time>              String type. The local time. The format is “YYYY/MM/DD,hh:mm:ss”, expressed as
-        #                     integers representing year (YYYY), month (MM), date (DD), hour (hh), minute (mm) and
-        #                     second (ss). This parameter can be provided by the network when delivering time zone
-        #                     information and will be presented in the unsolicited result code of extended time zone
-        #                     reporting if provided by the network.
-        # """
         return self.sendCommand(f"AT+CTZR={p_reporting}")
 
     def networkServiceCommands608ObtainTheLatestTimeSynchronizedThroughNetwork(
@@ -2222,19 +1566,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <n>             String of dialing digits and optionally V.25ter modifiers.
-        #                 Dialing digits: 0–9, *, #, +, A, B, C
-        #                 Following V.25ter modifiers are ignored: ,(comma), T, P, !, W, @
-
-        # <mgsm>          String of GSM modifiers:
-        #                 I   Activate CLIR (Disable presentation of own number to the called party)
-        #                 i   Deactivate CLIR (Enable presentation of own number to the called party)
-        #                 G   Activate closed user group invocation for this call only
-        #                 g   Deactivate closed user group invocation for this call only
-
-        # <;>             It is required when setting up a voice call and will return to command state after the call.
-        # """
         return self.sendCommand(f'ATD"{p_n}""{p_mgsm}";')
 
     def callRelatedCommands703ConnectedLineIdentificationPresentationRead(
@@ -2262,22 +1593,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <n>             Integer type. Sets/shows the result code presentation status in the TA.
-        # 0               Disable
-        # 1               Enable
-        # <m>             Integer type. Shows the subscriber COLP service status in the network.
-        # 0               COLP not provisioned
-        # 1               COLP provisioned
-        # 2               Unknown (e.g. no network, etc.)
-        # <number>        String type. Phone number, the format is specified by <type>.
-        # <type>          Integer type. Type of address of octet (see 3GPP TS 24.008 subclause 10.5.4.7 for
-        #                 details).
-        # 128             Unknown type (Number length is 0)
-        # 129             Unknown type (IDSN format)
-        # 145             International number type (ISDN format)
-        # <subaddr>       String type. Sub-address of format specified by <satype>.
-        # """
         return self.sendCommand(f"AT+COLP={p_n}")
 
     def callRelatedCommands704DisconnectExistingConnection(
@@ -2347,12 +1662,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <n>             Integer type. This parameter setting determines the number of rings before automatic
-        #                 answering.
-        # 0               Automatic answering is disabled
-        #                 1–255 Enable automatic answering on the ring number specified
-        # """
         return self.sendCommand(f"ATS0={p_n}")
 
     def callRelatedCommands709ListCurrentCallsOfMe(self) -> tuple[bool, list[str]]:
@@ -2387,28 +1696,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <n>             Integer type.
-        # 0               DSCI not provisioned
-        # 1               DSCI provisioned
-        # <id>            Integer type. Call ID.
-        # <dir>           Integer type. Call direction.
-        # 0               Mobile originated (MO) call
-        # 1               Mobile terminated (MT) call
-        # <stat>          Integer type. State of the call.
-        # 1               CALL_HOLD
-        # 2               CALL_ORIGINAL
-        # 3               CALL_CONNECT
-        # 4               CALL_INCOMING
-        # 5               CALL_WAITING
-        # 6               CALL_END
-        # 7               CALL_ALERTING
-        # <type>          Integer type. Call type.
-        # 0               Voice call
-        # 1               PS call
-        # <number>        String type. Phone number.
-        # <num_type>      Type of phone number.
-        # """
         return self.sendCommand(f"AT^DSCI={p_n}")
 
     def phonebookCommands801SubscriberNumber(self) -> tuple[bool, list[str]]:
@@ -2432,21 +1719,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <nlength>           Integer type. Indicates the maximum length of field <number>.
-        # <tlength>           Integer type. Indicates the maximum length of field <text>.
-        # <findtext>          String type field of maximum length <tlength> in current TE character set specified by
-        #                     AT+CSCS.
-        # <index>             Integer type. Value in the range of location numbers of phonebook memory.
-        # <number>            String type. The phone number in format specified by <type>.
-        # <type>              Integer type. Type of address of octet (see 3GPP TS 24.008 subclause 10.5.4.7 for
-        #                     details).
-        # 129                 Unknown type (IDSN format)
-        # 145                 International number type (ISDN format)
-        # 161                 National type
-        # <text>              String type field of maximum length <tlength> in current TE character set specified by
-        #                     AT+CSCS.
-        # """
         return self.sendCommand(f'AT+CPBF="{p_findtext}"')
 
     def phonebookCommands803ReadPhonebookEntries(
@@ -2461,11 +1733,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <index>         Integer type. Value in the range of location numbers of phonebook memory.
-        # <number>        String type. The phone number in format specified by <type>.
-        # <nlength>       Integer type. Indicates the maximum length of field <number>.
-        # """
         return self.sendCommand(f"AT+CPBR={p_index}")
 
     def phonebookCommands804SelectPhonebookMemoryStorageRead(
@@ -2499,22 +1766,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <storage>           String type.
-        # ''SM''              (U)SIM phonebook
-        # ''DC''              ME dialed calls list (AT+CPBW may not be applicable to this storage)
-        # ''FD''              (U)SIM fix dialing-phone book (AT+CPBW operation need the authority of PIN2)
-        # ''LD''              (U)SIM last-dialing-phone book (AT+CPBW may not be applicable to this
-        #                     storage)
-        # ''EN''              (U)SIM (or ME) emergency number (AT+CPBW may not be applicable to this
-        #                     storage)
-        # ''ON''              (U)SIM own numbers (MSISDNs) list
-        # ''AP''              Selected application phonebook. If a UICC with an active USIM application is
-        #                     present, the application phonebook, DFPHONEBOOK under ADFUSIM is selected
-        # ''SDN''             Service Dialing Number
-        # <used>              Integer type. Indicates the total number of used locations in selected memory.
-        # <total>             Integer type. Indicates the total number of locations in selected memory.
-        # """
         return self.sendCommand(f'AT+CPBS="{p_storage}"')
 
     def phonebookCommands805WritePhonebookEntry(
@@ -2538,21 +1789,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <index>         Integer type. Value in the range of location numbers of phone book memory. If <index>
-        #                 is not given, the first free entry will be used. If <index> is given as the only parameter,
-        #                 the phonebook entry specified by location is deleted.
-        # <number>        String type. Phone number in format specified by <type>.
-        # <nlength>       Integer type. Indicates the maximum length of field <number>.
-        # <tlength>       Integer type. Indicates the maximum length of field <text>.
-        # <type>          Integer type. Type of address of octet (see 3GPP TS 24.008 subclause 10.5.4.7 for
-        #                 details).
-        # 129             Unknown type (IDSN format)
-        # 145             International number type (ISDN format)
-        # 161             National type
-        # <text>          String type field of maximum length <tlength> in current TE character set specified by
-        #                 AT+CSCS.
-        # """
         return self.sendCommand(f'AT+CPBW={p_index},"{p_number}",{p_type},"{p_text}"')
 
     def shortMessageServiceCommands901SelectMessageServiceRead(
@@ -2580,26 +1816,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <service>           Integer type. Type of message service
-        # 0                   3GPP TS 23.040 and 3GPP TS 23.041 (the syntax of SMS AT commands is
-        #                     compatible with 3GPP TS 27.005 Phase 2 version 4.7.0; Phase 2+ features
-        #                     which do not require new command syntax may be supported, e.g. correct
-        #                     routing of messages with new Phase 2+ data coding schemes)
-        # 1                   3GPP TS 23.040 and 3GPP TS 23.041 (the syntax of SMS AT commands is
-        #                     compatible with 3GPP TS 27.005 Phase 2+ version; the requirement of
-        #                     <service> setting 1 is mentioned under corresponding command
-        #                     descriptions)
-        # <mt>                Integer type. Mobile terminated messages
-        # 0                   Type not supported
-        # 1                   Type supported
-        # <mo>                Integer type. Mobile originated messages
-        # 0                   Type not supported
-        # 1                   Type supported
-        # <bm>                Integer type. Broadcast type messages
-        # 0                   Type not supported
-        # 1                   Type supported
-        # """
         return self.sendCommand(f"AT+CSMS={p_service}")
 
     def shortMessageServiceCommands902MessageFormatRead(self) -> tuple[bool, list[str]]:
@@ -2620,11 +1836,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <mode>              Integer type. Message format
-        # 0                   PDU mode
-        # 1                   Text mode
-        # """
         return self.sendCommand(f"AT+CMGF={p_mode}")
 
     def shortMessageServiceCommands903ServiceCenterAddressRead(
@@ -2652,14 +1863,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <sca>               Service center address. 3GPP TS 24.011 RP SC address Address-Value field in string
-        #                     format; BCD numbers (or GSM 7 bit default alphabet characters) are converted to
-        #                     characters of the currently selected TE character set (see AT+CSCS in 3GPP TS
-        #                     27.007). The type of address is given by <tosca>.
-        # <tosca>             Type of service center address. 3GPP TS 24.011 RP SC address Type-of-Address
-        #                     octet in integer format (default see <toda>).
-        # """
         return self.sendCommand(f'AT+CSCA="{p_sca}","{p_tosca}"')
 
     def shortMessageServiceCommands904PreferredMessageStorageRead(
@@ -2695,20 +1898,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <mem1>          String type. Messages to be read and deleted from this memory storage.
-        # ''SM''          (U)SIM message storage
-        # ''ME''          Mobile equipment message storage
-        # <mem2>          String type. Messages will be written and sent to this memory storage.
-        # ''SM''          (U)SIM message storage
-        # ''ME''          Mobile equipment message storage
-        # <mem3>          String type. Received messages will be placed in this memory storage if routing to PC
-        #                 is not set (AT+CNMI).
-        # ''SM''          (U)SIM message storage
-        # ''ME''          Mobile equipment message storage
-        # <usedx>         Integer type. Number of current messages in <memx>.
-        # <totalx>        Integer type. Total number of messages which can be stored in <memx>.
-        # """
         return self.sendCommand(f'AT+CPMS="{p_mem1}","{p_mem2}","{p_mem3}"')
 
     def shortMessageServiceCommands905DeleteMessage(
@@ -2730,20 +1919,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <index>         Integer type. Value in the range of location numbers supported by the associated memory.
-        # <delflag>       Integer type.
-        # 0               Delete the message specified in <index>
-        # 1               Delete all read messages from <mem1> storage
-        # 2               Delete all read messages from <mem1> storage and sent mobile originated
-        #                 messages
-        # 3               Delete all read messages, sent and unsent mobile originated messages from
-        #                 <mem1> storage
-        # 4               Delete all messages from <mem1> storage
-        # <mem1>          String type. Messages to be read and deleted from this memory storage.
-        # ''SM''          (U)SIM message storage
-        # ''ME''          Mobile equipment message storage
-        # """
         return self.sendCommand(f"AT+CMGD={p_index},{p_delflag}")
 
     def shortMessageServiceCommands906ListMessagesGetAll(
@@ -2774,20 +1949,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <stat>              String type. In text mode:
-        # ''REC UNREAD''      Received unread messages
-        # ''REC READ''        Received read messages
-        # ''STO UNSENT''      Stored unsent messages
-        # ''STO SENT''        Stored sent messages
-        # ''ALL''             All messages
-        # Integer type. In PDU mode:
-        # 0                   Received unread messages
-        # 1                   Received read messages
-        # 2                   Stored unsent messages
-        # 3                   Stored sent messages
-        # 4                   All messages
-        # """
         return self.sendCommand(f'AT+CMGL="{p_stat}"')
 
     def shortMessageServiceCommands907ReadMessage(
@@ -2802,20 +1963,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <index>         Integer type. Value in the range of location numbers supported by the associated memory.
-        # <stat>          Integer type. Status of the message.
-        # 0               Received unread message
-        # 1               Received read message
-        # 2               Stored unsent message
-        # 3               Stored sent message
-        # <oa>            Originating address. The format is specified by <type>.
-        # <alpha>         String type. Alpha identifier of the message.
-        # <scts>          String type. Service center time stamp.
-        # <tooa>          Type of originating address.
-        # <length>        Integer type. Length of the message.
-        # <data>          String type. Message content.
-        # """
         return self.sendCommand(f"AT+CMGR={p_index}")
 
     def shortMessageServiceCommands908SendMessagesTextMode(
@@ -2834,19 +1981,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <da>            Destination address. 3GPP TS 23.040 TP-Destination-Address Address-Value field in
-        #                 string format. BCD numbers (or GSM 7 bit default alphabet characters) are converted to
-        #                 characters of the currently selected TE character set (see AT+CSCS in 3GPP TS 27.007).
-        #                 The type of address is given by <toda>.
-        # <toda>          Type of recipient address. 3GPP TS 24.011 TP-Recipient-Address Type-of-Address octet
-        #                 in integer format.
-        # <length>        Message length. Integer type. Indicating in the text mode (AT+CMGF=1) the length of the
-        #                 message body <data> (or <cdata>) in characters, or in PDU mode (AT+CMGF=0), the
-        #                 length of the actual TP data unit in octets (i.e. the RP layer SMSC address octets are not
-        #                 counted in the length).
-        # <mr>            Message reference. 3GPP TS 23.040 TP-Message-Reference in integer format.
-        # """
         return self.sendCommand(f'AT+CMGS="{p_da}",{p_toda}\r{p_text}\x1A')
 
     def shortMessageServiceCommands908SendMessagesPduMode(
@@ -2886,18 +2020,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <n>         Integer type.
-        # 0           Feature disabled
-        # 1           Keep enabled until the time between the response of the latest message send
-        #             command (AT+CMGS, AT+CMSS, etc.) and the next send command exceeds 1–5
-        #             seconds (the exact value is up to ME implementation), and then ME shall close the
-        #             link and TA switches <n> back to 0 automatically.
-        # 2           Feature enabled (If the time between the response of the latest message send
-        #             command and the next send command exceeds 1-5 seconds (the exact value is up to
-        #             ME implementation), ME shall close the link but TA will not switch <n> back to 0
-        #             automatically).
-        # """
         return self.sendCommand(f"AT+CMMS={p_n}")
 
     def shortMessageServiceCommands910WriteMessageToMemoryTextMode(
@@ -2933,31 +2055,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <da>            Destination address. 3GPP TS 23.040 TP-Destination-Address Address-Value field in
-        #                 string format. BCD numbers (or GSM 7 bit default alphabet characters) are converted to
-        #                 characters of the currently selected TE character set (see AT+CSCS in 3GPP TS 27.007).
-        #                 The type of address is given by <toda>.
-        # <oa>            Originating address. 3GPP TS 23.040 TP-Originating-Address Address-Value field in
-        #                 string format. BCD numbers (or GSM 7 bit default alphabet characters) are converted to
-        #                 characters of the currently selected TE character set (see AT+CSCS in 3GPP TS 27.007).
-        #                 The type of address is given by <tooa>.
-        # <tooa>          Type of originating address. 3GPP TS 24.011 TP-Originating-Address Type-of-Address
-        #                 octet in integer format.
-        # <stat>          PDU mode        Text mode       Explanation
-        #                 0               ''REC UNREAD''  Received unread messages
-        #                 1               ''REC READ''    Received read messages
-        #                 2               ''STO UNSENT''  Stored unsent messages
-        #                 3               ''STO SENT''    Stored sent messages
-        #                 4               ''ALL''         All messages
-        # <toda>          Type of recipient address. 3GPP TS 24.011 TP-Recipient-Address Type-of-Address octet
-        #                 in integer format.
-        # <length>        Message length. Integer type. Indicating in the text mode (AT+CMGF=1) the length of the
-        #                 message body <data> (or <cdata>) in characters, or in PDU mode (AT+CMGF=0), the
-        #                 length of the actual TP data unit in octets (i.e. the RP layer SMSC address octets are not
-        #                 counted in the length).
-        # <text>          String type. Message content.
-        # """
         return self.sendCommand(
             f'AT+CMGW="{p_da}/{p_oa}",{p_tooa}/{p_toda},"{p_stat}"\r{p_text}\x1A'
         )
@@ -2989,25 +2086,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <index>         Integer type. Value in the range of location numbers supported by the associated
-        #                 memory.
-        # <da>            Destination Address. 3GPP TS 23.040 TP-Destination-Address Address-Value field in
-        #                 string format. BCD numbers (or GSM 7 bit default alphabet characters) are
-        #                 converted to characters of the currently selected TE character set (see AT+CSCS
-        #                 command in 3GPP TS 27.007). The type of address is given by <toda>.
-        # <toda>          Type of recipient address. 3GPP TS 24.011 TP-Recipient-Address Type-of-Address
-        #                 octet in integer format.
-        # <mr>            Message reference. 3GPP TS 23.040 TP-Message-Reference in integer format.
-        # <scts>          Service center time stamp. 3GPP TS 23.040 TP-Service-Centre-Time-Stamp in time-
-        #                 string format (see <dt>).
-        # <ackpdu>        The format is the same as <pdu> in case of SMS, but without 3GPP TS 24.011 SC
-        #                 address field and the parameter shall be bounded by double quote characters like a
-        #                 normal string type parameter.
-        # <mem2>          String type. Messages will be written and sent to this memory storage
-        # ''SM''          (U)SIM message storage
-        # ''ME''          Mobile equipment message storage
-        # """
         return self.sendCommand(f'AT+CMSS={p_index},"{p_da}",{p_toda}')
 
     def shortMessageServiceCommands912NewMessageAcknowledgementToUeTeExecute(
@@ -3036,12 +2114,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <n>         Integer type. Parameter required only for PDU mode
-        # 0           Command operates similarly as in text mode
-        # 1           Send positive (RP-ACK) acknowledgement to the network. Accepted only in PDU mode
-        # 2           Send negative (RP-ERROR) acknowledgement to the network. Accepted only in PDU mode
-        # """
         return self.sendCommand(f"AT+CNMA={p_n}")
 
     def shortMessageServiceCommands913SmsEventReportingConfigurationRead(
@@ -3089,53 +2161,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <mode>          Integer type.
-        # 0               Buffer unsolicited result codes in the TA. If TA result code buffer is full, indications can
-        #                 be buffered in some other place or the oldest indications may be discarded and
-        #                 replaced with the new received indications.
-        # 1               Discard indication and reject new received message unsolicited result codes when
-        #                 TA-TE link is reserved (e.g. in on-line data mode). Otherwise forward them directly to
-        #                 the TE.
-        # 2               Buffer unsolicited result codes in the TA when TA-TE link is reserved (e.g. in data
-        #                 mode) and flush them to the TE after reservation. Otherwise forward them directly to
-        #                 the TE.
-        # <mt>            Integer type. The rules for storing received SMS depend on its data coding scheme (see
-        #                 GPPTS 23.038) and preferred memory storage (AT+CPMS) setting, and the value is:
-        # 0               No SMS-DELIVER indications are routed to the TE
-        # 1               If SMS-DELIVER is stored into ME/TA, indication of the memory location is routed to
-        #                 the TE by using unsolicited result code: +CMTI: <mem>,<index>
-        # 2               SMS-DELIVERs (except class 2) are routed directly to the TE using unsolicited
-        #                 result code: +CMT: [<alpha>],<length><CR><LF><pdu> (PDU mode enabled) or
-        #                 +CMT:<oa>,[<alpha>],<scts>[,<tooa>,<fo>,<pid>,<dcs>,<sca>,<tosca>,<length>]
-        #                 <CR><LF><data> (text mode enabled; about the parameters in italics, see
-        #                 AT+CSDH) or ^HCMT: <oa>,<scts>,<lang>,<fmt>,<length>,<prt>,<prv>,<type>,
-        #                 <stat><CR><LF><data> (text mode for CDMA SMS). Class 2 messages result in
-        #                 indication as defined in <mt>=1
-        # 3               Class 3 SMS-DELIVERs are routed directly to TE by using unsolicited result codes
-        #                 defined in <mt>=2. Messages of other classes result in indication as defined in
-        #                 <mt>=1
-        # <bm>            Integer type. The rules for storing received CBMs depend on its data coding scheme (see
-        #                 3GPP TS 23.038) and the setting of Select CBM Types (AT+CSCB), and the value is:
-        # 0               No CBM indications are routed to the TE
-        # 2               New CBMs are routed directly to the TE using unsolicited result code:
-        #                 +CBM:   <length><CR><LF><pdu>   (PDU mode); or
-        #                 +CBM: <sn>,<mid>,<dcs>,<page>,<pages><CR><LF><data> (text mode)
-        # <ds>            Integer type.
-        # 0               No SMS-STATUS-REPORTs are routed to the TE
-        # 1               SMS-STATUS-REPORTs are routed to the TE using unsolicited result code:
-        #                 +CDS: <length><CR><LF><pdu> (PDU mode)
-        #                 +CDS: <fo>,<mr>,[<ra>],[<tora>],<scts>,<dt>,<st> (text mode)
-        # 2               If SMS-STATUS-REPORT is stored into ME/TA, indication of the memory location
-        #                 is routed to the TE using unsolicited result code:
-        #                 +CDSI: <mem>,<index>
-        # <bfr>           Integer type.
-        # 0               TA buffer of unsolicited result codes defined within this command is flushed to
-        #                 the TE when <mode> 1 or 2 is entered (OK response shall be given before flushing
-        #                 the codes)
-        # 1               TA buffer of unsolicited result codes defined within this command is cleared when
-        #                 <mode> 1 or 2 is entered
-        # """
         return self.sendCommand(f"AT+CNMI={p_mode},{p_mt},{p_bm},{p_ds},{p_bfr}")
 
     def shortMessageServiceCommands914SelectCellBroadcastMessageTypesRead(
@@ -3167,15 +2192,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <mode>          Integer type.
-        # 0               Message types specified in <mids> and <dcss> are accepted
-        # 1               Message types specified in <mids> and <dcss> are not accepted
-        # <mids>          String type. All different possible combinations of CBM message identifiers (see <mid>),
-        #                 e.g. “0,1,5,320-478,922”.
-        # <dcss>          String type. All different possible combinations of CBM data coding schemes (see <dcs>)
-        #                 (default is empty string), e.g. “0-3,5”.
-        # """
         return self.sendCommand(f'AT+CSCB={p_mode},"{p_mids}","{p_dcss}"')
 
     def shortMessageServiceCommands915ShowSmsTextModeParametersRead(
@@ -3203,13 +2219,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <show>          Integer type
-        # 0               Do not show header values defined in commands +CSCA, +CSMP (<sca>,
-        #                 <tosca>, <fo>, <vp>, <pid>, <dcs>) and <length>, <toda> or <tooa> in +CMT,
-        #                 +CMGL, +CMGR result codes for SMS-DELIVERs and SMS-SUBMITs in text mode
-        # 1               Show the values in result codes
-        # """
         return self.sendCommand(f"AT+CSDH={p_show}")
 
     def shortMessageServiceCommands916SetSmsTextModeParametersRead(
@@ -3241,17 +2250,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <fo>            First octet. Depending on the command or result code: First octet of 3GPP TS 23.040
-        #                 SMS-DELIVER, SMS-SUBMIT (default 17), SMS-STATUS-REPORT, SMS-COMMAND in
-        #                 integer format. If a valid value has been entered once, parameter can be omitted.
-        # <vp>            Validity period. Depending on SMS-SUBMIT <fo> setting: 3GPP TS 23.040 TP-Validity-
-        #                 Period either in integer format or in time-string format (see <dt>). Default value: 167.
-        # <pid>           Protocol identifier. 3GPP TS 23.040 TP-Protocol-Identifier in integer format (default 0).
-        # <dcs>           Data coding scheme. Depending on the command or result code: 3GPP TS 23.038
-        #                 SMS Data Coding Scheme (default 0), or Cell Broadcast Data Coding Scheme in
-        #                 integer format.
-        # """
         return self.sendCommand(f"AT+CSMP={p_fo},{p_vp},{p_pid},{p_dcs}")
 
     def shortMessageServiceCommands917SendConcatenatedMessagesTextMode(
@@ -3283,19 +2281,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <uid>           Integer type. Message identification in the user data header (UDH). Range: 0-255. This parameter is defined and inputted by the user. All segments of a same
-        #                 concatenated message must have the same <uid>. Different concatenated
-        #                 messages should have different <uid>.
-
-        # <msg_seg>       Integer type. Sequence number of a concatenated message. Range: 0–7.
-        #                 <msg_seg>=0 means: ignore the value and regard it as a non-concatenated message.
-        # <msg_total>     Integer type. The total number of the segments of one concatenated message.
-        #                 Range: 0–7. <msg_total>=0 or 1 means: ignore the value and regard it as a non-concatenated message.
-        # <da>            See AT+CMGS.
-        # <toda>          See AT+CMGS.
-        # <mr>            See AT+CMGS.
-        # """
         return self.sendCommand(
             f'AT+QCMGS="{p_da}",{p_toda},{p_uid},{p_msg_seg},{p_msg_total}\r{p_text}\x1A'
         )
@@ -3348,12 +2333,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <state>         Integer type. Indicates the state of PS attachment
-        # 0               Detached
-        # 1               Attached
-        # Other values are reserved and will result in an ERROR response to the Write Command
-        # """
         return self.sendCommand(f"AT+CGATT={p_state}")
 
     def packetDomainCommands1002DefinePdpContextRead(self) -> tuple[bool, list[str]]:
@@ -3425,56 +2404,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <cid>               PDP context identifier. Range: 1–15. A numeric parameter which specifies a particular
-        #                     PDP context definition. The parameter is local to the TE-MT interface and is used in
-        #                     other PDP context-related commands. The range of permitted values (minimum
-        #                     value=1) is returned by the test form of the command.
-        # <PDP_type>          String type. Packet data protocol type, a string parameter which specifies the type of
-        #                     packet data protocol.
-        # ''IP''              Internet Protocol (IETF STD 5)
-        # ''PPP''             Point to Point Protocol (IETF STD 51).
-        # ''IPV6''            Internet Protocol, version 6
-        # ''IPV4V6''          Virtual <PDP_type> introduced to handle dual IP stack UE capability
-        # <APN>               Access point name, a string parameter that is a logical name used to select the GGSN
-        #                     or the external packet data network. If the value is null or omitted, then the
-        #                     subscription value will be requested.
-        # <PDP_addr>          A string parameter identifies the MT in the address space applicable to the PDP. If the
-        #                     value is null or omitted, then a value may be provided by the TE during the PDP startup
-        #                     procedure or, failing that, a dynamic address will be requested. The allocated address
-        #                     may be read using the AT+CGPADDR command.
-        # <data_comp>         A numeric parameter that controls PDP data compression (applicable for SNDCP
-        #                     only) (see 3GPP TS 44.065).
-        # 0                   Off (Default if value is omitted)
-        # 1                   On (Manufacturer preferred compression)
-        # 2                   V.42bis
-        # 3                   V.44 (Not supported currently)
-        # <head_comp>         A numeric parameter that controls PDP header compression (see 3GPP TS 44.065
-        #                     and 3GPP TS 25.323).
-        # 0                   Off
-        # 1                   On
-        # 2                   RFC1144
-        # 3                   RFC2507
-        # 4                   RFC3095
-        # <IPv4AddrAlloc>     Numeric type. Control how the MT/TA requests to get the IPv4 address information.
-        # 0                   IPv4 address allocated through NAS signalling
-        # 1                   IPv4 address allocated through DHCP
-        # <request_type>      Numeric type. Indicate the type of PDP context activation request for the PDP context.
-        #                     Please see 3GPP TS 24.301 (subclause 6.5.1.2) and 3GPP TS 24.008 (subclause
-        #                     10.5.6.17). If the initial PDP context is supported (subclause 10.1.0), it is not allowed to
-        #                     assign <cid>=0 for emergency bearer services. According to 3GPP TS 24.008
-        #                     (subclause 4.2.4.2.2 and 4.2.5.1.4) and 3GPP TS 24.301 (subclause 5.2.2.3.3 and
-        #                     5.2.3.2.2), a separate PDP context must be established for emergency bearer services.
-        # <P-CSCF_discovery>  Numeric type. Affect how the MT/TA requests to get the P-CSCF
-        #                     address, (see 3GPP TS 24.229 annex B and L).
-        # 0                   Preference of P-CSCF address discovery not affected by AT+CGDCONT
-        # 1                   Preference of P-CSCF address discovery through NAS signaling
-        # 2                   Preference of P-CSCF address discovery through DHCP
-        # <IM_CN_Signalling_Flag_Ind> Numeric type. Indicates to the network whether the PDP context is
-        #                     for IM CN subsystem-related signaling only or not.
-        # 0                   UE indicates that the PDP context is not for IM CN subsystem-related signaling only
-        # 1                   UE indicates that the PDP context is for IM CN subsystem-related signaling only
-        # """
         return self.sendCommand(
             f'AT+CGDCONT={p_cid},"{p_pdp_type}","{p_apn}","{p_pdp_addr}",{p_data_comp},{p_head_comp},{p_ipv4_addr_alloc},{p_request_type},{p_p_cscf_discovery},{p_im_cn_signalling_flag_ind}'
         )
@@ -3559,65 +2488,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <cid>           A numeric parameter which specifies a particular PDP context definition (see AT+CGDCONT command)
-        # <PDP_type>      String type. Packet Data Protocol type.
-        # ''IP''          Internet Protocol (IETF STD 5)
-        # ''PPP''         Point to Point Protocol (IETF STD 51).
-        # ''IPV6''        Internet Protocol, version 6
-        # ''IPV4V6''      Virtual <PDP_type> introduced to handle dual IP stack UE capability
-        # <precedence>    A numeric parameter which specifies the precedence class.
-        # 0               Network subscribed value
-        # 1               High Priority. Service commitments shall be maintained ahead of precedence
-        #                 classes 2 and 3
-        # 2               Normal priority. Service commitments shall be maintained ahead of
-        #                 precedence class 3
-        # 3               Low priority. Service commitments shall be maintained
-        # <delay>         A numeric parameter which specifies the delay class. This parameter defines the
-        #                 end-to-end transfer delay incurred in the transmission of SDUs through the network.
-        #                 For the details, see Table 5.
-        # 0               Network subscribed value
-
-        # <reliability>   A numeric parameter which specifies the reliability class
-        # 0               Network subscribed value
-        # 1               Non real-time traffic, error-sensitive application that cannot cope with data loss
-        # 2               Non real-time traffic, error-sensitive application that can cope with infrequent data loss
-        # 3               Non real-time traffic, error-sensitive application that can cope with data loss,GMM/SM, and SMS
-        # 4               Real-time traffic, error-sensitive application that can cope with data loss
-        # 5               Real-time traffic, error non-sensitive application that can cope with data loss
-        # <peak>          A numeric parameter which specifies the peak throughput class, in octets per second.
-        # 0               Network subscribed value
-        # 1               Up to 1 000 (8 kbit/s)
-        # 2               Up to 2 000 (16 kbit/s)
-        # 3               Up to 4 000 (32 kbit/s)
-        # 4               Up to 8 000 (64 kbit/s)
-        # 5               Up to 16 000 (128 kbit/s)
-        # 6               Up to 32 000 (256 kbit/s)
-        # 7               Up to 64 000 (512 kbit/s)
-        # 8               Up to 128 000 (1024 kbit/s)
-        # 9               Up to 256 000 (2048 kbit/s)
-        # <mean>          A numeric parameter which specifies the mean throughput class, in octets per hour.
-        # 0               Network subscribed value
-        # 1               100 (~0.22 bit/s)
-        # 2               200 (~0.44 bit/s)
-        # 3               500 (~1.11 bit/s)
-        # 4               1 000 (~2.2 bit/s)
-        # 5               2 000 (~4.4 bit/s)
-        # 6               5 000 (~11.1 bit/s)
-        # 7               10 000 (~22 bit/s)
-        # 8               20 000 (~44 bit/s)
-        # 9               50 000 (~111 bit/s)
-        # 10              100 000 (~0.22 kbit/s)
-        # 11              200 000 (~0.44 kbit/s)
-        # 12              500 000(~1.11 kbit/s)
-        # 13              1000 000 (~2.2 kbit/s)
-        # 14              2 000 000 (~4.4 kbit/s)
-        # 15              5 000 000 (~11.1 kbit/s)
-        # 16              10 000 000 (~22 kbit/s)
-        # 17              20 000 000 (~44 kbit/s)
-        # 18              50 000 000 (~111 kbit/s)
-        # 31              Best effort
-        # """
         return self.sendCommand(
             f"AT+CGQREQ={p_cid},{p_precedence},{p_delay},{p_reliability},{p_peak},{p_mean}"
         )
@@ -3702,65 +2572,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <cid>           A numeric parameter which specifies a particular PDP context definition (see AT+CGDCONT command)
-        # <PDP_type>      String type. Packet Data Protocol type.
-        # ''IP''          Internet Protocol (IETF STD 5)
-        # ''PPP''         Point to Point Protocol (IETF STD 51).
-        # ''IPV6''        Internet Protocol, version 6
-        # ''IPV4V6''      Virtual <PDP_type> introduced to handle dual IP stack UE capability
-        # <precedence>    A numeric parameter which specifies the precedence class.
-        # 0               Network subscribed value
-        # 1               High Priority. Service commitments shall be maintained ahead of precedence
-        #                 classes 2 and 3
-        # 2               Normal priority. Service commitments shall be maintained ahead of
-        #                 precedence class 3
-        # 3               Low priority. Service commitments shall be maintained
-        # <delay>         A numeric parameter which specifies the delay class. This parameter defines the
-        #                 end-to-end transfer delay incurred in the transmission of SDUs through the network.
-        #                 For the details, see Table 5.
-        # 0               Network subscribed value
-
-        # <reliability>   A numeric parameter which specifies the reliability class
-        # 0               Network subscribed value
-        # 1               Non real-time traffic, error-sensitive application that cannot cope with data loss
-        # 2               Non real-time traffic, error-sensitive application that can cope with infrequent data loss
-        # 3               Non real-time traffic, error-sensitive application that can cope with data loss,GMM/SM, and SMS
-        # 4               Real-time traffic, error-sensitive application that can cope with data loss
-        # 5               Real-time traffic, error non-sensitive application that can cope with data loss
-        # <peak>          A numeric parameter which specifies the peak throughput class, in octets per second.
-        # 0               Network subscribed value
-        # 1               Up to 1 000 (8 kbit/s)
-        # 2               Up to 2 000 (16 kbit/s)
-        # 3               Up to 4 000 (32 kbit/s)
-        # 4               Up to 8 000 (64 kbit/s)
-        # 5               Up to 16 000 (128 kbit/s)
-        # 6               Up to 32 000 (256 kbit/s)
-        # 7               Up to 64 000 (512 kbit/s)
-        # 8               Up to 128 000 (1024 kbit/s)
-        # 9               Up to 256 000 (2048 kbit/s)
-        # <mean>          A numeric parameter which specifies the mean throughput class, in octets per hour.
-        # 0               Network subscribed value
-        # 1               100 (~0.22 bit/s)
-        # 2               200 (~0.44 bit/s)
-        # 3               500 (~1.11 bit/s)
-        # 4               1 000 (~2.2 bit/s)
-        # 5               2 000 (~4.4 bit/s)
-        # 6               5 000 (~11.1 bit/s)
-        # 7               10 000 (~22 bit/s)
-        # 8               20 000 (~44 bit/s)
-        # 9               50 000 (~111 bit/s)
-        # 10              100 000 (~0.22 kbit/s)
-        # 11              200 000 (~0.44 kbit/s)
-        # 12              500 000(~1.11 kbit/s)
-        # 13              1000 000 (~2.2 kbit/s)
-        # 14              2 000 000 (~4.4 kbit/s)
-        # 15              5 000 000 (~11.1 kbit/s)
-        # 16              10 000 000 (~22 kbit/s)
-        # 17              20 000 000 (~44 kbit/s)
-        # 18              50 000 000 (~111 kbit/s)
-        # 31              Best effort
-        # """
         return self.sendCommand(
             f"AT+CGQMIN={p_cid},{p_precedence},{p_delay},{p_reliability},{p_peak},{p_mean}"
         )
@@ -3894,147 +2705,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <cid>                           PDP context identifier, a numeric parameter which specifies a
-        #                                 particular PDP context definition. The parameter is local to the TE-
-        #                                 MT interface and is used in other PDP context-related commands.
-        #                                 The range of permitted values (minimum value=1) is returned by
-        #                                 the test form of the command.
-        # <PDP_type>                      String type. The type of packet data protocol.
-        # "IP"                            Internet Protocol (IETF STD 5)
-        # "PPP"                           Point to Point Protocol (IETF STD 51).
-        # "IPV6"                          Internet Protocol, version 6
-        # "IPV4V6"                        Virtual <PDP_type> introduced to handle dual IP
-        #                                 stack UE capability
-        #                                 The following parameters are defined in 3GPP TS 23.107
-        # <Traffic class>                 Integer type. Indicates the type of application for which the UMTS
-        #                                 bearer service is optimized (see 3GPP TS 24.008 subclause
-        #                                 10.5.6.5). If the parameter is specified as conversational or
-        #                                 streaming, then the Guaranteed and Maximum bitrate parameters
-        #                                 should also be provided.
-        # 0                               Conversational
-        # 1                               Streaming
-        # 2                               Interactive
-        # 3                               Background
-        # 4                               Subscribed value
-        # <Maximum bitrate UL>            Integer type. Indicates the maximum number of kbits/s delivered to
-        #                                 UMTS (up-link traffic) at a SAP. As an example, a bit rate of
-        #                                 32 kbit/s would be specified as ‘32’
-        #                                 (e.g. AT+CGEQREQ=…,32, …). Range: 0–256000.
-        # 0                               Subscribed value
-        # 0–64
-        # 64–568                          (value needs to be a multiple of 8)
-        # 568–8640                        (value needs to be a multiple of 64)
-        # 8640–16000                      (value needs to be a multiple of 100)
-        # 16000–128000                    (value needs to be a multiple of 1000)
-        # 128000–256000                   (value needs to be a multiple of 2000)
-        # <Maximum bitrate DL>            Integer type. Indicates the maximum number of kbits/s delivered by
-        #                                 UMTS (down-link traffic) at a SAP. As an example, a bitrate of
-        #                                 32 kbit/s would be specified as ‘32’
-        #                                 (e.g. AT+CGEQREQ=…,32, …).
-        #                                 Range: 0–256000.
-        # 0                               Subscribed value
-        # 0–64
-        # 64–568                          (value needs to be a multiple of 8)
-        # 568–8640                        (value needs to be a multiple of 64)
-        # 8640–16000                      (value needs to be a multiple of 100)
-        # 16000–128000                    (value needs to be a multiple of 1000)
-        # 128000–256000                   (value needs to be a multiple of 2000)
-        # <Guaranteed bitrate UL>         Integer type. Indicates the guaranteed number of kbits/s delivered
-        #                                 to UMTS (up-link traffic) at a SAP (provided that there is data to
-        #                                 deliver). As an example, a bitrate of 32 kbit/s would be specified as
-        #                                 ‘32’ (e.g. AT+CGEQREQ=…,32, …). Range: 0–256000.
-        # 0                               Subscribed value
-        # 0–64
-        # 64–568                          (value needs to be a multiple of 8)
-        # 568–8640                        (value needs to be a multiple of 64)
-        # 8640–16000                      (value needs to be a multiple of 100)
-        # 16000–128000                    (value needs to be a multiple of 1000)
-        # 128000–256000                   (value needs to be a multiple of 2000)
-        # <Guaranteed bitrate DL>         Integer type. Indicates the guaranteed number of kbits/s delivered
-        #                                 by UMTS (down-link traffic) at a SAP (provided that there is data to
-        #                                 deliver). As an example, a bitrate of 32 kbit/s would be specified as
-        #                                 ‘32’ (e.g. AT+CGEQREQ=…,32, …). Range: 0–256000.
-        # 0                               Subscribed value
-        # 0–64
-        # 64–568                          (value needs to be a multiple of 8)
-        # 568–8640                        (value needs to be a multiple of 64)
-        # 8640–16000                      (value needs to be a multiple of 100)
-        # 16000–128000                    (value needs to be a multiple of 1000)
-        # 128000–256000                   (value needs to be a multiple of 2000)
-        # <Delivery order>                Integer type. Indicates whether the UMTS bearer shall provide in-
-        #                                 sequence SDU delivery or not (see 3GPP TS 24.008 subclause
-        #                                 10.5.6.5).
-        # 0                               No
-        # 1                               Yes
-        # 2                               Subscribed value
-        # <Maximum SDU size>              Integer type. (1,2,3,…) indicates the maximum allowed SDU size in
-        #                                 octets. If the parameter is set to ‘0’ the subscribed value will be
-        #                                 requested (see 3GPP TS 24.008 subclause 10.5.6.5).
-        # 0                               Subscribed value
-        # 10–520                          (Value needs to be divisible by 10 without remainder)
-        # 1520
-        # <SDU error ratio>               String type. Indicates the target value for the fraction of SDUs lost
-        #                                 or detected as erroneous. SDU error ratio is defined only for
-        #                                 conforming traffic. The value is specified as ‘mEe’. As an example a
-        #                                 target SDU error ratio of 5 × 10-3 would be specified as "5E3" (e.g.
-        #                                 AT+CGEQREQ=…,"5E3",…).
-        # "0E0"                                   Subscribed value
-        # "1E1"
-        # "1E2"
-        # "7E3"
-        # "1E3"
-        # "1E4"
-        # "1E5"
-        # "1E6"
-        # <Residual bit error ratio>      String type. Indicates the target value for the undetected bit error
-        #                                 ratio in the delivered SDUs. If no error detection is requested,
-        #                                 Residual bit error ratio indicates the bit error ratio in the delivered
-        #                                 SDUs. The value is specified as “mEe”. As an example, a target
-        #                                 residual bit error ratio of 5 × 10-3 would be specified as "5E3" (e.g.
-        #                                 AT+CGEQREQ=…,"5E3",…).
-        # "0E0"                           Subscribed value
-        # "5E2"
-        # "1E2"
-        # "5E3"
-        # "4E3"
-        # "1E3"
-        # "1E4"
-        # "1E5"
-        # "1E6"
-        # "6E8"
-        # <Delivery of erroneous SDUs>    Integer type. Indicates whether SDUs detected as erroneous shall
-        #                                 be delivered or not (see 3GPP TS 24.008 subclause 10.5.6.5).
-        # 0                               No
-        # 1                               Yes
-        # 2                               No detect
-        # 3                               Subscribed value
-        # <Transfer delay>                Integer type. (0,1,2,…) indicates the targeted time between request
-        #                                 to transfer an SDU at one SAP to its delivery at the other SAP, in
-        #                                 milliseconds. If the parameter is set to ‘0’ the subscribed value will
-        #                                 be requested (see 3GPP TS 24.008 subclause 10.5.6.5).
-        # 0                               Subscribed value
-        # 100–150                         (value needs to be divisible by 10 without remainder)
-        # 200–950                         (value needs to be divisible by 50 without remainder)
-        # 1000–4000                       (value needs to be divisible by 100 without remainder)
-        # <Traffic handling priority>     Integer type. (1,2,3,…) specifies the relative importance for handling
-        #                                 of all SDUs belonging to the UMTS bearer compared to the SDUs
-        #                                 of other bearers. If the parameter is set to ‘0’ the subscribed value
-        #                                 will be requested (see 3GPP TS 24.008 subclause 10.5.6.5).
-        # 0                               Subscribed
-        # 1
-        # 2
-        # 3
-        # <Source statistics descriptor>  Integer type. Specifies characteristics of the source of the submitted
-        #                                 SDUs for a PDP context.
-        # 0                               Characteristics of SDUs is unknown
-        # 1                               Characteristics of SDUs correspond to a speech source
-        # <Signalling indication>         Integer type. Indicates signaling content of submitted SDUs for a
-        #                                 PDP context.
-        # 0                               PDP context is not optimized for signaling
-        # 1                               PDP context is optimized for signaling
-        # <err>                           Error code. See Chapter 12.5 for details.
-        # """
         return self.sendCommand(
             f'AT+CGEQREQ={p_cid},{p_traffic_class},{p_max_bitrate_ul},{p_max_bitrate_dl},{p_guaranteed_bitrate_ul},{p_guaranteed_bitrate_dl},{p_delivery_order},{p_max_sdu_size},"{p_sdu_error_ratio}","{p_residual_bit_error_ratio}",{p_delivery_of_err_sdu},{p_transfer_delay},{p_traffic_handling_priority},{p_source_statistics_descriptor},{p_signalling_indication}'
         )
@@ -4168,147 +2838,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <cid>                           PDP context identifier, a numeric parameter which specifies a
-        #                                 particular PDP context definition. The parameter is local to the TE-
-        #                                 MT interface and is used in other PDP context-related commands.
-        #                                 The range of permitted values (minimum value=1) is returned by
-        #                                 the test form of the command.
-        # <PDP_type>                      String type. The type of packet data protocol.
-        # "IP"                            Internet Protocol (IETF STD 5)
-        # "PPP"                           Point to Point Protocol (IETF STD 51).
-        # "IPV6"                          Internet Protocol, version 6
-        # "IPV4V6"                        Virtual <PDP_type> introduced to handle dual IP
-        #                                 stack UE capability
-        #                                 The following parameters are defined in 3GPP TS 23.107
-        # <Traffic class>                 Integer type. Indicates the type of application for which the UMTS
-        #                                 bearer service is optimized (see 3GPP TS 24.008 subclause
-        #                                 10.5.6.5). If the parameter is specified as conversational or
-        #                                 streaming, then the Guaranteed and Maximum bitrate parameters
-        #                                 should also be provided.
-        # 0                               Conversational
-        # 1                               Streaming
-        # 2                               Interactive
-        # 3                               Background
-        # 4                               Subscribed value
-        # <Maximum bitrate UL>            Integer type. Indicates the maximum number of kbits/s delivered to
-        #                                 UMTS (up-link traffic) at a SAP. As an example, a bit rate of
-        #                                 32 kbit/s would be specified as ‘32’
-        #                                 (e.g. AT+CGEQREQ=…,32, …). Range: 0–256000.
-        # 0                               Subscribed value
-        # 0–64
-        # 64–568                          (value needs to be a multiple of 8)
-        # 568–8640                        (value needs to be a multiple of 64)
-        # 8640–16000                      (value needs to be a multiple of 100)
-        # 16000–128000                    (value needs to be a multiple of 1000)
-        # 128000–256000                   (value needs to be a multiple of 2000)
-        # <Maximum bitrate DL>            Integer type. Indicates the maximum number of kbits/s delivered by
-        #                                 UMTS (down-link traffic) at a SAP. As an example, a bitrate of
-        #                                 32 kbit/s would be specified as ‘32’
-        #                                 (e.g. AT+CGEQREQ=…,32, …).
-        #                                 Range: 0–256000.
-        # 0                               Subscribed value
-        # 0–64
-        # 64–568                          (value needs to be a multiple of 8)
-        # 568–8640                        (value needs to be a multiple of 64)
-        # 8640–16000                      (value needs to be a multiple of 100)
-        # 16000–128000                    (value needs to be a multiple of 1000)
-        # 128000–256000                   (value needs to be a multiple of 2000)
-        # <Guaranteed bitrate UL>         Integer type. Indicates the guaranteed number of kbits/s delivered
-        #                                 to UMTS (up-link traffic) at a SAP (provided that there is data to
-        #                                 deliver). As an example, a bitrate of 32 kbit/s would be specified as
-        #                                 ‘32’ (e.g. AT+CGEQREQ=…,32, …). Range: 0–256000.
-        # 0                               Subscribed value
-        # 0–64
-        # 64–568                          (value needs to be a multiple of 8)
-        # 568–8640                        (value needs to be a multiple of 64)
-        # 8640–16000                      (value needs to be a multiple of 100)
-        # 16000–128000                    (value needs to be a multiple of 1000)
-        # 128000–256000                   (value needs to be a multiple of 2000)
-        # <Guaranteed bitrate DL>         Integer type. Indicates the guaranteed number of kbits/s delivered
-        #                                 by UMTS (down-link traffic) at a SAP (provided that there is data to
-        #                                 deliver). As an example, a bitrate of 32 kbit/s would be specified as
-        #                                 ‘32’ (e.g. AT+CGEQREQ=…,32, …). Range: 0–256000.
-        # 0                               Subscribed value
-        # 0–64
-        # 64–568                          (value needs to be a multiple of 8)
-        # 568–8640                        (value needs to be a multiple of 64)
-        # 8640–16000                      (value needs to be a multiple of 100)
-        # 16000–128000                    (value needs to be a multiple of 1000)
-        # 128000–256000                   (value needs to be a multiple of 2000)
-        # <Delivery order>                Integer type. Indicates whether the UMTS bearer shall provide in-
-        #                                 sequence SDU delivery or not (see 3GPP TS 24.008 subclause
-        #                                 10.5.6.5).
-        # 0                               No
-        # 1                               Yes
-        # 2                               Subscribed value
-        # <Maximum SDU size>              Integer type. (1,2,3,…) indicates the maximum allowed SDU size in
-        #                                 octets. If the parameter is set to ‘0’ the subscribed value will be
-        #                                 requested (see 3GPP TS 24.008 subclause 10.5.6.5).
-        # 0                               Subscribed value
-        # 10–520                          (Value needs to be divisible by 10 without remainder)
-        # 1520
-        #                                 <SDU error ratio>               String type. Indicates the target value for the fraction of SDUs lost
-        #                                 or detected as erroneous. SDU error ratio is defined only for
-        #                                 conforming traffic. The value is specified as ‘mEe’. As an example, a
-        #                                 target SDU error ratio of 5 × 10-3 would be specified as "5E3" (e.g.
-        #                                 AT+CGEQREQ=…,"5E3",…).
-        # "0E0"                           Subscribed value
-        # "1E2"
-        # "7E3"
-        # "1E3"
-        # "1E4"
-        # "1E5"
-        # "1E6"
-        # "1E1"
-        # <Residual bit error ratio>      String type. Indicates the target value for the undetected bit error
-        #                                 ratio in the delivered SDUs. If no error detection is requested,
-        #                                 Residual bit error ratio indicates the bit error ratio in the delivered
-        #                                 SDUs. The value is specified as “mEe”. As an example, a target
-        #                                 residual bit error ratio of 5 × 10-3 would be specified as "5E3" (e.g.
-        #                                 AT+CGEQREQ=…,"5E3",…).
-        # "0E0"                           Subscribed value
-        # "5E2"
-        # "1E2"
-        # "5E3"
-        # "4E3"
-        # "1E3"
-        # "1E4"
-        # "1E5"
-        # "1E6"
-        # "6E8"
-        # <Delivery of erroneous SDUs>    Integer type. Indicates whether SDUs detected as erroneous shall
-        #                                 be delivered or not (see 3GPP TS 24.008 subclause 10.5.6.5).
-        # 0                               No
-        # 1                               Yes
-        # 2                               No detect
-        # 3                               Subscribed value
-        # <Transfer delay>                Integer type. (0,1,2,…) indicates the targeted time between request
-        #                                 to transfer an SDU at one SAP to its delivery at the other SAP, in
-        #                                 milliseconds. If the parameter is set to ‘0’ the subscribed value will
-        #                                 be requested (see 3GPP TS 24.008 subclause 10.5.6.5).
-        # 0                               Subscribed value
-        # 100–150                         (value needs to be divisible by 10 without remainder)
-        # 200–950                         (value needs to be divisible by 50 without remainder)
-        # 1000–4000                       (value needs to be divisible by 100 without remainder)
-        # <Traffic handling priority>     Integer type. (1,2,3,…) specifies the relative importance for handling
-        #                                 of all SDUs belonging to the UMTS bearer compared to the SDUs
-        #                                 of other bearers. If the parameter is set to ‘0’ the subscribed value
-        #                                 will be requested (see 3GPP TS 24.008 subclause 10.5.6.5).
-        # 0                               Subscribed
-        # 1
-        # 2
-        # 3
-        # <Source statistics descriptor>  Integer type. Specifies characteristics of the source of the submitted
-        #                                 SDUs for a PDP context.
-        # 0                               Characteristics of SDUs are unknown
-        # 1                               Characteristics of SDUs corresponds to a speech source
-        # <Signalling indication>         Integer type. Indicates signaling content of submitted SDUs for a
-        #                                 PDP context.
-        # 0                               PDP context is not optimized for signaling
-        # 1                               PDP context is optimized for signaling
-        # <err>                           Error code. See Chapter 12.5 for details.
-        # """
         return self.sendCommand(
             f'AT+CGEQMIN={p_cid},{p_traffic_class},{p_max_bitrate_ul},{p_max_bitrate_dl},{p_guaranteed_bitrate_ul},{p_guaranteed_bitrate_dl},{p_delivery_order},{p_max_sdu_size},"{p_sdu_error_ratio}","{p_residual_bit_error_ratio}",{p_delivery_of_err_sdu},{p_transfer_delay},{p_traffic_handling_priority},{p_source_statistics_descriptor},{p_signalling_indication}'
         )
@@ -4341,14 +2870,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <state>             Indicates the state of PDP context activation
-        # 0                   Deactivated
-        # 1                   Activated
-        # Other values are reserved and will result in an ERROR response to the Write Command
-        # <cid>               A numeric parameter which specifies a particular PDP context definition (see AT+CGDCONT)
-        # <err>               Error code. See Chapter 12.5 for details.
-        # """
         return self.sendCommand(f"AT+CGACT={p_state},{p_cid}")
 
     def packetDomainCommands1008EnterDataState(
@@ -4367,14 +2888,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <L2P>           String type. The layer 2 protocol to be used between the TE and MT:
-        #                 PPP (Point to Point protocol) for a PDP such as IP
-        #                 Other values are not supported and will result in an ERROR response to the execution
-        #                 command
-        # <cid>           Integer type. The particular PDP context definition (see AT+CGDCONT)
-        # <err>           Error code. See Chapter 12.5 for details.
-        # """
         return self.sendCommand(f'AT+CGDATA="{p_l2p}",{p_cid}')
 
     def packetDomainCommands1009ShowPdpAddress(
@@ -4389,10 +2902,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <cid>           A numeric parameter which specifies a particular PDP context definition (see AT+CGDCONT command)
-        # <err>           Error code. See Chapter 12.5 for details.
-        # """
         return self.sendCommand(f"AT+CGPADDR={p_cid}")
 
     def packetDomainCommands1010GprsMobileStationClassRead(
@@ -4420,11 +2929,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <class>         String type. GPRS mobile class (Functionality in descending order).
-        #                 "A" Class-A mode of operation (A/Gb mode), or CS/PS mode of operation (Iu mode)
-        #                 (highest mode of operation)
-        # """
         return self.sendCommand(f'AT+CGCLASS="{p_class}"')
 
     def packetDomainCommands1011PsDomainNetworkRegistrationStatusRead(
@@ -4453,37 +2957,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <n>         Integer type.
-        # 0           Disable network registration unsolicited result code
-        # 1           Enable network registration unsolicited result code +CGREG: <stat>
-        # 2           Enable network registration and location information unsolicited result code +CGREG: <stat>[,<lac>,<ci>[,<Act>]]
-        # <stat>      Integer type. Network registration status.
-        # 0           Not registered. MT is not currently searching an operator to register to. The UE is in
-        #             GMM state GMM-NULL or GMM-DEREGISTERED-INITIATED. The network service
-        #             is disabled, but the UE is allowed to attach to the network if requested by the user.
-        # 1           Registered, home network. The UE is in GMM state GMM-REGISTERED or GMM-
-        #             ROUTING-AREA-UPDATING-INITIATED INITIATED on the home PLMN.
-        # 2           Not registered, but MT is currently trying to attach or searching an operator to
-        #             register to. The UE is in GMM state GMM-DEREGISTERED or GMM-
-        #             REGISTERED-INITIATED. The network service is enabled, but an allowable PLMN is
-        #             currently not available. The UE will start a network attachment as soon as an
-        #             allowable PLMN is available.
-        # 3           Registration denied. The UE is in GMM state GMM-NULL. The network service is
-        #             disabled, and the UE is not allowed to attach to the network if requested by the user.
-        # 4           Unknown
-        # 5           Registered, roaming
-        # <lac>       String type. Two-byte location area code in hexadecimal format (e.g. “00C3” equals 195 in decimal).
-        # <ci>        String type. 16-bit (GSM) or 28-bit (UMTS/LTE) cell ID in hexadecimal format.
-        # <Act>       Integer type. Access technology selected.
-        # 0           GSM
-        # 2           UTRAN
-        # 3           GSM W/EGPRS
-        # 4           UTRAN W/HSDPA
-        # 5           UTRAN W/HSUPA
-        # 6           UTRAN W/HSDPA and HSUPA
-        # 7           E-UTRAN
-        # """
         return self.sendCommand(f"AT+CGREG={p_n}")
 
     def packetDomainCommands1012PacketDomainEventReportingRead(
@@ -4516,22 +2989,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <mode>          Integer type.
-        # 0               Buffer unsolicited result codes in the MT; if MT result code buffer is full, the oldest
-        #                 ones can be discarded. No codes are forwarded to the TE.
-        # 1               Discard unsolicited result codes when MT-TE link is reserved (e.g. in on-line data
-        #                 mode), otherwise forward them directly to the TE.
-        # 2               Buffer unsolicited result codes in the MT when MT-TE link is reserved (e.g. in
-        #                 on-line data mode) and flush them to the TE when MT-TE link becomes available.
-        #                 Otherwise forward them directly to the TE.
-        # <bfr>           Integer type.
-        # 0               MT buffer of unsolicited result codes defined within this command is cleared when
-        #                 <mode> 1 or 2 is entered.
-        # 1               MT buffer of unsolicited result codes defined within this command is flushed to the
-        #                 TE when <mode> 1 or 2 is entered (OK response shall be given before flushing
-        #                 the codes).
-        # """
         return self.sendCommand(f"AT+CGEREP={p_mode},{p_bfr}")
 
     def packetDomainCommands1013SelectServiceForMoSmsMessagesRead(
@@ -4561,13 +3018,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <service>           Integer type. Service or service preference to be used
-        # 0                   GPRS
-        # 1                   Circuit switch
-        # 2                   GPRS preferred (use circuit switched if GPRS not available)
-        # 3                   Circuit switch preferred (use GPRS if circuit switched not available)
-        # """
         return self.sendCommand(f"AT+CGSMS={p_service}")
 
     def packetDomainCommands1014EpsNetworkRegistrationStatusRead(
@@ -4594,13 +3044,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <n>             Integer type.
-        # 0               Disable network registration unsolicited result code
-        # 1               Enable network registration unsolicited result code +CEREG: <stat>
-        # 2               Enable network registration and location information unsolicited result code
-        #                 +CEREG: <stat>[,<tac>,<ci>[,<Act>]]
-        # """
         return self.sendCommand(f"AT+CEREG={p_n}")
 
     def packetDomainCommands1015PacketDataCounterRead(self) -> tuple[bool, list[str]]:
@@ -4627,12 +3070,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <op>            Integer type. The operation about data counter
-        # 0               Reset the data counter
-        # 1               Save the results of data counter to NV
-        #                 If the results need to be automatically saved, see AT+QAUGDCNT.
-        # """
         return self.sendCommand(f"AT+QGDCNT={p_op}")
 
     def packetDomainCommands1016AutoSavePacketDataCounterRead(
@@ -4659,11 +3096,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <value>             Integer type. The time-interval for AT+QGDCNT to save results to NV automatically. If it
-        #                     is set to 0, auto-save feature would be disabled. Range: 0, 30–65535. Default value: 0.
-        #                     Unit: second.
-        # """
         return self.sendCommand(f"AT+QAUGDCNT={p_value}")
 
     def packetDomainCommands1017ConnectUsbNetcardToNetworkRead(
@@ -4693,12 +3125,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <type>              Integer type. The type of the network connection.
-        # 0                   Disconnect the network connection.
-        # 1                   Connect the network connection.
-        # <cid>               Integer type. The PDP context identifier.
-        # """
         return self.sendCommand(f"AT+QNETDEVCTL={p_type},{p_cid}")
 
     def packetDomainCommands1018ConfigureResponseFormatOfAtCeerIn2g4gRead(
@@ -4726,11 +3152,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <mode>      Integer type. Return format of AT+CEER.
-        # 0           The return format of AT+CEER is +CEER: <text>
-        # 1           The return format of AT+CEER is +CEER: <category>,<cause>,<description>
-        # """
         return self.sendCommand(f"AT+QCEERCATCFG={p_mode}")
 
     def hardwareRelatedCommands1101PowerOff(self, p_n: int):
@@ -4745,11 +3166,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <n>             Integer type.
-        # 0               Immediately power down
-        # 1               Normal power down
-        # """
         return self.sendCommand(f"AT+QPOWD={p_n}")
 
     def hardwareRelatedCommands1102ClockRead(self) -> tuple[bool, list[str]]:
@@ -4776,12 +3192,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <time>          String type. The format is “yy/MM/dd,hh:mm:ss±zz”, indicating year (two last digits), month,
-        #                 day, hour, minutes, seconds and time zone (indicates the difference, expressed in quarters
-        #                 of an hour, between the local time and GMT; range: -48 to +56), e.g. May 6th, 1994, 22:10:00
-        #                 GMT+2 hours equals to “94/05/06,22:10:00+08”.
-        # """
         return self.sendCommand(f'AT+CCLK="{p_time}"')
 
     def hardwareRelatedCommands1103EnableDisableSleepModeRead(
@@ -4809,11 +3219,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <n>         Integer type.
-        # 0           Disable
-        # 1           Enable. It is controlled by DTR pin and WAKEUP_IN pin.
-        # """
         return self.sendCommand(f"AT+QSCLK={p_n}")
 
     def hardwareRelatedCommands1104QueryReadBatteryChargeInformation(
@@ -4839,11 +3244,6 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        # """
-        # <port>          Integer type. Channel number of the ADC.
-        # 0               ADC Channel 0
-        # 1               ADC Channel 1
-        # """
         return self.sendCommand(f"AT+QADC={p_port}")
 
 
