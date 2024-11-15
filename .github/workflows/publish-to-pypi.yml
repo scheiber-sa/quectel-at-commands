@@ -13,7 +13,7 @@ jobs:
   publish:
     name: Publish to PyPI
     runs-on: ubuntu-latest
-    environment: pypi-publish  # The GitHub environment for extra security
+    environment: pypi-publish # The GitHub environment for extra security
 
     steps:
       - name: Checkout code
@@ -22,7 +22,7 @@ jobs:
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.10'  # Specify Python 3.10 explicitly
+          python-version: "3.10" # Specify Python 3.10 explicitly
 
       - name: Install dependencies
         run: |
@@ -33,17 +33,32 @@ jobs:
           python3 -m pip show pip setuptools wheel build twine  # Verify the packages installed
           python3 --version  # Check Python version for debugging
 
+      - name: Auto-increment version
+        run: |
+          # Extract the current version
+          CURRENT_VERSION=$(grep '^version =' setup.cfg | cut -d' ' -f3)
+          # Split version into parts (assuming X.Y.Z format)
+          MAJOR=$(echo $CURRENT_VERSION | cut -d. -f1)
+          MINOR=$(echo $CURRENT_VERSION | cut -d. -f2)
+          PATCH=$(echo $CURRENT_VERSION | cut -d. -f3)
+          # Increment the PATCH version
+          NEW_PATCH=$((PATCH + 1))
+          NEW_VERSION="$MAJOR.$MINOR.$NEW_PATCH"
+          # Update setup.cfg with the new version
+          sed -i "s/^version = .*/version = $NEW_VERSION/" setup.cfg
+          echo "Updated version to $NEW_VERSION"
+
       - name: Build the package
         run: python3 -m build
 
       - name: List build artifacts
-        run: ls -l dist/  # List contents of the dist folder for debugging
+        run: ls -l dist/ # List contents of the dist folder for debugging
 
       - name: Publish to PyPI using Trusted Publisher
         env:
           TWINE_USERNAME: __token__
-          TWINE_PASSWORD: ""  # Empty password for OIDC authentication
-        run: python3 -m twine upload --repository pypi dist/* --verbose  # Enable verbose output for debugging
+          TWINE_PASSWORD: "" # Empty password for OIDC authentication
+        run: python3 -m twine upload --repository pypi dist/* --verbose # Enable verbose output for debugging
 
       - name: Debug Environment Variables
         # Debugging step to view environment variables (Optional)
