@@ -8,18 +8,22 @@ This package simplifies interaction with Quectel modems and GNSS modules by prov
 
 
 ## Modem source documentation
+```
 ECx00x&EG800K&EG810M&EG91xN&EG950A Series - AT Commands Manual
 LTE Standard Module Series
 Version: 1.3
 Date: 2024-09-27
 Status: Released
+```
 
 ## Gnss source documentation
+```
 EC2x&EG9x&EG2x-G&EM05 Series - GNSS Application Note
 LTE Standard Module Series
 Version: 1.3
 Date: 2020-09-04
 Status: Released
+```
 
 ## Source code organization :
 
