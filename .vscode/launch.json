@@ -1,0 +1,31 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Python : current file",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "args": ["-p", "/dev/ttyUSB0", "free-at-command", "-c", "ATI"]
+          },
+          {
+            "name": "Remote Python File",
+            "preLaunchTask": "launch-deploy-python-file",
+            "postDebugTask": "kill-deploy-python-file",
+            "type": "debugpy",
+            "request": "attach",
+            "connect": {
+              "host": "${config:remote.address}",
+              "port": 5678
+            },
+            "justMyCode": true,
+            "pathMappings": [
+              {
+                "localRoot": "${workspaceFolder}/${config:local.python.debug.directory}",
+                "remoteRoot": "${config:distant.python.debug.directory}"
+              }
+            ]
+        },
+    ]
+}

@@ -1,0 +1,22 @@
+{
+    "editor.formatOnSave": true,
+    "autoDocstring.docstringFormat": "sphinx",
+    "python.analysis.typeCheckingMode": "standard",
+    "[python]": {
+        "diffEditor.ignoreTrimWhitespace": false,
+        "editor.formatOnType": true,
+        "editor.wordBasedSuggestions": "off",
+        "editor.insertSpaces": true,
+        "editor.tabSize": 4,
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "files.trimTrailingWhitespace": false
+    },
+    "[shellscript]": {
+        "files.eol": "\n",
+        "files.trimTrailingWhitespace": true
+    },
+    "remote.address": "mb-box.local",
+    "local.python.debug.directory": "quectelatcommands/",
+    "distant.python.debug.directory": "/usr/bin/quectelatcommands/",
+    "distant.python.debug.args": "free-at-command -c ATI",
+}
