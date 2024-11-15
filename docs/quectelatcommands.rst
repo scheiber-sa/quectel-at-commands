@@ -4,6 +4,14 @@ quectelatcommands package
 Submodules
 ----------
 
+quectelatcommands.quectelGnssATCommands module
+-----------------------------------------------
+
+.. automodule:: quectelatcommands.quectelGnssATCommands
+   :members:
+   :undoc-members:
+   :show-inheritance:
+
 quectelatcommands.quectelModemATCommands module
 -----------------------------------------------
 
