@@ -19,6 +19,10 @@ if os.path.exists(readme_file):
     with open(readme_file, "r") as f:
         long_description = f.read()
 
+# Prepare entry points
+scripts = project_config.get("scripts", {})
+console_scripts = [f"{key}={value}" for key, value in scripts.items()]
+
 # Setup configuration
 setup(
     name=project_config["name"],
@@ -32,7 +36,7 @@ setup(
     classifiers=project_config.get("classifiers", []),
     python_requires=project_config["requires-python"],
     install_requires=config.get("dependencies", []),
-    extras_require=config.get("project.optional-dependencies", {}),
+    extras_require=config.get("optional-dependencies", {}),
     packages=find_packages(),  # Dynamically find all packages
-    entry_points={"console_scripts": project_config.get("scripts", {}).items()},
+    entry_points={"console_scripts": console_scripts},
 )
