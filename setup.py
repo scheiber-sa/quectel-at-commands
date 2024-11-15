@@ -1,6 +1,7 @@
-from setuptools import setup
+from setuptools import setup, find_packages
+import os
 
-# Import configuration from pyproject.toml if possible
+# Import configuration from pyproject.toml
 try:
     import tomllib  # Python 3.11+
 except ImportError:
@@ -11,12 +12,19 @@ with open("pyproject.toml", "rb") as f:
 
 project_config = config["project"]
 
-# Extract relevant fields from pyproject.toml
+# Read long description
+long_description = ""
+readme_file = project_config.get("readme", "README.md")
+if os.path.exists(readme_file):
+    with open(readme_file, "r") as f:
+        long_description = f.read()
+
+# Setup configuration
 setup(
     name=project_config["name"],
     version=project_config["version"],
     description=project_config.get("description", ""),
-    long_description=open(project_config.get("readme", "README.md")).read(),
+    long_description=long_description,
     long_description_content_type="text/markdown",
     author=project_config["authors"][0]["name"],
     author_email=project_config["authors"][0]["email"],
@@ -25,6 +33,6 @@ setup(
     python_requires=project_config["requires-python"],
     install_requires=config.get("dependencies", []),
     extras_require=config.get("project.optional-dependencies", {}),
-    packages=["quectelatcommands"],  # Adjust as needed
-    entry_points={"console_scripts": config.get("project.scripts", {})},
+    packages=find_packages(),  # Dynamically find all packages
+    entry_points={"console_scripts": project_config.get("scripts", {}).items()},
 )
