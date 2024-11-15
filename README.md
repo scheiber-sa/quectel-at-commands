@@ -50,7 +50,6 @@ class QuectelModemATCommands:
 -  `201` corresponds to chapter 2.1 in the documentation.
 -  `DisplayProductIdentificationInformation` is the title of the chapter in the documentation : "Display product identification information".
 
-```python
 
 ## Installation
 Install the package using `pip`:
