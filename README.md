@@ -44,7 +44,7 @@ class QuectelModemATCommands:
         return self.sendCommand("ATI")
 ```
 
-`generalCommands201DisplayProductIdentificationInformationgeneralCommands201DisplayProductIdentificationInformatio` is the method name:
+`generalCommands201DisplayProductIdentificationInformation` is the method name:
 
 -  `generalCommands` is the chapter name in the documentation.
 -  `201` corresponds to chapter 2.1 in the documentation.
