@@ -1,5 +1,3 @@
 sphinx
 furo
-sphinx-todo
-sphinx-viewcode
 myst-parser
