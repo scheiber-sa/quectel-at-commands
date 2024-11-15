@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 from typing import Optional
-from .quectelSerial import QuectelSerial
+from quectelatcommands.quectelSerial import QuectelSerial
 
 
 class QuectelModemATCommands:
@@ -3430,11 +3430,11 @@ def main(ctx, port, baudrate, timeout):
     required=True,
     help="AT command to free.",
 )
-def free_at_command(ctx, c: str):
+def free_at_command(ctx, command: str):
     """Free AT command."""
     client: QuectelModemATCommands = ctx.obj["client"]
     client.open()
-    status, response = client.freeAtCommand(c)
+    status, response = client.freeAtCommand(command)
     print(response if status else "Error")
     client.close()
 

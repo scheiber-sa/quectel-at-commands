@@ -7,7 +7,7 @@
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal",
-            "args": ["general-command","--help"]
+            "args": ["-p", "/dev/ttyUSB0", "free-at-command", "-c", "ATI"]
           },
           {
             "name": "Remote Python File",
