@@ -859,7 +859,7 @@ class QuectelModemATCommands:
         return self.sendCommand(f"AT+QCFG='ppp/termframe',{p_flag}")
 
     def statusControlCommands40312EnableDisableAirplaneModeControlViaW_DISABLE(
-        self, p_enable: int, p_status: int
+        self, p_enable: int
     ) -> tuple[bool, list[str]]:
         """
         Status control commands 40312: Enable/disable airplane mode control via W_DISABLE#.
@@ -868,17 +868,14 @@ class QuectelModemATCommands:
 
             - **0** :       Disable the airplane mode control via W_DISABLE# pin
             - **1** :       Enable the airplane mode control via W_DISABLE# pin. The module enters airplane mode when W_DISABLE# pin is active and exit airplane mode when it is inactive. AT+CFUN=1 is not allowed to be used to enable the module to exit airplane mode when the W_DISABLE# pin is active. Unsolicited result code +QIND: airplanestatus,<status> is reported when the status of W_DISABLE# pin changes
-        :type p_enable: int
-        :param p_status: Integer type:
 
-            - **0** :       Exit airplane mode
-            - **1** :       Enter airplane mode
-        :type p_status: int
+        :type p_enable: int
+
 
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        return self.sendCommand(f"AT+QCFG='airplanecontrol',{p_enable},{p_status}")
+        return self.sendCommand(f"AT+QCFG='airplanecontrol',{p_enable}")
 
     def statusControlCommands40313RingLineBehaviorOfRing(
         self, p_typeRI: str, p_pulse_duration: int, p_pulse_count: int
@@ -4495,23 +4492,13 @@ def enable_disable_the_ppp_term_frame_sending(ctx, flag: int):
 1                   Enable the airplane mode control via W_DISABLE# pin. The module enters airplane mode when W_DISABLE# pin is active and exit airplane mode when it is inactive. AT+CFUN=1 is not allowed to be used to enable the module to exit airplane mode when the W_DISABLE# pin is active. Unsolicited result code +QIND: airplanestatus,<status> is reported when the status of W_DISABLE# pin changes
 """,
 )
-@click.option(
-    "--status",
-    "-s",
-    type=int,
-    required=True,
-    help="""
-0                   Exit airplane mode
-1                   Enter airplane mode
-""",
-)
-def enable_disable_airplane_mode_control_via_wdisable(ctx, enable: int, status: int):
+def enable_disable_airplane_mode_control_via_wdisable(ctx, enable: int):
     """Enable Disable Airplane Mode Control via W_DISABLE."""
     client: QuectelModemATCommands = ctx.obj["client"]
     client.open()
     status, response = (
         client.statusControlCommands40312EnableDisableAirplaneModeControlViaW_DISABLE(
-            enable, status
+            enable
         )
     )
     print(response if status else "Error")
