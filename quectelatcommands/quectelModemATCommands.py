@@ -3249,7 +3249,7 @@ class QuectelModemATCommands:
         return self.sendCommand("AT+QNETDEVCTL?")
 
     def packetDomainCommands1017ConnectUsbNetcardToNetworkWrite(
-        self, p_type: int, p_cid: int
+        self, p_type: int, p_cid: int, p_urc_en: int
     ) -> tuple[bool, list[str]]:
         """
         Packet domain commands 1017 connect USB netcard to network write.
@@ -3258,14 +3258,20 @@ class QuectelModemATCommands:
 
             - **0** :       Disconnect the network connection.
             - **1** :       Connect the network connection.
+
         :type p_type: int
         :param p_cid: Integer type. The PDP context identifier.
         :type p_cid: int
 
+        :param p_urc_en: Integer type. Whether to enable the URC +QNETDEVSTATUS: <status> showing the netcard status:
+
+            - **0** :       Disable the URC.
+            - **1** :       Enable the URC.
+
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        return self.sendCommand(f"AT+QNETDEVCTL={p_type},{p_cid}")
+        return self.sendCommand(f"AT+QNETDEVCTL={p_type},{p_cid},{p_urc_en}")
 
     def packetDomainCommands1018ConfigureResponseFormatOfAtCeerIn2g4gRead(
         self,
@@ -8735,12 +8741,24 @@ The type of the network connection.
 The PDP context identifier.    
 """,
 )
-def write(ctx, type: int, cid: int):  # type: ignore[reportRedeclaration]
+@click.option(
+    "--urc-en",
+    "-u",
+    type=int,
+    required=True,
+    help="""
+Whether to enable the URC +QNETDEVSTATUS: <status> showing the netcard status:
+
+            - **0** :       Disable the URC.
+            - **1** :       Enable the URC.
+""",
+)
+def write(ctx, type: int, cid: int, urc_en: int):  # type: ignore[reportRedeclaration]
     """Write connect USB netcard to network."""
     client: QuectelModemATCommands = ctx.obj["client"]
     client.open()
     status, response = client.packetDomainCommands1017ConnectUsbNetcardToNetworkWrite(
-        type, cid
+        type, cid, urc_en
     )
     print(response if status else "Error")
     client.close()
