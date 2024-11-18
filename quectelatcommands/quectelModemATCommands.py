@@ -3248,7 +3248,7 @@ class QuectelModemATCommands:
         return self.sendCommand("AT+QNETDEVCTL?")
 
     def packetDomainCommands1017ConnectUsbNetcardToNetworkWrite(
-        self, p_type: int, p_cid: int, p_urc_en: int
+        self, p_type: int, p_cid: Optional[int], p_urc_en: Optional[int]
     ) -> tuple[bool, list[str]]:
         """
         Packet domain commands 1017 connect USB netcard to network write.
@@ -3270,7 +3270,12 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        return self.sendCommand(f"AT+QNETDEVCTL={p_type},{p_cid},{p_urc_en}")
+        if p_cid is not None and p_urc_en is not None:
+            return self.sendCommand(f"AT+QNETDEVCTL={p_type},{p_cid},{p_urc_en}")
+        elif p_cid is not None and p_urc_en is None:
+            return self.sendCommand(f"AT+QNETDEVCTL={p_type},{p_cid}")
+        else:
+            return self.sendCommand(f"AT+QNETDEVCTL={p_type}")
 
     def packetDomainCommands1018ConfigureResponseFormatOfAtCeerIn2g4gRead(
         self,
@@ -8725,7 +8730,6 @@ The type of the network connection.
     "--cid",
     "-c",
     type=int,
-    required=True,
     help="""
 The PDP context identifier.    
 """,
@@ -8734,7 +8738,6 @@ The PDP context identifier.
     "--urc-en",
     "-u",
     type=int,
-    required=True,
     help="""
 Whether to enable the URC +QNETDEVSTATUS: <status> showing the netcard status:
 
