@@ -431,7 +431,7 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        return self.sendCommand(f'AT+CSCS="{p_chset}"\r')
+        return self.sendCommand(f'AT+CSCS="{p_chset}"')
 
     def generalCommands224ConfigureUrcIndicationRead(self) -> tuple[bool, list[str]]:
         """
@@ -634,7 +634,7 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        return self.sendCommand(f'AT+QCFG="gprsattach",{p_attach_mode},{p_effect}\r')
+        return self.sendCommand(f'AT+QCFG="gprsattach",{p_attach_mode},{p_effect}')
 
     def statusControlCommands40302ConfigureNetworkSearchMode(
         self, p_scan_mode: int
@@ -653,7 +653,7 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        return self.sendCommand(f'AT+QCFG="nwscanmode",{p_scan_mode}\r')
+        return self.sendCommand(f'AT+QCFG="nwscanmode",{p_scan_mode}')
 
     def statusControlCommands40303ConfigureNetworkSearchingSequence(
         self, p_scanseq: int
@@ -681,7 +681,7 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        return self.sendCommand(f'AT+QCFG="nwscanseq",{p_scanseq}\r')
+        return self.sendCommand(f'AT+QCFG="nwscanseq",{p_scanseq}')
 
     def statusControlCommands40304ConfigureRelevantFunctionsInRoamingState(
         self, p_roam_modeex: int
@@ -699,7 +699,7 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        return self.sendCommand(f'AT+QCFG="roamserviceex",{p_roam_modeex}\r')
+        return self.sendCommand(f'AT+QCFG="roamserviceex",{p_roam_modeex}')
 
     def statusControlCommands40305ConfigureServiceDomain(
         self, p_service: int, p_effect: int
@@ -722,7 +722,7 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        return self.sendCommand(f'AT+QCFG="servicedomain",{p_service},{p_effect}\r')
+        return self.sendCommand(f'AT+QCFG="servicedomain",{p_service},{p_effect}')
 
     def statusControlCommands40306ConfigureBand(
         self, p_bandval: int, p_ltebandval: int
@@ -766,7 +766,7 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        return self.sendCommand(f'AT+QCFG="band",{p_bandval},0x{p_ltebandval:X}\r')
+        return self.sendCommand(f'AT+QCFG="band",{p_bandval},0x{p_ltebandval:X}')
 
     def statusControlCommands40307SpecifyRiBehaviorWhenOtherUrcsArePresented(
         self, p_typeRI: str, p_pulse_duration: int, p_pulse_count: int
@@ -805,7 +805,7 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        return self.sendCommand(f'AT+QCFG="urcdelay",{p_time}\r')
+        return self.sendCommand(f'AT+QCFG="urcdelay",{p_time}')
 
     def statusControlCommands40309EnableDisableUrcCacheFunction(
         self, p_enable: int
@@ -822,7 +822,7 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        return self.sendCommand(f'AT+QCFG="urc/cache",{p_enable}\r')
+        return self.sendCommand(f'AT+QCFG="urc/cache",{p_enable}')
 
     def statusControlCommands40310ConfigureTheNetworkCardTypeInterface(
         self, p_net: int
@@ -839,7 +839,7 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        return self.sendCommand(f'AT+QCFG="usbnet",{p_net}\r')
+        return self.sendCommand(f'AT+QCFG="usbnet",{p_net}')
 
     def statusControlCommands40311EnableDisableThePppTermFrameSending(
         self, p_flag: int
@@ -856,7 +856,7 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        return self.sendCommand(f'AT+QCFG="ppp/termframe",{p_flag}\r')
+        return self.sendCommand(f'AT+QCFG="ppp/termframe",{p_flag}')
 
     def statusControlCommands40312EnableDisableAirplaneModeControlViaW_DISABLE(
         self, p_enable: int
@@ -875,7 +875,7 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        return self.sendCommand(f'AT+QCFG="airplanecontrol",{p_enable}\r')
+        return self.sendCommand(f'AT+QCFG="airplanecontrol",{p_enable}')
 
     def statusControlCommands40313RingLineBehaviorOfRing(
         self, p_typeRI: str, p_pulse_duration: int, p_pulse_count: int
@@ -926,7 +926,7 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        return self.sendCommand(f'AT+QCFG="risignaltype","{p_ri_signal_type}"\r')
+        return self.sendCommand(f'AT+QCFG="risignaltype","{p_ri_signal_type}"')
 
     def statusControlCommands40315ConfigureBaudRate(
         self, p_ipr: int
@@ -950,7 +950,7 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        return self.sendCommand(f'AT+QCFG="uart2ipr",{p_ipr}\r')
+        return self.sendCommand(f'AT+QCFG="uart2ipr",{p_ipr}')
 
     def statusControlCommands40316ConfigureWorkingModeOfNic(
         self, p_nat: int
@@ -967,7 +967,7 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        return self.sendCommand(f'AT+QCFG="nat",{p_nat}\r')
+        return self.sendCommand(f'AT+QCFG="nat",{p_nat}')
 
     def statusControlCommands40317ConfigureImsFunction(
         self, p_ims_conf: int, p_voltecap: int
@@ -990,7 +990,7 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        return self.sendCommand(f'AT+QCFG="ims", {p_ims_conf},{p_voltecap}\r')
+        return self.sendCommand(f'AT+QCFG="ims", {p_ims_conf},{p_voltecap}')
 
     def statusControlCommands40318ConfigureConnectionExpirationTimeInHttpFota(
         self, p_timeout: int
@@ -1004,7 +1004,7 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        return self.sendCommand(f'AT+QCFG="fota/times",{p_timeout}\r')
+        return self.sendCommand(f'AT+QCFG="fota/times",{p_timeout}')
 
     def statusControlCommands40400ControlUrcIndication(
         self, p_urctype: str, p_enable: int, p_savetonvram: int
@@ -1040,9 +1040,7 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        return self.sendCommand(
-            f'AT+QINDCFG="{p_urctype}",{p_enable},{p_savetonvram}\r'
-        )
+        return self.sendCommand(f'AT+QINDCFG="{p_urctype}",{p_enable},{p_savetonvram}')
 
     def simRelatedCommands501RequestInternationalMobileSubscriberIdentity(
         self,
@@ -1140,7 +1138,7 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        return self.sendCommand(f'AT+CPIN="{p_code}","{p_pin}","{p_newpin}"\r')
+        return self.sendCommand(f'AT+CPIN="{p_code}","{p_pin}","{p_newpin}"')
 
     def simRelatedCommands504ChangePassword(
         self, p_fac: str, p_pwdlength: int, p_oldpwd: str, p_newpwd: str
@@ -1192,7 +1190,7 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        return self.sendCommand(f'AT+CRSM={p_length},"{p_command}"\r')
+        return self.sendCommand(f'AT+CRSM={p_length},"{p_command}"')
 
     def simRelatedCommands506RestrictedUsimAccess(
         self,
@@ -1272,7 +1270,7 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        return self.sendCommand(f'AT+QPINC="{p_facility}"\r')
+        return self.sendCommand(f'AT+QPINC="{p_facility}"')
 
     def simRelatedCommands509QueryInitializationStatusOfUsimCard(
         self,
@@ -1414,7 +1412,7 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        return self.sendCommand(f'AT+COPS={p_mode},{p_format},"{p_operator}",{p_act}\r')
+        return self.sendCommand(f'AT+COPS={p_mode},{p_format},"{p_operator}",{p_act}')
 
     def networkServiceCommands602DomainNetworkRegistrationStatusRead(
         self,
@@ -1634,7 +1632,7 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        return self.sendCommand(f'ATD"{p_n}""{p_mgsm}";\r')
+        return self.sendCommand(f'ATD"{p_n}""{p_mgsm}";')
 
     def callRelatedCommands703ConnectedLineIdentificationPresentationRead(
         self,
@@ -1790,7 +1788,7 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        return self.sendCommand(f'AT+CPBF="{p_findtext}"\r')
+        return self.sendCommand(f'AT+CPBF="{p_findtext}"')
 
     def phonebookCommands803ReadPhonebookEntries(
         self, p_index: int
@@ -1838,7 +1836,7 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        return self.sendCommand(f'AT+CPBS="{p_storage}"\r')
+        return self.sendCommand(f'AT+CPBS="{p_storage}"')
 
     def phonebookCommands805WritePhonebookEntry(
         self, p_index: int, p_number: str, p_type: int, p_text: str
@@ -1862,7 +1860,7 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        return self.sendCommand(f'AT+CPBW={p_index},"{p_number}",{p_type},"{p_text}"\r')
+        return self.sendCommand(f'AT+CPBW={p_index},"{p_number}",{p_type},"{p_text}"')
 
     def shortMessageServiceCommands901SelectMessageServiceRead(
         self,
@@ -1937,7 +1935,7 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        return self.sendCommand(f'AT+CSCA="{p_sca}","{p_tosca}"\r')
+        return self.sendCommand(f'AT+CSCA="{p_sca}","{p_tosca}"')
 
     def shortMessageServiceCommands904PreferredMessageStorageRead(
         self,
@@ -1975,7 +1973,7 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        return self.sendCommand(f'AT+CPMS="{p_mem1}","{p_mem2}","{p_mem3}"\r')
+        return self.sendCommand(f'AT+CPMS="{p_mem1}","{p_mem2}","{p_mem3}"')
 
     def shortMessageServiceCommands905DeleteMessage(
         self, p_index: int, p_delflag: int
@@ -2028,7 +2026,7 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        return self.sendCommand(f'AT+CMGL="{p_stat}"\r')
+        return self.sendCommand(f'AT+CMGL="{p_stat}"')
 
     def shortMessageServiceCommands907ReadMessage(
         self, p_index: int
@@ -2060,7 +2058,7 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        return self.sendCommand(f'AT+CMGS="{p_da}",{p_toda}\r{p_text}\x1A\r')
+        return self.sendCommand(f'AT+CMGS="{p_da}",{p_toda}{p_text}\x1A')
 
     def shortMessageServiceCommands908SendMessagesPduMode(
         self,
@@ -2137,7 +2135,7 @@ class QuectelModemATCommands:
         :rtype: tuple[bool, list[str]]
         """
         return self.sendCommand(
-            f'AT+CMGW="{p_da}/{p_oa}",{p_tooa}/{p_toda},"{p_stat}"\r{p_text}\x1A'
+            f'AT+CMGW="{p_da}/{p_oa}",{p_tooa}/{p_toda},"{p_stat}"{p_text}\x1A'
         )
 
     def shortMessageServiceCommands910WriteMessageToMemoryPduMode(
@@ -2167,7 +2165,7 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        return self.sendCommand(f'AT+CMSS={p_index},"{p_da}",{p_toda}\r')
+        return self.sendCommand(f'AT+CMSS={p_index},"{p_da}",{p_toda}')
 
     def shortMessageServiceCommands912NewMessageAcknowledgementToUeTeExecute(
         self,
@@ -2280,7 +2278,7 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        return self.sendCommand(f'AT+CSCB={p_mode},"{p_mids}","{p_dcss}"\r')
+        return self.sendCommand(f'AT+CSCB={p_mode},"{p_mids}","{p_dcss}"')
 
     def shortMessageServiceCommands915ShowSmsTextModeParametersRead(
         self,
@@ -2371,7 +2369,7 @@ class QuectelModemATCommands:
         :rtype: tuple[bool, list[str]]
         """
         return self.sendCommand(
-            f'AT+QCMGS="{p_da}",{p_toda},{p_uid},{p_msg_seg},{p_msg_total}\r{p_text}\x1A'
+            f'AT+QCMGS="{p_da}",{p_toda},{p_uid},{p_msg_seg},{p_msg_total}{p_text}\x1A'
         )
 
     def shortMessageServiceCommands917SendConcatenatedMessagesPduMode(
@@ -3018,7 +3016,7 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        return self.sendCommand(f'AT+CGDATA="{p_l2p}",{p_cid}\r')
+        return self.sendCommand(f'AT+CGDATA="{p_l2p}",{p_cid}')
 
     def packetDomainCommands1009ShowPdpAddress(
         self, p_cid: int
@@ -3059,7 +3057,7 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        return self.sendCommand(f'AT+CGCLASS="{p_class}"\r')
+        return self.sendCommand(f'AT+CGCLASS="{p_class}"')
 
     def packetDomainCommands1011PsDomainNetworkRegistrationStatusRead(
         self,
@@ -3270,12 +3268,15 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
+        cmd = ""
         if p_cid is not None and p_urc_en is not None:
-            return self.sendCommand(f"AT+QNETDEVCTL={p_type},{p_cid},{p_urc_en}")
+            cmd = f"AT+QNETDEVCTL={p_type},{p_cid},{p_urc_en}"
         elif p_cid is not None and p_urc_en is None:
-            return self.sendCommand(f"AT+QNETDEVCTL={p_type},{p_cid}")
+            cmd = f"AT+QNETDEVCTL={p_type},{p_cid}"
         else:
-            return self.sendCommand(f"AT+QNETDEVCTL={p_type}")
+            cmd = f"AT+QNETDEVCTL={p_type}"
+
+        return self.sendCommand(cmd)
 
     def packetDomainCommands1018ConfigureResponseFormatOfAtCeerIn2g4gRead(
         self,
@@ -3345,7 +3346,7 @@ class QuectelModemATCommands:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-        return self.sendCommand(f'AT+CCLK="{p_time}"\r')
+        return self.sendCommand(f'AT+CCLK="{p_time}"')
 
     def hardwareRelatedCommands1103EnableDisableSleepModeRead(
         self,

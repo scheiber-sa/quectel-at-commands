@@ -49,9 +49,10 @@ class QuectelSerial:
                 line = self.serial_conn.readline().decode().strip()
                 if line != "" and self.waitForResponse:
                     if line == "OK" or line == "ERROR":
+                        self.response.append(line)
                         self.waitForResponse = False
 
-                    if line != self.currentCommand and self.waitForResponse == True:
+                    if line not in self.currentCommand and self.waitForResponse == True:
                         self.response.append(line)
 
             except Exception as e:
@@ -71,10 +72,19 @@ class QuectelSerial:
         status = False
         response = []
         self.response = []
-        self.currentCommand = p_command
+
+        # Replace '?' with '\r' or ensure it ends with '\r'
+        if p_command.endswith("?"):
+            self.currentCommand = p_command[:-1] + "\r"
+        else:
+            self.currentCommand = p_command
+
+        # Ensure it ends with '\r'
+        if not self.currentCommand.endswith("\r"):
+            self.currentCommand += "\r"
 
         self.waitForResponse = True
-        self.serial_conn.write((p_command + "\r\n").encode())
+        self.serial_conn.write((self.currentCommand + "\n").encode())
 
         timeout = 2
         while self.waitForResponse and timeout > 0:
@@ -85,7 +95,7 @@ class QuectelSerial:
             self.waitForResponse = False
 
         response = self.response
-        if response:
+        if "OK" in response[len(response) - 1]:
             status = True
 
         return status, response
