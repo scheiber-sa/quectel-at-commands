@@ -453,7 +453,7 @@ class QuectelModemATCommands:
             - **"usbat"** :  USB AT port
             - **"usbmodem"** :  USB modem port
             - **"uart1"** :  Main UART port
-        :type p_urc_port: str
+        :type p_urc_port: Optional[str]
 
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
@@ -3258,12 +3258,14 @@ class QuectelModemATCommands:
 
         :type p_type: int
         :param p_cid: Integer type. The PDP context identifier.
-        :type p_cid: int
+        :type p_cid: Optional[int]
 
         :param p_urc_en: Integer type. Whether to enable the URC +QNETDEVSTATUS: <status> showing the netcard status:
 
             - **0** :       Disable the URC.
             - **1** :       Enable the URC.
+
+        :type p_urc_en: Optional[int]
 
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]

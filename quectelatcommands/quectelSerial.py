@@ -68,24 +68,17 @@ class QuectelSerial:
         :return: Tuple containing the status of the command and the response.
         :rtype: tuple[bool, list[str]]
         """
-
         status = False
         response = []
         self.response = []
 
-        # Replace '?' with '\r' or ensure it ends with '\r'
-        if p_command.endswith("?"):
-            self.currentCommand = p_command[:-1] + "\r"
-        else:
-            self.currentCommand = p_command
-
-        # Ensure it ends with '\r'
-        if not self.currentCommand.endswith("\r"):
-            self.currentCommand += "\r"
+        # Ensure the command ends with '\r'
+        self.currentCommand = p_command.rstrip() + "\r"
 
         self.waitForResponse = True
-        self.serial_conn.write((self.currentCommand + "\n").encode())
+        self.serial_conn.write(self.currentCommand.encode())
 
+        # Wait for a response with a timeout
         timeout = 2
         while self.waitForResponse and timeout > 0:
             time.sleep(0.1)
@@ -95,7 +88,9 @@ class QuectelSerial:
             self.waitForResponse = False
 
         response = self.response
-        if "OK" in response[len(response) - 1]:
+
+        # Check if the last line contains "OK"
+        if response and "OK" in response[-1]:
             status = True
 
         return status, response
