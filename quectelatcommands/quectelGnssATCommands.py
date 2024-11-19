@@ -871,7 +871,7 @@ import click
 @click.option(
     "--port",
     "-p",
-    default="/dev/ttyUSB2",
+    default="/dev/ttyUSB1",
     help="Serial port to use.",
     show_default=True,
 )
