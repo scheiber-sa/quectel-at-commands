@@ -236,7 +236,7 @@ For more details on the AT commands used by this library, please refer to the of
 
 If you encounter issues with serial communication:
 - Ensure the correct permissions are set on the serial device (e.g., `/dev/ttyUSB2`).
-- Verify the serial port and baud rate match those required by your Quectel device.
+- Verify the serial port and baud rate (e.g., 115200) match those required by your Quectel device.
 
 
 ## Known Limitations

@@ -6,7 +6,7 @@ from quectelatcommands.quectelSerial import QuectelSerial
 
 class QuectelGnssATCommands:
     def __init__(
-        self, p_port: str = "/dev/ttyUSB1", p_baudrate: int = 115200, p_timeout: int = 1
+        self, p_port: str = "/dev/ttyUSB2", p_baudrate: int = 115200, p_timeout: int = 1
     ):
         """
         Quectel modem AT commands.
@@ -871,7 +871,7 @@ import click
 @click.option(
     "--port",
     "-p",
-    default="/dev/ttyUSB1",
+    default="/dev/ttyUSB2",
     help="Serial port to use.",
     show_default=True,
 )
